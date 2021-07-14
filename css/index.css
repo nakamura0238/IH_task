@@ -1,0 +1,98 @@
+div.nav a {
+  display: inline-block;
+  color: #3333ff;
+  margin: 5px;
+}
+
+div.genre-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div.genre-area div.like-tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 400px;
+  margin: 5px 20px;
+  border: 2px solid #aaaaaa;
+  border-radius: 5px;
+}
+
+div.genre-area div.like-tag div.item-genre {
+  display: block;
+  padding: 10px 5px;
+}
+
+div.genre-area div.like-tag div.item-genre.item-genre-a {
+  width: 20%;
+  background: #ffffff;
+  border-radius: 5px 0 0 5px;
+}
+
+div.genre-area div.like-tag div.item-genre.item-genre-b {
+  width: 25%;
+  background: #ffffff;
+  border-right: 2px solid #cccccc;
+  border-left: 2px solid #cccccc;
+}
+
+div.genre-area div.like-tag div.item-genre.item-genre-c {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  background: #ffffff;
+  border-radius: 0 5px 5px 0;
+}
+
+a.box-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 10px;
+}
+
+a.box-user img.item-picture {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #aaaaaa;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+a.box-user div.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+a.box-user div.flex p.item-name {
+  padding-left: 10px;
+  font-size: 1.8rem;
+}
+
+a.box-user div.flex p.item-id {
+  font-size: 1.2rem;
+  color: #666666;
+}

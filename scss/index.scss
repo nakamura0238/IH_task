@@ -1,0 +1,72 @@
+div.nav {
+    a {
+        display: inline-block;
+        color: #3333ff;
+        margin: 5px;
+    }
+}
+
+// ジャンルエリア
+div.genre-area {
+    display: flex;
+    flex-direction: column;
+    div.like-tag {
+        display: flex;
+        flex-direction: row;
+        width: 400px;
+        margin: 5px 20px;
+        border: 2px solid #aaaaaa;
+        border-radius: 5px;
+        div.item-genre {
+            display:block;
+            padding: 10px 5px;
+            &.item-genre-a {
+                width: 20%;
+                background: #ffffff;
+                border-radius: 5px 0 0 5px;
+            }
+            &.item-genre-b {
+                width: 25%;
+                background: #ffffff;
+                border-right: 2px solid #cccccc;
+                border-left: 2px solid #cccccc;
+            }
+            &.item-genre-c {
+                flex-grow: 2;
+                background: #ffffff;
+                border-radius: 0 5px 5px 0;
+            }
+        }
+    }
+}
+
+// ユーザーエリア
+div.follow-area {
+
+}
+
+a.box-user {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    img.item-picture {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #aaaaaa;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    div.flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p.item-name {
+            padding-left: 10px;
+            font-size: 1.8rem;
+        }
+        p.item-id {
+            font-size: 1.2rem;
+            color: #666666;
+        }
+    }
+}

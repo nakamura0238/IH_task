@@ -1,0 +1,74 @@
+div.box-select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div.box-select form.area-select {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div.box-select form.area-select div.box-genre-ab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+div.genre-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div.genre-area div.like-tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 400px;
+  margin: 5px 20px;
+  border: 2px solid #aaaaaa;
+  border-radius: 5px;
+}
+
+div.genre-area div.like-tag div.item-genre {
+  display: block;
+  padding: 10px 5px;
+}
+
+div.genre-area div.like-tag div.item-genre.item-genre-a {
+  width: 20%;
+  background: #ffffff;
+  border-radius: 5px 0 0 5px;
+}
+
+div.genre-area div.like-tag div.item-genre.item-genre-b {
+  width: 25%;
+  background: #ffffff;
+  border-right: 2px solid #cccccc;
+  border-left: 2px solid #cccccc;
+}
+
+div.genre-area div.like-tag div.item-genre.item-genre-c {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  background: #ffffff;
+  border-radius: 0 5px 5px 0;
+}

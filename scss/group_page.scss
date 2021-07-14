@@ -1,0 +1,25 @@
+div.box-genre-all {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    div.block-genre-ab {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        p.item-genre-b-name {
+            font-size: 2.0rem;
+        }
+        p.item-genre-a-name {}
+        p.item-genre-num {}
+    }
+    div.box-genre-c {
+        div.block-genre-c {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            padding-left: 20px;
+            p.item-genre-c-name {}
+            p.item-genre-c-num {}
+        }
+    }
+}
