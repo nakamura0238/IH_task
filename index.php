@@ -22,6 +22,7 @@
     ));
     $user = $user_state -> fetch(PDO::FETCH_ASSOC);
 
+
     // 好み抽出
     $genre_list_state = $db -> prepare(
         'SELECT likes.user_index, likes.genre_a, A.genre_a_name, likes.genre_b, B.genre_b_name, likes.genre_c
@@ -35,7 +36,22 @@
         $_SESSION['user_index']
     ));
     $genre_list = $genre_list_state -> fetchall(PDO::FETCH_ASSOC);
-    
+
+
+    // フォローリクエスト抽出 フォロー側
+    $follow_request_list_state = $db -> prepare(
+        'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
+        FROM follows_request AS f_r
+        JOIN users AS u ON f_r.follower_index = u.user_index
+        WHERE f_r.follow_index = ?
+        ORDER BY f_r.request_at DESC'
+    );
+    $follow_request_list_state -> execute(array(
+        $_SESSION['user_index']
+    ));
+    $follow_request_list = $follow_request_list_state -> fetchall(PDO::FETCH_ASSOC);
+
+
     // フォロー抽出
     $follow_list_state = $db -> prepare(
         'SELECT f.ff_index, f.follower_index, u.user_id, u.name, u.picture
@@ -48,6 +64,21 @@
         $_SESSION['user_index']
     ));
     $follow_list = $follow_list_state -> fetchall(PDO::FETCH_ASSOC);
+
+
+    // フォローリクエスト抽出 フォロワー側
+    $follower_request_list_state = $db -> prepare(
+        'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
+        FROM follows_request AS f_r
+        JOIN users AS u ON f_r.follow_index = u.user_index
+        WHERE f_r.follower_index = ?
+        ORDER BY f_r.request_at DESC'
+    );
+    $follower_request_list_state -> execute(array(
+        $_SESSION['user_index']
+    ));
+    $follower_request_list = $follower_request_list_state -> fetchall(PDO::FETCH_ASSOC);
+
 
     // フォロワー抽出
     $follower_list_state = $db -> prepare(
@@ -62,6 +93,7 @@
     ));
     $follower_list = $follower_list_state -> fetchall(PDO::FETCH_ASSOC);
 
+
     // グループ招待抽出
     $group_inv_list_state = $db -> prepare(
         'SELECT g_i.*, g.group_name, g.group_picture
@@ -74,6 +106,7 @@
         $_SESSION['user_index']
     ));
     $group_inv_list = $group_inv_list_state -> fetchall(PDO::FETCH_ASSOC);
+
 
     // グループ抽出
     $group_list_state = $db -> prepare(
@@ -101,6 +134,7 @@
     <link rel="stylesheet" href="./css/destyle.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/index.css">
+    <script src="./follow/follow_index.js" defer></script>
     <script src="./group/group_function_index.js" defer></script>
     <title>Document</title>
 </head>
@@ -142,6 +176,21 @@
 
         <!-- フォロー表示 -->
         <div class="follow-area">
+            <!-- フォローリクエスト -->
+            <p>--follow_request--</p>
+            <?php foreach ($follow_request_list as $record) { ?>
+                <div>
+                    <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
+                        <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                        <div class="flex">
+                            <p class="item-name"><?php echo $record['name']; ?></p>
+                            <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
+                        </div>
+                    </a>
+                    <button class="btn-follow js-btn-follow" value="<?php echo $record['follower_index']; ?>">リクエスト取消</button>
+                </div>
+            <?php } ?>
+            <!-- フォロー-->
             <p>--follow--</p>
             <?php foreach ($follow_list as $record) { ?>
                 <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
@@ -156,6 +205,20 @@
 
         <!-- フォロワー表示 -->
         <div class="follower-area">
+            <!-- フォロワーリクエスト -->
+            <p>--follower_request--</p>
+            <?php foreach ($follower_request_list as $record) { ?>
+                <div>
+                    <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
+                        <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                        <div class="flex">
+                            <p class="item-name"><?php echo $record['name']; ?></p>
+                            <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
+                        </div>
+                    </a>
+                    <button class="follow-permit js-follow-permit btn-follow js-btn-follow" value="<?php echo $record['follower_index']; ?>">Permit</button>
+                </div>
+            <?php } ?>
             <p>--follower--</p>
             <?php foreach ($follower_list as $record) { ?>
                 <a class="follower-user box-user" href="./user/user_page.php?index=<?php echo $record['follow_index']; ?>">
@@ -167,6 +230,23 @@
                 </a>
             <?php } ?>
         </div>
+
+            <!-- フォローモーダル -->
+            <div class="follow-modal js-follow-modal">
+                <div class="modal-window">
+                    <div class="box-modal-item">
+                        <p class="modal-message">
+                        </p>
+                        <div class="box-modal-btn">
+                            <button class="follow-submit js-follow-submit js-close-modal" value="<?php echo $_REQUEST['index'];?>">
+                            </button>
+                            <button class="close-modal js-close-modal">close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
         <!-- グループ表示 -->
         <div class="group-area">

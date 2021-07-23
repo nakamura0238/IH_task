@@ -1,4 +1,4 @@
-let url = '../follow/follow_fuction.php'
+let url_f = './follow/follow_fuction.php'
 
 // モーダル表示
 $('button.js-btn-follow').on('click', () => {
@@ -10,7 +10,7 @@ $('button.js-follow-submit').on('click', (e) => {
     follower_index = $(e.target).val()
     $.ajax({
         type:'POST',
-        url: url,
+        url: url_f,
         data: {'follower_user' : follower_index, 'status': 'request'},
         dataType: 'json',
         error : function(XMLHttpRequest, textStatus, errorThrown) {
