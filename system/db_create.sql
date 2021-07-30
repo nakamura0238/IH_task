@@ -3,14 +3,6 @@ CREATE USER 'IH22_M'@'localhost' IDENTIFIED BY 'N3wtYXVK';
 GRANT ALL ON *.* TO 'IH22_M'@'localhost';
 
 
--- phpMyAdmin SQL Dump
--- version 4.9.5
--- https://www.phpmyadmin.net/
---
--- ホスト: localhost:3306
--- 生成日時: 2021 年 7 月 13 日 08:31
--- サーバのバージョン： 5.7.30
--- PHP のバージョン: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -21,7 +13,6 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `IH_DB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `IH_DB`;
 
--- --------------------------------------------------------
 
 --
 -- テーブルの構造 `follows`
@@ -31,11 +22,11 @@ CREATE TABLE `follows` (
   `ff_index` int(11) NOT NULL,
   `follow_index` int(11) NOT NULL,
   `follower_index` int(11) NOT NULL,
-  `follow_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `follow_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `random_code` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------
 
 --
 -- テーブルの構造 `follows_request`
@@ -43,12 +34,13 @@ CREATE TABLE `follows` (
 
 CREATE TABLE `follows_request` (
   `request_index` int(11) NOT NULL,
-  `follow_user` varchar(128) NOT NULL,
-  `follower_user` varchar(128) NOT NULL,
-  `permit_flg` tinyint(1) NOT NULL
+  `follow_index` varchar(128) NOT NULL,
+  `follower_index` varchar(128) NOT NULL,
+  `permit_flg` tinyint(1) NOT NULL,
+  `request_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+
 
 --
 -- テーブルの構造 `genre_a`
@@ -60,7 +52,6 @@ CREATE TABLE `genre_a` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- --------------------------------------------------------
 
 --
 -- テーブルの構造 `genre_b`
@@ -72,7 +63,7 @@ CREATE TABLE `genre_b` (
   `genre_b_name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+
 
 --
 -- テーブルの構造 `groups`
@@ -85,7 +76,7 @@ CREATE TABLE `groups` (
   `random_code` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+
 
 --
 -- テーブルの構造 `groups_invitation`
@@ -97,7 +88,7 @@ CREATE TABLE `groups_invitation` (
   `inv_user_index` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+
 
 --
 -- テーブルの構造 `group_user`
@@ -109,7 +100,7 @@ CREATE TABLE `group_user` (
   `user_index` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+
 
 --
 -- テーブルの構造 `likes`
@@ -123,27 +114,7 @@ CREATE TABLE `likes` (
   `genre_c` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- テーブルのデータのダンプ `likes`
---
 
-INSERT INTO `likes` (`like_index`, `user_index`, `genre_a`, `genre_b`, `genre_c`) VALUES
-(1, 4, 1, 1, '牛肉'),
-(2, 4, 2, 4, 'ボルダリング'),
-(3, 4, 4, 7, 'キジトラ'),
-(4, 4, 1, 3, 'にんじん'),
-(5, 4, 6, 8, 'シン・ゴジラ'),
-(6, 4, 1, 1, 'カルビ'),
-(7, 5, 1, 16, 'マグロ'),
-(8, 5, 1, 16, 'サーモン'),
-(9, 4, 1, 16, 'マグロ'),
-(10, 4, 1, 16, 'ホタテ'),
-(11, 6, 1, 1, '牛肉'),
-(12, 6, 2, 4, 'ボルダリング'),
-(13, 6, 6, 8, '７つの会議'),
-(14, 6, 1, 16, 'イカ');
-
--- --------------------------------------------------------
 
 --
 -- テーブルの構造 `users`
@@ -161,9 +132,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
---
--- ダンプしたテーブルのインデックス
---
 
 --
 -- テーブルのインデックス `follows`
@@ -227,13 +195,13 @@ ALTER TABLE `users`
 -- テーブルのAUTO_INCREMENT `follows`
 --
 ALTER TABLE `follows`
-  MODIFY `ff_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ff_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- テーブルのAUTO_INCREMENT `follows_request`
 --
 ALTER TABLE `follows_request`
-  MODIFY `request_index` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `request_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- テーブルのAUTO_INCREMENT `genre_a`
@@ -251,25 +219,25 @@ ALTER TABLE `genre_b`
 -- テーブルのAUTO_INCREMENT `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `group_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `group_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- テーブルのAUTO_INCREMENT `groups_invitation`
 --
 ALTER TABLE `groups_invitation`
-  MODIFY `invitation_index` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `invitation_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- テーブルのAUTO_INCREMENT `group_user`
 --
 ALTER TABLE `group_user`
-  MODIFY `gu_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `gu_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- テーブルのAUTO_INCREMENT `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `like_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `like_index` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- テーブルのAUTO_INCREMENT `users`

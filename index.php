@@ -156,6 +156,7 @@
             <img src="./images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
             <br>
             <?php
+                echo $_SESSION['user_index'] . "<br>";
                 echo "user_name : " . $_SESSION['user_name'] . "<br>";
                 echo "user_id : " . $_SESSION['user_id'] . "<br>";
                 echo "email : " . $_SESSION['email'] . "<br>";
@@ -176,20 +177,6 @@
 
         <!-- フォロー表示 -->
         <div class="follow-area">
-            <!-- フォローリクエスト -->
-            <p>--follow_request--</p>
-            <?php foreach ($follow_request_list as $record) { ?>
-                <div>
-                    <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
-                        <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                        <div class="flex">
-                            <p class="item-name"><?php echo $record['name']; ?></p>
-                            <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
-                        </div>
-                    </a>
-                    <button class="btn-follow js-btn-follow" value="<?php echo $record['follower_index']; ?>">リクエスト取消</button>
-                </div>
-            <?php } ?>
             <!-- フォロー-->
             <p>--follow--</p>
             <?php foreach ($follow_list as $record) { ?>
@@ -205,20 +192,6 @@
 
         <!-- フォロワー表示 -->
         <div class="follower-area">
-            <!-- フォロワーリクエスト -->
-            <p>--follower_request--</p>
-            <?php foreach ($follower_request_list as $record) { ?>
-                <div>
-                    <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
-                        <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                        <div class="flex">
-                            <p class="item-name"><?php echo $record['name']; ?></p>
-                            <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
-                        </div>
-                    </a>
-                    <button class="follow-permit js-follow-permit btn-follow js-btn-follow" value="<?php echo $record['follower_index']; ?>">Permit</button>
-                </div>
-            <?php } ?>
             <p>--follower--</p>
             <?php foreach ($follower_list as $record) { ?>
                 <a class="follower-user box-user" href="./user/user_page.php?index=<?php echo $record['follow_index']; ?>">

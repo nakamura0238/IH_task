@@ -26,7 +26,7 @@
             $error['password'] = 'mismatch';
         }
         // パスワード文字数
-        if (strlen('password') < 4) {
+        if (strlen($_POST['password']) < 4) {
             $error['password'] = 'length';
         }
         // パスワード未入力

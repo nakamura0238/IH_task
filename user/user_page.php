@@ -185,9 +185,9 @@
                         <p class="modal-message">
                             <?php
                                 if ($follow_flg) {
-                                    echo 'フォローリクエストを取り消します';
+                                    echo 'フォロー解除します';
                                 } else {
-                                    echo 'フォローリクエストを送ります';
+                                    echo 'フォローします';
                                 }
                             ?>
                         </p>
@@ -197,7 +197,7 @@
                                     if ($follow_flg) {
                                         echo 'unfollow';
                                     } else {
-                                        echo 'request';
+                                        echo 'follow';
                                     }
                                 ?>
                             </button>

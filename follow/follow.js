@@ -22,11 +22,11 @@ $('button.js-follow-submit').on('click', (e) => {
         if (data.result) {
             $('button.js-btn-follow').html('following')
             $('button.js-follow-submit').html('unfollow')
-            $('p.modal-message').html('フォローリクエストを取り消します')
+            $('p.modal-message').html('フォロー解除します')
         } else {
             $('button.js-btn-follow').html('follow')
             $('button.js-follow-submit').html('follow')
-            $('p.modal-message').html('フォローリクエストを送ります')
+            $('p.modal-message').html('フォローします')
         }
     }).fail(() => {
     })
