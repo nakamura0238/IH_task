@@ -21,7 +21,7 @@
             $_SESSION['user_index'],
             $_SESSION['email'],
             $_SESSION['user_id'],
-            sha1($_POST['user_password'])
+            sha1(escape($_POST['user_password']))
         ));
         $user_auth = $user_auth_state -> fetch(PDO::FETCH_ASSOC);
 

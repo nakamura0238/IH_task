@@ -31,19 +31,18 @@
 
         // 名前
         if ($_POST['name'] != '') {
-            $update['name'] = $_POST['name'];
+            $update['name'] = escape($_POST['name']);
         }
 
         // メールアドレス
         if ($_POST['email'] != '') {
             $email_check = $db -> prepare('SELECT count(*) AS email_cnt FROM users WHERE email = ?');
             $email_check -> execute(array(
-                $_POST['email'],
+                escape($_POST['email']),
             ));
             $email = $email_check -> fetch(PDO::FETCH_ASSOC);
-            print_r($email);
             if ($email['email_cnt'] == 0) {
-                $update['email'] = $_POST['email'];
+                $update['email'] = escape($_POST['email']);
             } else {
                 $error['email'] = 'duplicate';
             }
@@ -53,11 +52,11 @@
         if ($_POST['id'] != '') {
             $id_check = $db -> prepare('SELECT count(*) AS id_cnt FROM users WHERE user_id = ?');
             $id_check -> execute(array(
-                $_POST['id'],
+                escape($_POST['id']),
             ));
             $id = $id_check -> fetch(PDO::FETCH_ASSOC);
             if ($id['id_cnt'] == 0) {
-                $update['user_id'] = $_POST['id'];
+                $update['user_id'] = escape($_POST['id']);
             } else {
                 $error['id'] = 'duplicate';
             }
@@ -70,7 +69,7 @@
                 if ($_POST['new_pass'] == $_POST['new_pass_check']) {
                     // 文字数確認
                     if (strlen($_POST['new_pass']) > 4 && strlen($_POST['new_pass_check']) > 4) {
-                        $update['password'] = sha1($_POST['new_pass']);
+                        $update['password'] = sha1(escape($_POST['new_pass']));
                     } else {
                         $error['pass'] = 'short';
                     }
@@ -82,8 +81,6 @@
                 $error['pass'] = 'wrong';
             }
         }
-
-        print_r($update);
 
         if (empty($error)) {
             $new_data_state = $db -> prepare('UPDATE users SET name = ?, email = ?, user_id = ?, password = ? WHERE user_index = ?');
