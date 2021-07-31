@@ -42,24 +42,6 @@
     </main>
 
     <footer>
-        <?php
-
-            // $search_word = $_POST['word'] . '%';
-            $search_word = 'testaa';
-            $statement = $db -> prepare('SELECT user_index, user_id, `name` FROM users WHERE user_id = ?;');
-            $statement -> execute(array(
-                $search_word
-            ));
-
-        ?>
-        <pre>
-            <?php
-                $users = $statement -> fetch(PDO::FETCH_ASSOC);
-                // var_dump($user);
-                echo json_encode($users);
-            ?>
-
-        </pre>
     </footer>
 </body>
 </html>

@@ -10,7 +10,7 @@
     // $search_word = $_POST['word'] . '%';
     $statement = $db -> prepare('SELECT user_index, user_id, `name` FROM users WHERE user_id = ?;');
     $statement -> execute(array(
-        $_POST['word']
+        escape($_POST['word'])
     ));
 
     $users = $statement -> fetch(PDO::FETCH_ASSOC);

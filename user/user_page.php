@@ -24,7 +24,7 @@
     if (isset($_REQUEST['index'])) {
         $user_state = $db -> prepare('SELECT * FROM users WHERE user_index = ?;');
         $user_state -> execute(array(
-            $_REQUEST['index']
+            escape($_REQUEST['index'])
         ));
         $user = $user_state -> fetch(PDO::FETCH_ASSOC);
 
@@ -32,7 +32,7 @@
         $follow_state = $db -> prepare('SELECT * FROM follows WHERE follow_index = ? AND follower_index = ? LIMIT 1;');
         $follow_state -> execute(array(
             $_SESSION['user_index'],
-            $_REQUEST['index']
+            escape($_REQUEST['index'])
         ));
         $follow = $follow_state -> fetch(PDO::FETCH_ASSOC);
         if ($follow) {
@@ -132,11 +132,11 @@
                 genre_a, genre_b'
         );
         $like_state -> execute(array(
-            $_REQUEST['index'],
+            escape($_REQUEST['index']),
             $_SESSION['user_index'],
-            $_REQUEST['index'],
+            escape($_REQUEST['index']),
             $_SESSION['user_index'],
-            $_REQUEST['index']
+            escape($_REQUEST['index'])
         ));
 
         $like_list = $like_state -> fetchall(PDO::FETCH_ASSOC);
