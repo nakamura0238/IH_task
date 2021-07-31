@@ -17,10 +17,10 @@
         try {
             $statement = $db->prepare('INSERT INTO users SET email = ?, user_id = ?, name = ?, password = ?, create_at = NOW();');
             $statement->execute(array(
-                $_SESSION['join']['email'],
-                $_SESSION['join']['id'],
-                $_SESSION['join']['name'],
-                sha1($_SESSION['join']['password']),
+                escape($_SESSION['join']['email']),
+                escape($_SESSION['join']['id']),
+                escape($_SESSION['join']['name']),
+                sha1(escape($_SESSION['join']['password'])),
             ));
 
             unset($_SESSION['join']);
@@ -32,8 +32,6 @@
         }
 
     }
-
-    print_r($_POST);
 
     require('../functions/component.php');
 ?>

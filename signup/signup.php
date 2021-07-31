@@ -49,7 +49,7 @@
             // メールアドレス重複チェック
             $user_email = $db -> prepare('SELECT COUNT(*) as mail_cnt FROM users WHERE email = ?;');
             $user_email -> execute(array(
-                $_POST['email']
+                escape($_POST['email'])
             ));
             $record_mail = $user_email -> fetch();
             // メール重複エラー
@@ -60,7 +60,7 @@
             // ID重複チェック
             $user_id = $db -> prepare('SELECT COUNT(*) as id_cnt FROM users WHERE user_id = ?;');
             $user_id -> execute(array(
-                $_POST['id']
+                escape($_POST['id'])
             ));
             $record_id = $user_id -> fetch();
             if ($record_id['id_cnt'] > 0) {
