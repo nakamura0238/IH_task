@@ -28,9 +28,9 @@
         $genre_register = $db -> prepare('INSERT INTO likes SET user_index = ?, genre_a = ?, genre_b = ?, genre_c = ?;');
         $genre_register -> execute(array(
             $_SESSION['user_index'],
-            $_POST['genre-a'],
-            $_POST['genre-b'],
-            $_POST['genre-c'],
+            escape($_POST['genre-a']),
+            escape($_POST['genre-b']),
+            escape($_POST['genre-c']),
         ));
 
         header('Location: ./register_like.php');
@@ -96,24 +96,6 @@
     </main>
 
     <footer>
-        <?php
-
-            // $search_word = $_POST['word'] . '%';
-            $search_word = 'testaa';
-            $statement = $db -> prepare('SELECT user_index, user_id, `name` FROM users WHERE user_id = ?;');
-            $statement -> execute(array(
-                $search_word
-            ));
-
-        ?>
-        <pre>
-            <?php
-                $users = $statement -> fetch(PDO::FETCH_ASSOC);
-                // var_dump($user);
-                echo json_encode($users);
-            ?>
-
-        </pre>
     </footer>
 </body>
 </html>

@@ -10,7 +10,7 @@
     // $search_word = $_POST['word'] . '%';
     $statement = $db -> prepare('SELECT * FROM genre_b WHERE in_genre_a = ?;');
     $statement -> execute(array(
-        $_POST['genre_a']
+        escape($_POST['genre_a'])
     ));
 
     $genres = $statement -> fetchall(PDO::FETCH_ASSOC);
