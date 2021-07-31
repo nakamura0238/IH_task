@@ -20,8 +20,8 @@
         if ($_POST['email'] != '' && $_POST['password'] != '') {
             $login = $db->prepare('SELECT * FROM users WHERE email = ? AND password = ?;');
             $login->execute(array(
-                $_POST['email'],
-                sha1($_POST['password'])
+                escape($_POST['email']),
+                sha1(escape($_POST['password']))
             ));
             // ユーザー情報取得
             $user = $login->fetch();
@@ -31,7 +31,7 @@
             if ($user) {
                 $index = $db->prepare('SELECT user_index, user_id FROM users WHERE email = ?;');
                 $index->execute(array(
-                    $_POST['email'],
+                    escape($_POST['email']),
                 ));
                 $userIndex = $index->fetch();
 
