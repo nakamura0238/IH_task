@@ -7,8 +7,6 @@
 
     session_start();
 
-    // 所属していないグループにアクセスした時
-    
 
     if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
@@ -18,11 +16,44 @@
         exit();
     }
 
-    // ユーザー抽出
+    // 所属していないグループにアクセスした時
+    $check_group_state = $db -> prepare('SELECT count(*) AS check_num FROM group_user WHERE group_index = ? AND user_index = ?');
+    $check_group_state -> execute(array(
+        escape($_REQUEST['group_index']),
+        $_SESSION['user_index'],
+    ));
+    $check_group = $check_group_state -> fetch(PDO::FETCH_ASSOC);
 
-    // ユーザー数に合わせたSQLをどうするか
+    if ($check_group['check_num'] < 1) {
+        header('Location: ./group_top.php');
+        exit();
+    }
 
-    // 好み抽出
+    // 更新
+    if (!empty($_POST)) {
+        // 名前更新
+        if (!empty($_POST['group_name'])) {
+            $update_state = $db -> prepare('UPDATE groups SET group_name = ? WHERE group_index = ?;');
+            $update_state -> execute(array(
+                escape($_POST['group_name']),
+                escape($_REQUEST['group_index'])
+            ));
+        }
+
+        // 画像更新
+        
+
+        // グループページへ
+        $url = './group_page.php?group_index='.$_REQUEST['group_index'];
+        header("Location:".$url);
+        exit();
+    }
+
+    $group_state = $db -> prepare('SELECT * FROM groups WHERE group_index = ?');
+    $group_state -> execute(array(
+        $_REQUEST['group_index']
+    ));
+    $group = $group_state -> fetch(PDO::FETCH_ASSOC);
 
     require('../functions/component.php');
 ?>
@@ -35,37 +66,19 @@
     <?php require('../functions/header.php'); ?>
 
     <main>
-        <div>
-            <a href="./group_create.php">新規グループ作成</a>
-            <button>設定</button>
-        </div>
 
+        <p>グループ情報更新</p>
 
-        <?php if ($group_inv_list) { ?>
-            <p>招待されているグループ</p>
-            <div class="inv-group-area">
-                <?php foreach ($group_inv_list as $record) { ?>
-                    <div class="inv_group js-inv-group">
-                        <img src="../images/group/<?php  echo $record['group_picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="グループイメージ" height="100">
-                        <p class="item-group">name:<?php echo $record['group_name']; ?></p>
-                        <button class="enter-group-index js-enter-group-index" value="<?php echo $record['group_index']; ?>">参加する</button>
-                    </div>
-                <?php } ?>
-            </div>
-        <?php } ?>
+        <form action="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>" method="POST" enctype="multipart/form-data">
+            <!-- 画像を登録 -->
+            <input type="file" name="image">
 
+            <!-- グループ名変更 -->
+            <input type="text" name="group_name" placeholder="<?php echo $group['group_name'] ?>">
+            <button>変更</button>
 
-        <?php if ($group_list) { ?>
-            <p>参加しているグループ</p>
-            <div class="join-group-area">
-                <?php foreach ($group_list as $record) { ?>
-                    <a class="join-group" href="./group_page.php?group_index=<?php echo $record['group_index']; ?>">
-                        <img src="../images/group/<?php  echo $record['group_picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="グループイメージ" height="100">
-                        <p class="item-group">name:<?php echo $record['group_name']; ?></p>
-                    </a>
-                <?php } ?>
-            </div>
-        <?php } ?>
+        </form>
+
 
     </main>
 

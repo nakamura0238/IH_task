@@ -15,6 +15,20 @@
         exit();
     }
 
+    // 所属していないグループにアクセスした時
+    $check_group_state = $db -> prepare('SELECT count(*) AS check_num FROM group_user WHERE group_index = ? AND user_index = ?');
+    $check_group_state -> execute(array(
+        escape($_REQUEST['group_index']),
+        $_SESSION['user_index'],
+    ));
+    $check_group = $check_group_state -> fetch(PDO::FETCH_ASSOC);
+
+    if ($check_group['check_num'] < 1) {
+        header('Location: ./group_top.php');
+        exit();
+    }
+
+
     // ユーザー抽出
     if (isset($_REQUEST['group_index'])) {
         // ユーザー数取得
@@ -90,6 +104,8 @@
     <?php require('../functions/header.php'); ?>
 
     <main>
+
+    <a href="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>">グループ設定</a>
 
         <div class="group-area">
             <?php 
