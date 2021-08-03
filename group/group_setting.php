@@ -25,7 +25,7 @@
     $check_group = $check_group_state -> fetch(PDO::FETCH_ASSOC);
 
     if ($check_group['check_num'] < 1) {
-        header('Location: ./group_top.php');
+        header('Location: ../index.php');
         exit();
     }
 
@@ -58,7 +58,6 @@
                 ));
             }
         }
-        
 
         // グループページへ
         $url = './group_page.php?group_index='.$_REQUEST['group_index'];
@@ -66,11 +65,65 @@
         exit();
     }
 
+    // グループ情報
     $group_state = $db -> prepare('SELECT * FROM groups WHERE group_index = ?');
     $group_state -> execute(array(
         $_REQUEST['group_index']
     ));
     $group = $group_state -> fetch(PDO::FETCH_ASSOC);
+
+    // 参加ユーザー
+    $group_user_state = $db -> prepare(
+        'SELECT *
+        FROM group_user AS g_u
+        JOIN users AS u 
+            ON g_u.user_index = u.user_index
+        WHERE group_index = ?'
+    );
+    $group_user_state -> execute(array(
+        $_REQUEST['group_index']
+    ));
+    $group_user = $group_user_state -> fetchall(PDO::FETCH_ASSOC);
+
+    // 招待ユーザー
+    $group_inv_state = $db -> prepare(
+        'SELECT *
+        FROM groups_invitation AS g_i
+        JOIN users AS u
+            ON g_i.inv_user_index = u.user_index
+        WHERE group_index = ?'
+    );
+    $group_inv_state -> execute(array(
+        $_REQUEST['group_index']
+    ));
+    $group_inv = $group_inv_state -> fetchall(PDO::FETCH_ASSOC);
+
+    // 招待可能ユーザー
+    $invited_state = $db -> prepare(
+        'SELECT ff.user_index, ff.user_id, ff.name, ff.picture, ff.follow_at, g_u.gu_index, g_i.invitation_index
+        FROM (SELECT user_index, user_id, name, picture, follow_at
+            FROM (SELECT follow_index, follower_index, follow_at FROM follows WHERE follow_index = ?) AS f1 
+            LEFT OUTER JOIN (SELECT follow_index FROM follows WHERE follower_index = ?) AS f2 
+                ON f1.follower_index = f2.follow_index
+            JOIN users AS u
+                ON f2.follow_index = u.user_index
+            WHERE f2.follow_index IS NOT NULL
+            ORDER BY follow_at DESC) AS ff
+        LEFT OUTER JOIN (SELECT * FROM group_user WHERE group_index = ?) AS g_u
+            ON ff.user_index = g_u.user_index
+        LEFT OUTER JOIN (SELECT * FROM groups_invitation WHERE group_index = ?) AS g_i
+            ON ff.user_index = g_i.inv_user_index'
+    );
+    $invited_state -> execute(array(
+        $_SESSION['user_index'],
+        $_SESSION['user_index'],
+        $_REQUEST['group_index'],
+        $_REQUEST['group_index'],
+    ));
+    $invited = $invited_state -> fetchall(PDO::FETCH_ASSOC);
+
+    // print_r($invited);
+
 
     require('../functions/component.php');
 ?>
@@ -95,6 +148,65 @@
             <button>変更</button>
 
         </form>
+
+        <div>
+            <!-- 招待モーダル -->
+            <div>
+                <?php foreach ($invited as $record) { ?>
+                    <div>
+                        <div class="follower-user box-user">
+                            <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                            <div class="flex">
+                                <p class="item-name"><?php echo $record['name']; ?></p>
+                            </div>
+                        </div>
+                        <?php
+                            if ($record['gu_index'] == NULL && $record['invitation_index'] == NULL) {
+                                echo "<button>招待</button>";
+                            } elseif ($record['gu_index'] != NULL && $record['invitation_index'] == NULL) {
+                                echo "<span>参加済</span>";
+                            } elseif ($record['gu_index'] == NULL && $record['invitation_index'] != NULL) {
+                                echo "<span>招待中</span>";
+                            }
+                        ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <div>
+            <!-- メンバーリスト -->
+            <p>member------------</p>
+            <div>
+                <?php foreach ($group_user as $record) { ?>
+                    <div>
+                        <div class="follower-user box-user">
+                            <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                            <div class="flex">
+                                <p class="item-name"><?php echo $record['name']; ?></p>
+                            </div>
+                        </div>
+                        <button>delete</button>
+                    </div>
+                <?php } ?>
+            </div>
+
+            <!-- 招待メンバーリスト -->
+            <p>invitation----------</p>
+            <div>
+                <?php foreach ($group_inv as $record) { ?>
+                    <div>
+                        <div class="inv-user box-user" >
+                            <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                            <div class="flex">
+                                <p class="item-name"><?php echo $record['name']; ?></p>
+                            </div>
+                        </div>
+                        <button>delete</button>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
 
 
     </main>

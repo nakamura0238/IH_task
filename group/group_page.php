@@ -24,7 +24,7 @@
     $check_group = $check_group_state -> fetch(PDO::FETCH_ASSOC);
 
     if ($check_group['check_num'] < 1) {
-        header('Location: ./group_top.php');
+        header('Location: ../index.php');
         exit();
     }
 

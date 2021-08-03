@@ -1,5 +1,7 @@
 <?php
 
+    // 使用しない！！！！！
+
     ini_set('display_errors', "On");
 
     require('../functions/dbconnect.php');

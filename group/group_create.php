@@ -7,7 +7,7 @@
 
     session_start();
 
-    if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
+    if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
         $_SESSION['time'] = time();
     } else {
@@ -67,21 +67,38 @@
             ));
         }
 
-        header('Location: ./group_top.php');
+        header('Location: ../index.php');
         exit();
     }
 
 
     // フォロー抽出
+    // $follow_list_state = $db -> prepare(
+    //     'SELECT f.ff_index, f.follower_index, u.user_id, u.name, u.picture
+    //     FROM follows AS f
+    //     JOIN users AS u ON f.follower_index = u.user_index
+    //     WHERE f.follow_index = ?
+    //     ORDER BY f.follow_at DESC'
+    // );
+    // $follow_list_state -> execute(array(
+    //     $_SESSION['user_index']
+    // ));
+    // $follow_list = $follow_list_state -> fetchall(PDO::FETCH_ASSOC);
+
+    // 相互フォロー
     $follow_list_state = $db -> prepare(
-        'SELECT f.ff_index, f.follower_index, u.user_id, u.name, u.picture
-        FROM follows AS f
-        JOIN users AS u ON f.follower_index = u.user_index
-        WHERE f.follow_index = ?
-        ORDER BY f.follow_at DESC'
+        'SELECT user_index, user_id, name, picture, follow_at
+        FROM (SELECT follow_index, follower_index, follow_at FROM follows WHERE follow_index = 4) AS f1 
+        LEFT OUTER JOIN (SELECT follow_index FROM follows WHERE follower_index = 4) AS f2 
+            ON f1.follower_index = f2.follow_index
+        JOIN users AS u
+            ON f2.follow_index = u.user_index
+        WHERE f2.follow_index IS NOT NULL
+        ORDER BY follow_at DESC'
     );
     $follow_list_state -> execute(array(
-        $_SESSION['user_index']
+        $_SESSION['user_index'],
+        $_SESSION['user_index'],
     ));
     $follow_list = $follow_list_state -> fetchall(PDO::FETCH_ASSOC);
 
@@ -97,7 +114,7 @@
     <?php require('../functions/header.php'); ?>
 
     <main>
-        <a href="./group_top.php">戻る</a>
+        <a href="../index.php">戻る</a>
         <br>
         <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
             <label>
@@ -110,7 +127,7 @@
             </label>
             <button class="js-btn-group">作成</button>
 
-            <p>フォロー中</p>
+            <p>招待可能</p>
             
             <div class="js-follow-user follow-user">
                 <?php foreach ($follow_list as $record) { ?>

@@ -39,17 +39,17 @@
 
 
     // フォローリクエスト抽出 フォロー側
-    $follow_request_list_state = $db -> prepare(
-        'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
-        FROM follows_request AS f_r
-        JOIN users AS u ON f_r.follower_index = u.user_index
-        WHERE f_r.follow_index = ?
-        ORDER BY f_r.request_at DESC'
-    );
-    $follow_request_list_state -> execute(array(
-        $_SESSION['user_index']
-    ));
-    $follow_request_list = $follow_request_list_state -> fetchall(PDO::FETCH_ASSOC);
+    // $follow_request_list_state = $db -> prepare(
+    //     'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
+    //     FROM follows_request AS f_r
+    //     JOIN users AS u ON f_r.follower_index = u.user_index
+    //     WHERE f_r.follow_index = ?
+    //     ORDER BY f_r.request_at DESC'
+    // );
+    // $follow_request_list_state -> execute(array(
+    //     $_SESSION['user_index']
+    // ));
+    // $follow_request_list = $follow_request_list_state -> fetchall(PDO::FETCH_ASSOC);
 
 
     // フォロー抽出
@@ -67,17 +67,17 @@
 
 
     // フォローリクエスト抽出 フォロワー側
-    $follower_request_list_state = $db -> prepare(
-        'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
-        FROM follows_request AS f_r
-        JOIN users AS u ON f_r.follow_index = u.user_index
-        WHERE f_r.follower_index = ?
-        ORDER BY f_r.request_at DESC'
-    );
-    $follower_request_list_state -> execute(array(
-        $_SESSION['user_index']
-    ));
-    $follower_request_list = $follower_request_list_state -> fetchall(PDO::FETCH_ASSOC);
+    // $follower_request_list_state = $db -> prepare(
+    //     'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
+    //     FROM follows_request AS f_r
+    //     JOIN users AS u ON f_r.follow_index = u.user_index
+    //     WHERE f_r.follower_index = ?
+    //     ORDER BY f_r.request_at DESC'
+    // );
+    // $follower_request_list_state -> execute(array(
+    //     $_SESSION['user_index']
+    // ));
+    // $follower_request_list = $follower_request_list_state -> fetchall(PDO::FETCH_ASSOC);
 
 
     // フォロワー抽出
@@ -145,7 +145,7 @@
             <a href="./genre/register_A.php">分類登録</a><br>
             <a href="./like/register_like.php">好み登録</a><br>
             <a href="./user/search_user.php">ユーザー検索</a>
-            <a href="./group/group_top.php">グループ</a>
+            <a href="./group/group_create.php">グループ作成</a>
             <a href="./setting/setting.php">設定</a>
         </div>
     </header>
