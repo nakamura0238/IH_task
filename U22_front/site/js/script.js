@@ -26,14 +26,6 @@ $(document).ready(function(){
     $('div.link').height(button_h + 'px');
   }
 
-  // カテゴリー
-//   $('div.js-categoryL').change(function(){
-//     $(this).parent().children('div.js-categoryM').removeClass('js-displayHidden');
-//   });
-//   $('div.js-categoryM').change(function(){
-//     $(this).parent().children('div.js-categoryS').removeClass('js-displayHidden');
-//   });
-
   // ハンバーガー
   $('.js-navBtn').click(function(){
     $('nav.nav , .btn-line').toggleClass('open');
@@ -65,43 +57,6 @@ $(document).ready(function(){
 
   window.onload = switchByWidth;
   window.onresize = switchByWidth;
-
-  // フォーム追加
-  $('.js-addForm').click(function(){
-    $('main').append(
-      "<div class='category'>"+
-      // categoryL
-        "<div class='form-item categoryL js-categoryL'>"+
-          "<p class='formLabel js-formLabel'>CategoryL</p>"+
-          "<select name='category'>"+
-            "<option selected disabled hidden style='display: none' value=''></option>"+
-            "<option value='1'>1</option>"+
-            "<option value='1'>2</option>"+
-            "<option value='1'>3</option>"+
-          "</select>"+
-        "</div>"+
-        
-        // categoryM
-        "<div class='form-item categoryM js-categoryM'>"+
-          "<p class='formLabel js-formLabel'>CategoryM</p>"+
-          "<select name='category'>"+
-            "<option selected disabled hidden style='display: none' value=''></option>"+
-            "<option value='1'>1</option>"+
-            "<option value='1'>2</option>"+
-            "<option value='1'>3</option>"+
-          "</select>"+
-        "</div>"+
-        
-        "<div class='clear-fix'></div>"+
-        
-        // categoryS
-        "<div class='form-item categoryS js-category'>"+
-          "<p class='formLabel js-formLabel'>CategoryS</p>"+
-          "<input type='text' name='name' id='name' class='form-style' autocomplete='off'/>"+
-        "</div>"+
-      "</div>"
-    );
-  });
 
   // 画像反映
     var nowImg = $('img.js-setting').attr('src');
