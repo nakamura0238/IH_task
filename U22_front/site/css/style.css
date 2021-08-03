@@ -207,19 +207,31 @@
   margin-top: 110px;
 }
 
+#favoriteRegister div.category {
+  margin-bottom: 0;
+}
+
 #favoriteRegister div.link {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   width: 80%;
   max-width: 300px;
   margin: 0 auto;
+}
+
+#favoriteRegister div#responsiveWrapper {
+  margin-top: 0;
+}
+
+#favoriteRegister div#responsiveWrapper div#favorites {
+  display: block;
 }
 
 #search div#wrapper main {

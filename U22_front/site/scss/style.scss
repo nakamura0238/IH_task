@@ -160,13 +160,23 @@ $borderColor: #ccc;
 // favoriteRegister.html
 #favoriteRegister{
     div#wrapper{margin-top: 110px;}
+    div.category{
+        margin-bottom: 0;
+    }
+
     div.link{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         width: 80%;
         max-width: 300px;
         margin: 0 auto;
+    }
+
+    div#responsiveWrapper{
+        margin-top: 0;
+
+        div#favorites{display:block;}
     }
 }
 
