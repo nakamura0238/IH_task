@@ -38,6 +38,25 @@
             $group_index['group_index'],
             $_SESSION['user_index']
         ));
+
+        // 画像更新
+        $filename = $_FILES['picture']['name'];
+        if (!empty($filename)) {
+            echo $filename;
+            $ext = substr($filename, -3);
+            if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+                $error['picture'] = 'type';
+            } else {
+                echo $filename;
+                $picture = date('YmdHis') . $_FILES['picture']['name'];
+                move_uploaded_file($_FILES['picture']['tmp_name'], '../images/group/' . $picture);
+                $update_image_state = $db -> prepare('UPDATE groups SET group_picture = ? WHERE group_index = ?;');
+                $update_image_state -> execute(array(
+                    $picture,
+                    $group_index['group_index']
+                ));
+            }
+        }
         
         // グループへ招待
         foreach ($_POST['user'] as $user) {
@@ -77,18 +96,17 @@
 
     <?php require('../functions/header.php'); ?>
 
-    <?php
-        print_r($_POST);
-        echo $_POST['user'][1];
-    ?>
-
     <main>
         <a href="./group_top.php">戻る</a>
         <br>
-        <form action="" method="POST"  autocomplete="off">
+        <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
             <label>
                 <span>グループ作成</span><br>
                 <input class="js-group-name input-group-name" type="text" name="group_name" placeholder="グループ名">
+            </label><br>
+            <label>
+                <span>Picture</span><br>
+                <input type="file" name="picture">
             </label>
             <button class="js-btn-group">作成</button>
 

@@ -15,8 +15,6 @@
         exit();
     }
 
-    print_r($_POST);
-
     $error = array();
     // ユーザー情報更新
     if (!empty($_POST)) {
@@ -26,8 +24,22 @@
         ));
         $update = $update_state -> fetch(PDO::FETCH_ASSOC);
 
-
-
+        // 画像更新
+        $filename = $_FILES['picture']['name'];
+        if (!empty($filename)) {
+            $ext = substr($filename, -3);
+            if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+                $error['picture'] = 'type';
+            } else {
+                $picture = date('YmdHis') . $_FILES['picture']['name'];
+                move_uploaded_file($_FILES['picture']['tmp_name'], '../images/user/' . $picture);
+                $update_image_state = $db -> prepare('UPDATE users SET picture = ? WHERE user_index = ?;');
+                $update_image_state -> execute(array(
+                    $picture,
+                    $_SESSION['user_index']
+                ));
+            }
+        }
 
         // 名前
         if ($_POST['name'] != '') {
@@ -133,7 +145,11 @@
 
         <p>設定ページ</p>
 
-        <form action="" method="POST" autocomplete="off">
+        <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <label>
+                <span>Picture</span><br>
+                <input type="file" name="picture">
+            </label><br>
             <label>
                 <span>Name</span><br>
                 <input type="text" name="name" placeholder="<?php echo $_SESSION['user_name']; ?>" value="<?php if (!empty($_POST['name'])) { echo $_POST['name']; } ?>">

@@ -41,6 +41,23 @@
         }
 
         // 画像更新
+        $filename = $_FILES['picture']['name'];
+        if (!empty($filename)) {
+            echo $filename;
+            $ext = substr($filename, -3);
+            if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+                $error['picture'] = 'type';
+            } else {
+                echo $filename;
+                $picture = date('YmdHis') . $_FILES['picture']['name'];
+                move_uploaded_file($_FILES['picture']['tmp_name'], '../images/group/' . $picture);
+                $update_image_state = $db -> prepare('UPDATE groups SET group_picture = ? WHERE group_index = ?;');
+                $update_image_state -> execute(array(
+                    $picture,
+                    escape($_REQUEST['group_index'])
+                ));
+            }
+        }
         
 
         // グループページへ
@@ -69,9 +86,9 @@
 
         <p>グループ情報更新</p>
 
-        <form action="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>" method="POST" enctype="multipart/form-data">
+        <form action="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
             <!-- 画像を登録 -->
-            <input type="file" name="image">
+            <input type="file" name="picture">
 
             <!-- グループ名変更 -->
             <input type="text" name="group_name" placeholder="<?php echo $group['group_name'] ?>">

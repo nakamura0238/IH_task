@@ -34,6 +34,16 @@
             $error['password'] = 'blank';
         }
 
+        // 画像更新
+        $filename = $_FILES['picture']['name'];
+        if (!empty($filename)) {
+            echo $filename;
+            $ext = substr($filename, -3);
+            if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
+                $error['picture'] = 'type';
+            }
+        }
+
         // ファイルの拡張子
         // $filename = $_FILES['image']['name'];
 
@@ -69,12 +79,12 @@
         }
 
         if (empty($error)) {
-            // if (!empty($filename)) {
-            //     $image = date('YmdHis') . $_FILES['image']['name'];
-            //     move_uploaded_file($_FILES['image']['tmp_name'], '../user_images/' . $image);
-            // }
+            if (!empty($filename)) {
+                $picture = date('YmdHis') . $_FILES['picture']['name'];
+                move_uploaded_file($_FILES['picture']['tmp_name'], '../images/user/' . $picture);
+            }
             $_SESSION['join'] = $_POST;
-            // $_SESSION['join']['image'] = $image;
+            $_SESSION['join']['image'] = $picture;
 
             header('Location:signup_check.php');
             exit();
@@ -104,7 +114,11 @@
     <main>
         <div>
             <p><?php if ($error['email'] == 'duplicate') { echo '登録済みです'; } ?></p>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                <label>
+                    <span>ユーザーイメージ</span><br>
+                    <input type="file" name="picture">
+                </label><br>
                 <label>
                     <span>ニックネーム</span><br>
                     <input type="text" name="name">

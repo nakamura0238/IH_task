@@ -227,7 +227,7 @@
                 <p>--invitation--</p>
                 <?php foreach ($group_inv_list as $record) { ?>
                     <div class="inv_group js-inv-group">
-                        <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="グループイメージ" height="100">
+                        <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
                         <div class="item-group">name:<?php echo $record['group_name']; ?></div>
                         <button class="enter-group-index js-enter-group-index" value="<?php echo $record['group_index']; ?>">参加する</button>
                     </div>
@@ -238,7 +238,7 @@
                 <p>--group--</p>
                 <?php foreach ($group_list as $record) { ?>
                     <a class="join-group" href="./group/group_page.php?group_index=<?php echo $record['group_index']; ?>">
-                        <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="グループイメージ" height="100">
+                        <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
                         <div class="item-group">name:<?php echo $record['group_name']; ?></div>
                     </a>
                 <?php } ?>
