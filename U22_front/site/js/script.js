@@ -77,7 +77,7 @@ $(document).ready(function(){
   });
 
 
-  // モーダル
+  // 招待モーダル
   $('.inviteButton').click(function(){
     $('.followerModal').fadeIn();
   });
@@ -85,4 +85,11 @@ $(document).ready(function(){
     $('.followerModal').fadeOut();
   });
 
+  // 退会モーダル
+  $('button.js-quiteButton').click(function(){
+    $('.quit-modal').fadeIn();
+  });
+  $('button.js-close-modal').click(function(){
+    $('.quit-modal').fadeOut();
+  });
 });

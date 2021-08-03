@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <title>設定</title>
+        <title>退会</title>
 
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/parts.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="setting">
+    <body id="leave">
 
         <!-- ヘッダー -->
         <header>
@@ -69,60 +69,45 @@
             </div>
         </header>
 
-        <!-- メイン -->
         <div id="wrapper">
-            <form action="index.html" enctype="multipart/form-data">
-                <main class="clearfix">
+            <form action="index.html">
+                <main>
 
-                    <!-- image -->
-                    <div class="imgUpLoad">
-                        <img class="js-setting" src="images/no_img.png" alt="profileImg">
-                        <input type="file" accept=".jpg, .jpeg, .png, .gif">
-                    </div>
-
-                    <!-- name -->
-                    <div class="form-item">
-                        <p class="formLabel js-formLabel formTop">Name</p>
-                        <input type="text" name="name" class="form-style" value="Name" autocomplete="off"/>
-                    </div>
-
-                    <!-- id -->
-                    <div class="form-item">
-                        <p class="formLabel js-formLabel formTop">id</p>
-                        <input type="text" name="id" class="form-style" value="id" autocomplete="off"/>
-                    </div>
-
-                    <!-- password now-->
-                    <div class="form-item">
-                        <p class="formLabel js-formLabel">Password Now</p>
-                        <input type="password" name="password" class="form-style" />
+                    <div id="guide">
+                        <p>パスワードを入力してください</p>
                     </div>
 
                     <!-- password -->
                     <div class="form-item">
-                        <p class="formLabel js-formLabel">New Password</p>
+                        <p class="formLabel js-formLabel">Password</p>
                         <input type="password" name="password" class="form-style" />
                     </div>
 
-                    <!-- password check -->
-                    <div class="form-item">
-                        <p class="formLabel js-formLabel">New Password Check</p>
-                        <input type="password" name="passwordCheck" class="form-style" />
-                    </div>
-
-                    <!-- link -->
                     <div class="link">
-                        <a href="leave.html">
-                            <button class="form-style" type="button">leave</button>
-                        </a>
-                        <input type="submit" value="check">
+                        <button class="form-style js-quiteButton" type="button">send</button>
                     </div>
 
-                </main>
-            </form>
+                </form>
+            </div>
         </div>
 
-
+        <div class="quit-modal js-quit-modal">
+                <div class="modal-window">
+                    <div class="box-modal-item">
+                        <p class="modal-message">
+                            退会処理を行います<br>アカウントは即時削除されます
+                        </p>
+                        <div class="box-modal-btn">
+                            <a class="quit-submit js-quit-submit js-close-modal" href="thanks.html">
+                                Quit
+                            </a>
+                            <button class="close-modal js-close-modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <footer>
             2021 &copy; GroupM.
         </footer>
