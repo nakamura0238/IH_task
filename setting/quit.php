@@ -40,7 +40,6 @@
             <?php
                 echo "user_name : " . $_SESSION['user_name'] . "<br>";
                 echo "user_id : " . $_SESSION['user_id'] . "<br>";
-                echo "email : " . $_SESSION['email'] . "<br>";
             ?>
         </div>
         <p>退会</p>

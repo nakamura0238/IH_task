@@ -15,9 +15,8 @@
 
     if (!empty($_POST)) {
         try {
-            $statement = $db->prepare('INSERT INTO users SET email = ?, user_id = ?, name = ?, password = ?, picture = ?, create_at = NOW();');
+            $statement = $db->prepare('INSERT INTO users SET user_id = ?, name = ?, password = ?, picture = ?, create_at = NOW();');
             $statement->execute(array(
-                escape($_SESSION['join']['email']),
                 escape($_SESSION['join']['id']),
                 escape($_SESSION['join']['name']),
                 sha1(escape($_SESSION['join']['password'])),
@@ -49,16 +48,8 @@
             <form action="" method="post">
                 <input type="hidden" name="action" value="submit">
                 <div class="box-param">
-                    <span>ユーザーイメージ</span><br>
-                    <img src="../images/user/<?php echo $_SESSION['join']['image'] ?>" alt="ユーザーイメージ">
-                </div>
-                <div class="box-param">
                     <span>ニックネーム</span><br>
                     <p><?php echo $_SESSION['join']['name'] ?></p>
-                </div>
-                <div class="box-param">
-                    <span>メールアドレス</span><br>
-                    <p><?php echo $_SESSION['join']['email'] ?></p>
                 </div>
                 <div class="box-param">
                     <span>ユーザーID</span><br>

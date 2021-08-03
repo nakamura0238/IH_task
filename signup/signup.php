@@ -13,14 +13,6 @@
         if ($_POST['name'] == '') {
             $error['name'] = 'blank';
         }
-        // メールアドレス未入力
-        if ($_POST['email'] == '') {
-            $error['email'] = 'blank';
-        }
-        // メールアドレス未入力
-        if ($_POST['id'] == '') {
-            $error['id'] = 'blank';
-        }
         // パスワード不一致
         if ($_POST['password'] != $_POST['password_re']) {
             $error['password'] = 'mismatch';
@@ -32,16 +24,6 @@
         // パスワード未入力
         if ($_POST['password'] == '') {
             $error['password'] = 'blank';
-        }
-
-        // 画像更新
-        $filename = $_FILES['picture']['name'];
-        if (!empty($filename)) {
-            echo $filename;
-            $ext = substr($filename, -3);
-            if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
-                $error['picture'] = 'type';
-            }
         }
 
         // ファイルの拡張子
@@ -56,17 +38,6 @@
 
         // 入力情報にエラーがなければ
         if (empty($error)) {
-            // メールアドレス重複チェック
-            $user_email = $db -> prepare('SELECT COUNT(*) as mail_cnt FROM users WHERE email = ?;');
-            $user_email -> execute(array(
-                escape($_POST['email'])
-            ));
-            $record_mail = $user_email -> fetch();
-            // メール重複エラー
-            if ($record_mail['mail_cnt'] > 0) {
-                $error['email'] = 'duplicate';
-            }
-
             // ID重複チェック
             $user_id = $db -> prepare('SELECT COUNT(*) as id_cnt FROM users WHERE user_id = ?;');
             $user_id -> execute(array(
@@ -79,12 +50,12 @@
         }
 
         if (empty($error)) {
-            if (!empty($filename)) {
-                $picture = date('YmdHis') . $_FILES['picture']['name'];
-                move_uploaded_file($_FILES['picture']['tmp_name'], '../images/user/' . $picture);
-            }
+            // if (!empty($filename)) {
+            //     $picture = date('YmdHis') . $_FILES['picture']['name'];
+            //     move_uploaded_file($_FILES['picture']['tmp_name'], '../images/user/' . $picture);
+            // }
             $_SESSION['join'] = $_POST;
-            $_SESSION['join']['image'] = $picture;
+            // $_SESSION['join']['image'] = $picture;
 
             header('Location:signup_check.php');
             exit();
@@ -116,17 +87,8 @@
             <p><?php if ($error['email'] == 'duplicate') { echo '登録済みです'; } ?></p>
             <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                 <label>
-                    <span>ユーザーイメージ</span><br>
-                    <input type="file" name="picture">
-                </label><br>
-                <label>
                     <span>ニックネーム</span><br>
                     <input type="text" name="name">
-                </label>
-                <br>
-                <label>
-                    <span>メールアドレス</span><br>
-                    <input type="text" name="email">
                 </label>
                 <br>
                 <label>
