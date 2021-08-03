@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>パスワード再発行</title>
+
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/parts.css">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+        <script src="js/script.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="logo">
+            <img src="images/Logo.png">
+        </div>
+
+        <div id="wrapper">
+            <form action="passResetComp.html">
+                <main class="clearfix">
+
+                    <div id="guide">
+                        <p>
+                            パスワードを<br>
+                            入力してください。
+                        </p>
+                    </div>
+
+                    <!-- password -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Password</p>
+                        <input type="password" name="password" class="form-style" />
+                    </div>
+
+                    <!-- password check -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Password Check</p>
+                        <input type="password" name="passwordCheck" class="form-style" />
+                    </div>
+
+                    <input class="pull-right" type="submit" value="register">
+
+                </main>
+            </form>
+        </div>
+        
+        <footer>
+            2021 &copy; GroupM.
+        </footer>
+        
+    </body>
+
+</html>

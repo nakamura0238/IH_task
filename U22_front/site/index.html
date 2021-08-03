@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>トップページ</title>
+
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/parts.css">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+        <script src="js/script.js"></script>
+
+    </head>
+
+    <body id="index">
+
+        <!-- ヘッダー -->
+        <header>
+            <div class="headerWrapper">
+                <!-- ロゴ -->
+                <h1>
+                    <a href="index.html">
+                        <img src="images/Logo.png">
+                    </a>
+                </h1>
+                <!-- ナビゲーション -->
+                <nav class="nav">
+                    <a href="search.html">
+                        <img src="images/search.png"><br>
+                        <div class="description">検索</div>
+                        <span>検索</span>
+                    </a>
+                    <a href="makeGroup.html">
+                        <img src="images/groupMake.png"><br>
+                        <div class="description">グループ作成</div>
+                        <span>グループ作成</span>
+                    </a>
+                    <a href="setting.html">
+                        <img src="images/setting.png"><br>
+                        <div class="description">設定</div>
+                        <span>設定</span>
+                    </a>
+                    <a href="favoriteRegister.html">
+                        <img src="images/favoriteRegister.png"><br>
+                        <div class="description">好み登録</div>
+                        <span>好み登録</span>
+                    </a>
+                    <a href="login.html">
+                        <img src="images/logout.png"><br>
+                        <div class="description">ログアウト</div>
+                        <span>ログアウト</span>
+                    </a>
+                </nav>
+
+                <!-- ハンバーガーメニューボタン -->
+                <button type="button" class="navBtn js-navBtn">
+                    <span class="btn-line"></span>
+                </button>
+
+            </div>
+        </header>
+
+
+        <!-- プロフィール -->
+        <div id="profile">
+            <div class="center">
+                <div class="left">
+                    <div class="profile">
+                        <img src="images/no_img.png" alt="profileImage">
+                        <div>
+                            <h2>Name</h2><br>
+                            <p>@ID</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- メニュー -->
+        <nav id="tab">
+            <div class="center">
+                <div class="right">
+                    <ul>
+                        <li class="favorites tabMenuOpen">
+                            <span>favorite</span>
+                            <img src="images/favorite.png" alt="favorites">
+                        </li>
+                        <li class="follows">
+                            <span>follow</span>
+                            <img src="images/follow.png" alt="follow">
+                        </li>
+                        <li class="followers">
+                            <span>follower</span>
+                            <img src="images/follower.png" alt="follower">
+                        </li>
+                        <li class="groups">
+                            <span>group</span>
+                            <img src="images/group.png" alt="group">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+        <!-- メイン -->
+        <div id="responsiveWrapper">
+            <main>
+                <!-- 好み一覧 -->
+                <div id="favorites" class="mouseArea tabOpen">
+                    <div class="catalog">  
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+                        
+                        <div class="favorite">
+                            <p>
+                                <span class="genreS">S</span>
+                                <span class="genreM">M:</span>
+                                <span class="genreL">L</span>
+                            </p>
+                            <img src="images/circle.png">
+                        </div>
+
+                    </div>
+
+                    <div class="addFavorite">
+                        <a href="favoriteRegister.html"><span>+</span></a>
+                    </div>
+
+                </div>
+
+
+                <!-- フォロー -->
+                <div id="follows" class="mouseArea oneColumn">
+
+                    <a href="user.html">
+                        <div class="follow item">
+                            <div class="info">
+                                <img src="images/no_img.png" alt="followImage">
+                                <h2>Name</h2>
+                            </div>
+                            <button type="button">follow</button>
+                        </div>
+                    </a>
+
+                </div>
+                
+                
+                <!-- フォロワー -->
+                <div id="followers" class="mouseArea twoColumn">
+                    <!-- リクエスト -->
+                    <!-- request内が空の時は非表示にする -->
+                    <div class="requests column">
+                        <div class="heading">
+                            <p>request</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
+
+                        <div class="js-slideContent">
+
+                            <a href="user.html">
+                                <div class="request item">
+                                    <div class="info">
+                                        <img src="images/no_img.png" alt="followerImage">
+                                        <h2>Name</h2>
+                                    </div>
+                                    <button type="button">follow</button>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div>
+
+                    <!-- フォロワー -->
+                    <div class="followers column">
+                        <div class="heading">
+                            <p>follower</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
+
+                        <div class="js-slideContent">
+
+                            <a href="user.html">
+                                <div class="follower item">
+                                    <div class="info">
+                                        <img src="images/no_img.png" alt="followerImage">
+                                        <h2>Name</h2>
+                                    </div>
+                                    <button type="button">follow</button>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- グループ -->
+                <div id="groups" class="mouseArea twoColumn">
+                    <!-- 招待 -->
+                    <!-- invitation内が空の場合は非表示にする -->
+                    <div class="invitations column">
+
+                        <div class="heading">
+                            <p>invitation</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
+
+                        <div class="js-slideContent">
+        
+                            <a href="group.html">
+                                <div class="invitation item">
+                                    <div class="info">
+                                        <img src="images/no_img.png" alt="invitationImage">
+                                        <h2>GroupName</h2>
+                                    </div>
+                                    <button type="button">follow</button>
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- グルーブ -->
+                    <div class="groups column">
+
+                        <div class="heading">
+                            <p>groups</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
+
+                        <div class="js-slideContent">
+
+                            <a href="group.html">
+                                <div class="group item">
+                                    <div class="info">
+                                        <img src="images/no_img.png" alt="groupImage">
+                                        <h2>GroupName</h2>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+
+
+        <footer>
+            2021 &copy; GroupM.
+        </footer>
+        
+    </body>
+
+</html>

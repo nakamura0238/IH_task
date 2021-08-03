@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>グループ設定</title>
+
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/parts.css">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+        <script src="js/script.js"></script>
+
+    </head>
+
+    <body id="makeGroup">
+
+        <!-- ヘッダー -->
+        <header>
+            <div class="headerWrapper">
+                <!-- 戻るボタン -->
+                <a href="index.html">戻る</a>
+                <!-- ロゴ -->
+                <h1>
+                    <a href="index.html">
+                        <img src="images/Logo.png">
+                    </a>
+                </h1>
+                <!-- ナビゲーション -->
+                <nav class="nav">
+                    <a href="search.html">
+                        <img src="images/search.png"><br>
+                        <div class="description">検索</div>
+                        <span>検索</span>
+                    </a>
+                    <a href="makeGroup.html">
+                        <img src="images/groupMake.png"><br>
+                        <div class="description">グループ作成</div>
+                        <span>グループ作成</span>
+                    </a>
+                    <a href="setting.html">
+                        <img src="images/setting.png"><br>
+                        <div class="description">設定</div>
+                        <span>設定</span>
+                    </a>
+                    <a href="favoriteRegister.html">
+                        <img src="images/favoriteRegister.png"><br>
+                        <div class="description">好み登録</div>
+                        <span>好み登録</span>
+                    </a>
+                    <a href="login.html">
+                        <img src="images/logout.png"><br>
+                        <div class="description">ログアウト</div>
+                        <span>ログアウト</span>
+                    </a>
+                </nav>
+
+                <!-- ハンバーガーメニューボタン -->
+                <button type="button" class="navBtn js-navBtn">
+                    <span class="btn-line"></span>
+                </button>
+
+            </div>
+        </header>
+
+        
+
+        <form action="group.html" enctype="multipart/form-data">
+        <div id="responsiveWrapper">
+            <main class="clearfix">
+
+                <div class="profileSetting">
+                    <!-- image -->
+                    <div class="imgUpLoad">
+                        <img class="js-setting" src="images/no_img.png" alt="profileImg">
+                        <input type="file" accept=".jpg, .jpeg, .png, .gif">
+                    </div>
+                    <!-- name -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Name</p>
+                        <input type="text" name="name" class="form-style" autocomplete="off"/>
+                    </div>
+                </div>
+
+
+                <div class="buttonArea">
+                    <input type="submit" value="make">
+                </div>
+
+
+                <!-- member -->
+                <div class="memberListHeader">
+                    <h2>inviters</h2>
+                </div>
+
+
+                <div id="memberList" class="oneColumn tabOpen">
+                    
+                    <div class="item">
+                        <div class="info">
+                            <img src="images/no_img.png" alt="アイコン">
+                            <h2>Name</h2>
+                        </div>
+                        <button type="button">delete</button>
+                    </div>
+
+                    <div class="item">
+                        <div class="info">
+                            <img src="images/no_img.png" alt="アイコン">
+                            <h2>Name</h2>
+                        </div>
+                        <button type="button">delete</button>
+                    </div>
+                
+                </div>
+
+            </main>
+        </div>
+        </form>
+
+
+        <footer>
+            2021 &copy; GroupM.
+        </footer>
+        
+    </body>
+
+</html>

@@ -1,0 +1,538 @@
+@charset "utf-8";
+
+$backgroundColor : rgb(253, 246, 152);
+$mainColor : #58bff6;
+$mainColor2: rgb(59, 196, 121);
+$borderColor: #ccc;
+
+body{
+    text-align: left;
+    color: #000;
+    background-color: $backgroundColor;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family:'HelveticaNeue','Arial', sans-serif;
+}
+
+a{
+    color: $mainColor;
+    text-decoration: none;
+}
+
+.pull-right{float: right;}
+.pull-left{float: left;}
+.clear-fix{clear: both;}
+
+
+// ログイン前ヘッダー
+div#logo{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+
+    img{height: 40px;}
+}
+
+
+// ログイン後ヘッダー
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    z-index: 3;
+    
+    div.headerWrapper{
+        width: 1080px;
+        height: 60px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        h1{
+            width: 50%;
+            max-width: 200px;
+            a{
+                transition: all .2s ease;
+
+                img{width: 100%;}
+                &:hover{opacity: 0.4;}
+            }
+        }
+
+        // ナビゲーション、ハンバーガーメニュー
+        nav.nav{
+            display: flex;
+            align-items: center;
+    
+            // リンク
+            a{
+                display: inline-block;
+                position: relative;
+    
+                img{
+                    width: 40px;
+                    height: 40px;
+                    margin-left: 20px;
+                    transition: all .2s ease;
+                }
+    
+                &:hover{
+                    img{opacity: 0.4;}
+
+                    div.description{
+                        display: inline-block;
+                        top: 60px;
+                    }
+                }
+
+                // 吹き出し
+                div.description{
+                    display: none;
+                    position: absolute;
+                    width: 75px;
+                    padding: 10px;
+                    font-size: 12px;
+                    line-height: 1.6em;
+                    color: #fff;
+                    border-radius: 5px;
+                    background: $mainColor;
+                    text-align: center;
+                    
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: -24px;
+                        right: 50%;
+                        border: 15px solid transparent;
+                        border-top: 15px solid $mainColor;
+                        margin-left: -15px;
+                        transform: rotateZ(180deg);
+                    }
+                }
+
+                // ハンバーガーメニュー用見出し
+                span{
+                    display: none;
+                    font-size: 20px;
+                    color: #333;
+                    margin-left: 15px;
+                }
+            }
+        }
+
+        // ハンバーガーメニューボタン
+        button.navBtn{
+            width: 48px;
+            height: 48px;
+            z-index: 10;
+            display: none;
+            
+            $btnColor: #d6d6d6;
+            
+            span.btn-line {
+                display: block;
+                position: relative;
+                width: 100%;
+                height: 4px;
+                background-color: $btnColor;
+                transition: .2s;
+
+                &:before,
+                &:after{
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $btnColor;
+                    transition: .5s;
+                }
+
+                &:before{transform: translateY(-16px);}
+                &:after{transform: translateY(16px);}
+            }
+            
+            span.open {background-color: transparent;}
+            span.open:before , 
+            span.open:after {
+                content: "";
+                background-color: #333;
+                transition: .2s;
+            }
+            
+            span.open:before {transform: rotate(45deg);}
+            span.open:after {transform: rotate(-45deg);}
+        }
+    }
+}
+
+
+// ガイド見出し
+div#guide{
+    margin-bottom: 40px;
+    text-align: center;
+
+    p{
+        margin-bottom: 20px;
+        line-height: 1.2rem;
+    }
+}
+
+// 入力フォーム
+div.form-item{
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+
+// 好み登録フォーム
+div.category{
+    margin-bottom: 60px;
+
+    div.categoryL{
+        float: left;
+        width: 49%;
+    }
+
+    div.categoryM{
+        float: right;
+        width: 49%;
+    }
+
+    // div.js-displayHidden{
+    //     display: none;
+    // }
+}
+
+// ボタン、リンク
+div.link{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a{line-height: 1.6rem;}
+}
+
+
+// index,group,user
+div.center{
+    width: 1080px;
+    margin: 0 auto;
+}
+div.right{
+    width: 880px;
+    padding-left: 200px;
+}
+div.left{
+    width: 200px;
+}
+
+// プロフィール
+div#profile{
+    position: fixed;
+    width: 100%;
+    top: 70px;
+    z-index: 0;
+    text-align: center;
+    // 画像
+    img{
+        width: 50%;
+        max-width: 120px;
+        height: 50%;
+        max-height: 120px;
+        margin-top: 20px;
+        border-radius: 60px;
+    }
+    // 名前
+    h2{
+        margin-top: 5px;
+        font-size: 24px;
+    }
+    // ID
+    p{
+        font-size: 16px;
+        padding-bottom: 20px;
+    }
+    // 設定
+    a{
+        img{
+            width: 50px;
+            height: 50px;
+            margin-top: 5px;
+        }
+    }
+}
+
+// メニュー、見出し
+nav#tab,
+div.favoriteHeader{
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+
+    ul{
+        display: flex;
+        justify-content: space-between;
+        background-color: $backgroundColor;
+        padding-top: 10px;
+        border-bottom: 2px solid $borderColor;
+
+        li{
+            display: inline-block;
+            transition: all .2s ease;
+            height: 40px;
+            box-sizing: border-box;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #fff;
+                opacity: 0.4;
+            }
+
+            span{
+                display: inline-block;
+                line-height: 0;
+                padding: 20px 0;
+                font-size: 24px;
+            }
+
+            img{
+                width: 30px;
+                height: 30px;
+                margin: 5px auto;
+                display: none;
+            }
+        }
+
+        li.tabMenuOpen{border-bottom: 4px solid $mainColor;}
+    }
+}
+
+
+// メイン
+// レスポンシブ不必要
+div#wrapper{
+    width: 100%;
+    padding-bottom: 50px;
+
+    main{
+        max-width: 80%;
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+// レスポンシブ必要
+div#responsiveWrapper{
+    position: relative;
+    width: 1080px;
+    margin: 110px auto 45px auto;
+    z-index: 0;
+    pointer-events: none;
+
+    main{
+        width: 880px;
+        padding-left: 200px;
+        pointer-events: none;
+    }
+}
+div.mouseArea{pointer-events: auto;}
+div.mouseArea{
+    a:hover{
+        opacity: 0.4;
+        background-color: #fff;
+    }
+}
+div#responsiveWrapper{main{div.tabOpen{display: flex;}}}
+
+// 好み一覧
+div#favorites{
+    flex-flow: column;
+
+    div.catalog{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+
+        div.favorite{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 48%;
+            height: 40px;
+            margin: 5px 0;
+            border-bottom: 1px solid $mainColor2;
+
+            p{
+                .genreS{
+                    font-size: 22px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+                .genreM{font-size: 16px;}
+                .genreL{font-size: 16px;}
+            }
+            
+            img{
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+
+// 一列表示
+div.oneColumn{
+    width: 100%;
+    flex-flow: column;
+}
+// 二列表示
+div.twoColumn{
+    justify-content: space-between;
+    width: 100%;
+
+    div.column{width: 48%;}
+}
+
+// 見出し
+div.heading{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 110px;
+    text-align: center;
+    border-bottom: 1px solid $borderColor;
+    border-top: 1px solid $borderColor;
+    background-color: $backgroundColor;
+    
+    p{
+        padding: 16px 0;
+        line-height: 0;
+        font-size: 16px;
+    }
+
+    // スライドメニューボタン
+    span.slideBtn{
+        display: none;
+        position: absolute;
+        top: 7px;
+        font-size: 20px;
+        right: 3px;
+        color: #ccc;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+}
+
+span.js-btnRotate{transform: rotate(180deg);}
+
+// ユーザー、グループ
+div.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100;
+    height: 50px;
+    border-top: 1px solid $borderColor;
+    color: #333;
+    transition: all .2s ease;
+
+    div.info{
+        display: flex;
+        align-items: center;
+        $imgHeight: 40px;
+
+        img{
+            width: $imgHeight;
+            height: $imgHeight;
+            border-radius: $imgHeight / 2;
+        }
+    
+        h2{
+            font-size: 22px;
+            margin-left: 10px;
+        }
+    
+        p{margin-left: 10px;}
+    }
+}
+
+
+
+// プロフィール画像変更
+div.imgUpLoad{
+    margin-bottom: 50px;
+    text-align: center;
+
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        object-fit: cover;
+    }
+
+    input{margin-top: 20px;}
+}
+
+
+
+// フッター
+footer{
+    position: fixed;
+    bottom: 0px;
+    z-index: 2;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 0.8rem;
+    line-height: 0;
+    text-align: center;
+    background-color: #fff;
+}
+
+// レスポンシブ
+// 1200px以下
+@media screen and (max-width: 1200px){
+    header{div.headerWrapper{width: 90%;}}
+}
+
+// 700px以下
+@media screen and (max-width: 700px){
+    header{
+        div.headerWrapper{
+            nav.nav{
+                position: fixed;
+                top: 0;
+                right: -220px;
+                width: 220px;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                color: #efefef;
+                background-color: #ddd;
+                transition: .3s;
+
+                a{
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+
+                    &:hover{div.description{display: none;}}
+                    span{display: block;}
+                }
+            }
+
+            nav.open{right: 0;}
+            button.navBtn{display: block;}
+        }
+    }
+}

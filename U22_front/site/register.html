@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>新規登録</title>
+
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/parts.css">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+        <script src="js/script.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="logo">
+            <img src="images/Logo.png">
+        </div>
+
+        <div id="wrapper">
+            <form action="registerCheck.html">
+                <main>
+
+                    <!-- name -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Name</p>
+                        <input type="text" name="name" id="name" class="form-style" autocomplete="off"/>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Email</p>
+                        <input type="text" name="email" class="form-style" autocomplete="off"/>
+                    </div>
+
+                    <!-- id -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">id</p>
+                        <input type="text" name="id" class="form-style" autocomplete="off"/>
+                    </div>
+
+                    <!-- password -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Password</p>
+                        <input type="password" name="password" class="form-style" />
+                    </div>
+
+                    <!-- password check -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Password Check</p>
+                        <input type="password" name="password_re" class="form-style" />
+                    </div>
+
+                    <!-- link -->
+                    <div class="link">
+                        <a href="login.html">ログイン</a>
+                        <input type="submit" value="check">
+                    </div>
+
+                </main>
+            </form>
+        </div>
+        
+        <footer>
+            2021 &copy; GroupM.
+        </footer>
+        
+    </body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>グルーブページ</title>
+
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/parts.css">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+        <script src="js/script.js"></script>
+
+    </head>
+
+    <body id="group">
+
+        <!-- ヘッダー -->
+        <header>
+            <div class="headerWrapper">
+                <!-- ロゴ -->
+                <h1>
+                    <a href="index.html">
+                        <img src="images/Logo.png">
+                    </a>
+                </h1>
+                <!-- ナビゲーション -->
+                <nav class="nav">
+                    <a href="search.html">
+                        <img src="images/search.png"><br>
+                        <div class="description">検索</div>
+                        <span>検索</span>
+                    </a>
+                    <a href="makeGroup.html">
+                        <img src="images/groupMake.png"><br>
+                        <div class="description">グループ作成</div>
+                        <span>グループ作成</span>
+                    </a>
+                    <a href="setting.html">
+                        <img src="images/setting.png"><br>
+                        <div class="description">設定</div>
+                        <span>設定</span>
+                    </a>
+                    <a href="favoriteRegister.html">
+                        <img src="images/favoriteRegister.png"><br>
+                        <div class="description">好み登録</div>
+                        <span>好み登録</span>
+                    </a>
+                    <a href="login.html">
+                        <img src="images/logout.png"><br>
+                        <div class="description">ログアウト</div>
+                        <span>ログアウト</span>
+                    </a>
+                </nav>
+
+                <!-- ハンバーガーメニューボタン -->
+                <button type="button" class="navBtn js-navBtn">
+                    <span class="btn-line"></span>
+                </button>
+
+            </div>
+        </header>
+
+
+        <!-- プロフィール -->
+        <div id="profile">
+            <div class="center">
+                <div class="left">
+                    <div class="profile">
+                        <img src="images/no_img.png" alt="profileImage">
+                        <h2>GroupName</h2>
+                    </div>
+                    <a href="groupSetting.html">
+                        <img src="images/profileSetting.png" alt="設定">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- メニュー -->
+        <nav id="tab">
+            <div class="center">
+                <div class="right">
+                    <ul>
+                        <li class="favorites tabMenuOpen">
+                            <span>favorite</span>
+                            <img src="images/favorite.png" alt="favorites">
+                        </li>
+                        <li class="members">
+                            <span>members</span>
+                            <img src="images/follow.png" alt="follow">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+        <!-- メイン -->
+        <div id="responsiveWrapper">
+            <main>
+                <!-- 好み一覧 -->
+                <div id="favorites" class="mouseArea tabOpen">
+                    <div class="catalog">
+                        
+                        <div class="analytics">
+                            <div class="favorite">
+                                <p>
+                                    <span class="rank">1.</span>
+                                    <span class="genreM">M</span>
+                                    <span class="genreL">L</span>
+                                    <span class="vote">5票</span>
+                                </p>
+                                <span class="js-slideBtn slideBtn js-btnRotate">▲</span>
+                            </div>
+
+                            <div class="js-slideContent contents">
+                                <div class="genreS">
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics">
+                            <div class="favorite">
+                                <p>
+                                    <span class="rank">1.</span>
+                                    <span class="genreM">M</span>
+                                    <span class="genreL">L</span>
+                                    <span class="vote">5票</span>
+                                </p>
+                                <span class="js-slideBtn slideBtn js-btnRotate">▲</span>
+                            </div>
+
+                            <div class="js-slideContent contents">
+                                <div class="genreS">
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics">
+                            <div class="favorite">
+                                <p>
+                                    <span class="rank">1.</span>
+                                    <span class="genreM">M</span>
+                                    <span class="genreL">L</span>
+                                    <span class="vote">5票</span>
+                                </p>
+                                <span class="js-slideBtn slideBtn js-btnRotate">▲</span>
+                            </div>
+
+                            <div class="js-slideContent contents">
+                                <div class="genreS">
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                    <p>S</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <!-- メンバー -->
+                <div id="members" class="mouseArea twoColumn">
+                    <!-- メンバー -->
+                    <div class="members column">
+                        <div class="heading">
+                            <p>members</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
+
+                        <div class="js-slideContent">
+
+                            <a href="user.html">
+                                <div class="member item">
+                                    <div class="info">
+                                        <img src="images/no_img.png" alt="followerImage">
+                                        <h2>Name</h2>
+                                    </div>
+                                    <button type="button">follow</button>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- 招待 -->
+                    <!-- invitation内が空の時は非表示にする -->
+                    <div class="invitations column">
+                        <div class="heading">
+                            <p>invitations</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
+
+                        <div class="js-slideContent">
+
+                            <div class="invitation item">
+                                <div class="info">
+                                    <img src="images/no_img.png" alt="followerImage">
+                                    <h2>Name</h2>
+                                    <p>id</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </main>
+        </div>
+
+
+        <footer>
+            2021 &copy; GroupM.
+        </footer>
+        
+    </body>
+
+</html>
