@@ -161,8 +161,9 @@
                             </div>
                         </div>
                         <?php
-                            if ($record['gu_index'] == NULL && $record['invitation_index'] == NULL) {
-                                echo "<button>招待</button>";
+                            if ($record['gu_index'] == NULL && $record['invitation_index'] == NULL) {?>
+                                <button class="btn-invitation js-btn-invitation" value="<?php echo  $record['user_index']?>">招待</button>
+                        <?php
                             } elseif ($record['gu_index'] != NULL && $record['invitation_index'] == NULL) {
                                 echo "<span>参加済</span>";
                             } elseif ($record['gu_index'] == NULL && $record['invitation_index'] != NULL) {
@@ -173,6 +174,7 @@
                 <?php } ?>
             </div>
         </div>
+
 
         <div>
             <!-- メンバーリスト -->
@@ -186,7 +188,9 @@
                                 <p class="item-name"><?php echo $record['name']; ?></p>
                             </div>
                         </div>
-                        <button>delete</button>
+                        <?php if ($record['user_index'] != $_SESSION['user_index']) { ?>
+                            <button class="btn-delete member-delete js-member-delete" value="<?php echo $record['user_index'] ?>">delete</button>
+                        <?php } ?>
                     </div>
                 <?php } ?>
             </div>
@@ -202,7 +206,7 @@
                                 <p class="item-name"><?php echo $record['name']; ?></p>
                             </div>
                         </div>
-                        <button>delete</button>
+                        <button class="btn-delete inv-delete js-inv-delete" value="<?php echo $record['user_index'] ?>">delete</button>
                     </div>
                 <?php } ?>
             </div>

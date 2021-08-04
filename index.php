@@ -86,13 +86,14 @@
         FROM follows AS f
         JOIN users AS u 
 			ON f.follow_index = u.user_index
-		LEFT OUTER JOIN (SELECT * FROM follows WHERE follow_index = 4) AS f_i
+		LEFT OUTER JOIN (SELECT * FROM follows WHERE follow_index = ?) AS f_i
 			ON f.follow_index = f_i.follower_index
         WHERE f.follower_index = ?
         ORDER BY f.follow_at DESC'
     );
     $follower_list_state -> execute(array(
-        $_SESSION['user_index']
+        $_SESSION['user_index'],
+        $_SESSION['user_index'],
     ));
     $follower_list = $follower_list_state -> fetchall(PDO::FETCH_ASSOC);
 

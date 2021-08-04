@@ -106,7 +106,7 @@
     require('../functions/component.php');
 ?>
 
-    <script src="./group_function.js" defer></script>
+    <!-- <script src="./group_function.js" defer></script> -->
     <title>Document</title>
 </head>
 <body>
@@ -131,11 +131,11 @@
             
             <div class="js-follow-user follow-user">
                 <?php foreach ($follow_list as $record) { ?>
-                    <label>
+                    <div>
                         <input type="checkbox" name="user[]" value="<?php echo $record['follower_index'] ?>">
                         <img src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
                         <p class="item-follow">name:<?php echo $record['name']; ?></p>
-                    </label>
+                    </div>
                 <?php } ?>
             </div>
         </form>
