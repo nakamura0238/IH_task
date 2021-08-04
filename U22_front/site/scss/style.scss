@@ -285,22 +285,31 @@ div.followerModal{
             right: 5px;
             top: -5px;
             font-size: 50px;
+            cursor: pointer;
         }
     }
 
     div.modalContents{
         overflow: auto;
         width: 1080px;
-        margin-top: 10vh;
         margin: 0 auto;
-        height: 80vh;
+        height: 70vh;
         box-sizing: border-box;
         padding: 20px;
         background-color: #fff;
 
         div.item:first-child{border: none;}
     }
+
+    div.inviteBtn{
+        width: 1080px;
+        margin: 0 auto;
+        background-color: #fff;
+        text-align: center;
+    }
 }
+
+// 招待モーダル
 div.quit-modal {
     display: none;
     position: fixed;

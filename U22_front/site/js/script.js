@@ -16,6 +16,15 @@ $(document).ready(function(){
     $(this).parent().children('.form-style').focus();
   });
 
+  // チェックボックス
+  $('label[for=checkbox]').click(function(){
+    if($(this).prev().hasClass('checked')){
+      $(this).prev().removeClass('checked');
+    } else {
+      $(this).prev().addClass('checked');
+    }
+  });
+
   // ログインボタン リンク
   var link_h = $('div.link').height();
   var button_h = $('div.button').height();
@@ -55,7 +64,7 @@ $(document).ready(function(){
     }
   }
 
-  window.onload = switchByWidth;
+  // window.onload = switchByWidth;
   window.onresize = switchByWidth;
 
   // 画像反映
@@ -78,7 +87,7 @@ $(document).ready(function(){
 
 
   // 招待モーダル
-  $('.inviteButton').click(function(){
+  $('.inviteModalBtn').click(function(){
     $('.followerModal').fadeIn();
   });
   $('.modalClose').click(function(){

@@ -91,7 +91,8 @@
 
 
                 <div class="buttonArea">
-                    <button class="inviteButton" type="button">invite</button>
+                    <input type="submit" value="leave">
+                    <button class="inviteModalBtn" type="button">invite</button>
                     <input type="submit" value="done">
                 </div>
 
@@ -172,17 +173,39 @@
                 <span class="modalClose">×</span>
             </div>
 
-            <div class="modalContents">
+            <form action="group.html">
+                <div class="modalContents">
 
-                <div class="item">
-                    <div class="info">
-                        <img src="images/no_img.png" alt="アイコン">
-                        <h2>Name</h2>
+                    <div class="item">
+                        <div class="info">
+                            <img src="images/no_img.png" alt="アイコン">
+                            <h2>Name</h2>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" name="save" id="checkbox">
+                            <label for="checkbox"></label>
+                        </div>
                     </div>
-                    <button type="button">invite</button>
+
+                    <div class="item">
+                        <div class="info">
+                            <img src="images/no_img.png" alt="アイコン">
+                            <h2>Name</h2>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" name="save" id="checkbox">
+                            <label for="checkbox"></label>
+                        </div>
+                    </div>
+                
                 </div>
 
-            </div> 
+                <div class="inviteBtn">
+                    <input type="submit" value="done">
+                </div>
+
+            </form>
+
         </div>
 
 

@@ -337,14 +337,14 @@ div.followerModal div.modalHeading span {
   right: 5px;
   top: -5px;
   font-size: 50px;
+  cursor: pointer;
 }
 
 div.followerModal div.modalContents {
   overflow: auto;
   width: 1080px;
-  margin-top: 10vh;
   margin: 0 auto;
-  height: 80vh;
+  height: 70vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 20px;
@@ -353,6 +353,13 @@ div.followerModal div.modalContents {
 
 div.followerModal div.modalContents div.item:first-child {
   border: none;
+}
+
+div.followerModal div.inviteBtn {
+  width: 1080px;
+  margin: 0 auto;
+  background-color: #fff;
+  text-align: center;
 }
 
 div.quit-modal {

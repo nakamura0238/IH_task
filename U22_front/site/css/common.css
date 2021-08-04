@@ -515,12 +515,24 @@ div.item {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100;
+  position: relative;
+  width: 100%;
   height: 50px;
   border-top: 1px solid #ccc;
   color: #333;
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
+}
+
+div.item a {
+  width: 100%;
+  height: 100%;
+  color: #000;
+}
+
+div.item a:hover {
+  opacity: 0.5;
+  background-color: #fff;
 }
 
 div.item div.info {
@@ -530,6 +542,7 @@ div.item div.info {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 100%;
 }
 
 div.item div.info img {
@@ -545,6 +558,17 @@ div.item div.info h2 {
 
 div.item div.info p {
   margin-left: 10px;
+}
+
+div.item button {
+  position: absolute;
+  right: 0;
+}
+
+div.item .checkbox {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 div.imgUpLoad {
