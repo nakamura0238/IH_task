@@ -36,39 +36,60 @@
     require('../functions/component.php');
 ?>
 
-    <title>Document</title>
+    <title>登録確認</title>
+
+        <link rel="stylesheet" type="text/css" href="../css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../css/parts.css">
+        <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/responsive.css">
+        
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+        <script src="js/script.js"></script>
+
 </head>
 <body>
     <header>
-
     </header>
 
+        <div id="logo">
+            <img src="">
+        </div>
+
     <main>
-        <div>
+        <div class="wrapper">
             <form action="" method="post">
                 <input type="hidden" name="action" value="submit">
-                <div class="box-param">
-                    <span>ニックネーム</span><br>
-                    <p><?php echo $_SESSION['join']['name'] ?></p>
+
+                    <div id="guide">
+                        <p>以下の内容で登録します。</p>
+                    </div>
+
+                <div class="form-item">
+                    <p class="formTop">Name</p>
+                    <p class="form-style"><?php echo $_SESSION['join']['name'] ?></p>
                 </div>
-                <div class="box-param">
-                    <span>ユーザーID</span><br>
-                    <p><?php echo $_SESSION['join']['id'] ?></p>
+
+                <div class="form-item">
+                    <p class="formTop">id</p>
+                    <p class="form-style"><?php echo $_SESSION['join']['id'] ?></p>
                 </div>
-                <div class="box-param">
-                    <span>パスワード</span><br>
-                    <p>【表示されません】</p>
+
+                <div class="form-item">
+                    <p class="formTop">パスワード</p>
+                    <p class="form-style">【表示されません】</p>
                 </div>
-                <div class="box-btn">
-                    <a href="./signup.php">戻る</a>
-                    <button>登録</button>
+
+                <div class="link">
+                    <a href="./signup.php">登録しなおす</a>
+                    <input type="submit" value="register">
                 </div>
             </form>
         </div>
     </main>
 
     <footer>
-        
+        2021 &copy; GroupM.
     </footer>
 </body>
 </html>

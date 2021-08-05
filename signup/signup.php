@@ -72,48 +72,60 @@
     require('../functions/component.php');
 ?>
 
-    <title>Document</title>
+    <title>新規登録</title>
 
-    <script src="" defer></script>
+        <link rel="stylesheet" type="text/css" href="../css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../css/parts.css">
+        <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/responsive.css">
+
+        <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+        <script src="js/script.js"></script>
+
 
 </head>
 <body>
-    <header>
 
-    </header>
+        <div id="logo">
+            <img src="">
+        </div>
 
     <main>
-        <div>
-            <p><?php if ($error['email'] == 'duplicate') { echo '登録済みです'; } ?></p>
+        <div id="wrapper">
+            <p><?php if ($error['id'] == 'duplicate') { echo '登録済みです'; } ?></p>
             <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-                <label>
-                    <span>ニックネーム</span><br>
-                    <input type="text" name="name">
-                </label>
-                <br>
-                <label>
-                    <span>ユーザーID</span><br>
-                    <input type="text" name="id">
-                </label>
-                <br>
-                <label>
-                    <span>パスワード</span><br>
-                    <input type="password" name="password">
-                </label>
-                <br>
-                <label>
-                    <span>パスワード確認</span><br>
-                    <input type="password" name="password_re">
-                </label>
-                <br>
-                <button>確認</button>
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">Name</p>
+                    <input type="text" name="name" id="name" class="form-style" autocomplete="off"/>
+                </div>
+
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">id</p>
+                    <input type="text" name="id" class="form-style" autocomplete="off"/>
+                </div>
+
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">Password</p>
+                    <input type="password" name="password" class="form-style" />
+                </div>
+
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">Password Check</p>
+                    <input type="password" name="password_re" class="form-style" />
+                </div>
+
+                <div class="link">
+                    <a href="../login/login.php">ログイン</a>
+                    <input type="submit" value="check" class="form-style" />
+                </div>
+
             </form>
-            <a href="../login/login.php">ログイン</a>
         </div>
     </main>
 
     <footer>
-        
+        2021 &copy; GroupM.
     </footer>
 </body>
 </html>
