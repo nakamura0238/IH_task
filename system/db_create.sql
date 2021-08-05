@@ -122,7 +122,7 @@ CREATE TABLE `likes` (
 
 CREATE TABLE `users` (
   `user_index` int(11) NOT NULL,
-  `email` varchar(128) NOT NULL,
+  `email` varchar(128) DEFAULT NULL,
   `user_id` varchar(128) NOT NULL,
   `name` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,

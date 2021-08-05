@@ -138,6 +138,7 @@
     <link rel="stylesheet" href="./css/destyle.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/index.css">
+
     <script src="./follow/follow_index.js" defer></script>
     <script src="./group/group_function_index.js" defer></script>
     <title>Document</title>
@@ -155,115 +156,165 @@
         </div>
     </header>
 
-    <main>
-        
-        <div>
-            <img src="./images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-            <br>
-            <?php
-                echo $_SESSION['user_index'] . "<br>";
-                echo "user_name : " . $_SESSION['user_name'] . "<br>";
-                echo "user_id : " . $_SESSION['user_id'] . "<br>";
-            ?>
-        </div>
 
-        <!-- 好み表示 -->
-        <div class="genre-area">
-            <p>--likes--</p>
-            <?php foreach ($genre_list as $record) { ?>
-                <div class="like-tag">
-                    <div class="item-genre item-genre-a"><?php echo $record['genre_a_name']; ?></div>
-                    <div class="item-genre item-genre-b"><?php echo $record['genre_b_name']; ?></div>
-                    <div class="item-genre item-genre-c"><?php echo $record['genre_c']; ?></div>
+    <!-- プロフィール -->
+    <div id="profile">
+        <div class="center">
+            <div class="left">
+                <div class="profile">
+                    <img src="./images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="profileImage">
+                    <div>
+                        <h2><?php echo $_SESSION['user_name'] ?></h2><br>
+                        <p><?php echo $_SESSION['user_id'] ?></p>
+                    </div>
                 </div>
-            <?php } ?>
+            </div>
         </div>
+    </div>
 
-        <!-- フォロー表示 -->
-        <div class="follow-area">
-            <!-- フォロー-->
-            <p>--follow--</p>
-            <?php foreach ($follow_list as $record) { ?>
-                <div>
-                    <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
+
+    <!-- メニュー -->
+    <nav id="tab">
+        <div class="center">
+            <div class="right">
+                <ul>
+                    <li class="favorites tabMenuOpen">
+                        <span>favorite</span>
+                        <img src="images/favorite.png" alt="favorites">
+                    </li>
+                    <li class="follows">
+                        <span>follow</span>
+                        <img src="images/follow.png" alt="follow">
+                    </li>
+                    <li class="followers">
+                        <span>follower</span>
+                        <img src="images/follower.png" alt="follower">
+                    </li>
+                    <li class="groups">
+                        <span>group</span>
+                        <img src="images/group.png" alt="group">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- メイン -->
+    <div id="responsiveWrapper">
+        <main>
+            
+            <!-- <div>
+                <img src="./images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ">
+                <br>
+                <?php
+                    echo $_SESSION['user_index'] . "<br>";
+                    echo "user_name : " . $_SESSION['user_name'] . "<br>";
+                    echo "user_id : " . $_SESSION['user_id'] . "<br>";
+                ?>
+            </div> -->
+
+
+            <!-- 好み表示 -->
+            <div  id="favorites" class="mouseArea tabOpen">
+                <p>--likes--</p>
+                <div class="catalog">
+                    <?php foreach ($genre_list as $record) { ?>
+                        <div class="favorite">
+                            <div class="genreS"><?php echo $record['genre_c']; ?></div>
+                            <div class="genreM"><?php echo $record['genre_b_name']; ?></div>
+                            <div class="genreL"><?php echo $record['genre_a_name']; ?></div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <!-- フォロー表示 -->
+            <div id="follows" class="mouseArea oneColumn">
+                <!-- フォロー-->
+                <p>--follow--</p>
+                <?php foreach ($follow_list as $record) { ?>
+                    <div>
+                        <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
+                            <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                            <div class="flex">
+                                <p class="item-name"><?php echo $record['name']; ?></p>
+                                <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
+                            </div>
+                        </a>
+                        <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follower_index'];?>">
+                            unfollow
+                        </button>
+                    </div>
+                <?php } ?>
+            </div>
+
+            <!-- フォロワー表示 -->
+            <div class="follower-area">
+                <p>--follower--</p>
+                <?php foreach ($follower_list as $record) { ?>
+                    <a class="follower-user box-user" href="./user/user_page.php?index=<?php echo $record['follow_index']; ?>">
                         <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
                         <div class="flex">
                             <p class="item-name"><?php echo $record['name']; ?></p>
                             <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
                         </div>
                     </a>
-                    <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follower_index'];?>">
-                        unfollow
-                    </button>
-                </div>
-            <?php } ?>
-        </div>
+                        <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follow_index'];?>">
+                            <?php
+                                if ($record['ff_index'] != NULL) {
+                                    echo 'unfollow';
+                                } else {
+                                    echo 'follow';
+                                }
+                            ?>
+                        </button>
+                <?php } ?>
+            </div>
 
-        <!-- フォロワー表示 -->
-        <div class="follower-area">
-            <p>--follower--</p>
-            <?php foreach ($follower_list as $record) { ?>
-                <a class="follower-user box-user" href="./user/user_page.php?index=<?php echo $record['follow_index']; ?>">
-                    <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                    <div class="flex">
-                        <p class="item-name"><?php echo $record['name']; ?></p>
-                        <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
-                    </div>
-                </a>
-                    <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follow_index'];?>">
-                        <?php
-                            if ($record['ff_index'] != NULL) {
-                                echo 'unfollow';
-                            } else {
-                                echo 'follow';
-                            }
-                        ?>
-                    </button>
-            <?php } ?>
-        </div>
-
-            <!-- フォローモーダル -->
-            <div class="follow-modal js-follow-modal">
-                <div class="modal-window">
-                    <div class="box-modal-item">
-                        <p class="modal-message">
-                        </p>
-                        <div class="box-modal-btn">
-                            <button class="follow-submit js-follow-submit js-close-modal" value="<?php echo $_REQUEST['index'];?>">
-                            </button>
-                            <button class="close-modal js-close-modal">close</button>
+                <!-- フォローモーダル -->
+                <div class="follow-modal js-follow-modal">
+                    <div class="modal-window">
+                        <div class="box-modal-item">
+                            <p class="modal-message">
+                            </p>
+                            <div class="box-modal-btn">
+                                <button class="follow-submit js-follow-submit js-close-modal" value="<?php echo $_REQUEST['index'];?>">
+                                </button>
+                                <button class="close-modal js-close-modal">close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
+            <!-- グループ表示 -->
+            <div class="group-area">
+                <div class="inv-group-area">
+                    <p>--invitation--</p>
+                    <?php foreach ($group_inv_list as $record) { ?>
+                        <div class="inv_group js-inv-group">
+                            <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
+                            <div class="item-group">name:<?php echo $record['group_name']; ?></div>
+                            <button class="enter-group-index js-enter-group-index" value="<?php echo $record['group_index']; ?>">参加する</button>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <div class="join-group-area">
+                    <p>--group--</p>
+                    <?php foreach ($group_list as $record) { ?>
+                        <a class="join-group" href="./group/group_page.php?group_index=<?php echo $record['group_index']; ?>">
+                            <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
+                            <div class="item-group">name:<?php echo $record['group_name']; ?></div>
+                        </a>
+                    <?php } ?>
+                </div>
             </div>
 
-
-
-        <!-- グループ表示 -->
-        <div class="group-area">
-            <div class="inv-group-area">
-                <p>--invitation--</p>
-                <?php foreach ($group_inv_list as $record) { ?>
-                    <div class="inv_group js-inv-group">
-                        <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
-                        <div class="item-group">name:<?php echo $record['group_name']; ?></div>
-                        <button class="enter-group-index js-enter-group-index" value="<?php echo $record['group_index']; ?>">参加する</button>
-                    </div>
-                <?php } ?>
-            </div>
-
-            <div class="join-group-area">
-                <p>--group--</p>
-                <?php foreach ($group_list as $record) { ?>
-                    <a class="join-group" href="./group/group_page.php?group_index=<?php echo $record['group_index']; ?>">
-                        <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
-                        <div class="item-group">name:<?php echo $record['group_name']; ?></div>
-                    </a>
-                <?php } ?>
-            </div>
-        </div>
-
-    </main>
+        </main>
+    </div>
 
     <footer>
 

@@ -84,7 +84,7 @@
 
     <main>
         <div>
-            <p><?php if ($error['email'] == 'duplicate') { echo '登録済みです'; } ?></p>
+            <p><?php if ($error['id'] == 'duplicate') { echo '登録済みです'; } ?></p>
             <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                 <label>
                     <span>ニックネーム</span><br>
