@@ -63,27 +63,47 @@
 ?>
 
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../css/parts.css">
+        <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/responsive.css">
 </head>
 <body>
     <header>
-
     </header>
+    <div id="logo">
+        <img src="images/Logo.png">
+    </div>
 
     <main>
-        <form action="" method="POST">
-            <label>
-                <span>ID</span><br>
-                <input type="text" name="id">
-            </label>
-            <br>
-            <label>
-                <div>パスワード</div>
-                <input type="password" name="password">
-            </label>
-            <br>
-            <button>ログイン</button>
-        </form>
-        <a href="../signup/signup.php">新規登録</a>
+        <div id="wrapper">
+            <form action="" method="POST">
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">ID</p>
+                    <input type="text" class="form-style" name="id">
+                </div>
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">パスワード</p>
+                    <input type="password" name="password" class="form-style">
+                </div>
+                <div id="auto_login">
+                    <input type="checkbox" name="save" id="checkbox">
+                    <label for="checkbox"></label>
+                    <span class="tag">次回以降自動でログインする</span>
+                </div>
+                <div class="link">
+
+                    <div>
+                        <a href="../signup/signup.php">新規登録</a>
+                    </div>
+
+                    <input type="submit" value="Log In">
+
+                </div>
+
+            </form>
+        </div>
     </main>
 
     <footer>

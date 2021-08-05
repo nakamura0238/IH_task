@@ -124,8 +124,14 @@
 
     <script src="./setting_function.js" defer></script>
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../css/parts.css">
+        <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/responsive.css">
+
 </head>
-<body>
+<body id="setting">
 
     <?php require('../functions/header.php'); ?>
 
@@ -140,40 +146,47 @@
             ?>
         </div>
 
-        <p>設定ページ</p>
-
+<div id="wrapper">
+    <form action="index.html" enctype="multipart/form-data">
+    <main class="clearfix">
         <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
-            <label>
-                <span>Picture</span><br>
-                <input type="file" name="picture">
-            </label><br>
-            <label>
-                <span>Name</span><br>
+
+            <div class="imgUpload">
+                <img class="js-setting" src="images/no_img.png" alt="profileImg">picture</p>
+                <input type="file" accept=".jpg, .jpeg, .png, .gif">
+            </div>
+
+            <div class="form-item">
+                <p class="formLabel js-formLabel formTop">Name</p>
                 <input type="text" name="name" placeholder="<?php echo $_SESSION['user_name']; ?>" value="<?php if (!empty($_POST['name'])) { echo $_POST['name']; } ?>">
-            </label><br>
-            <label>
-                <span>ID</span><br>
+            </div>
+
+            <div class="form-item">
+                <p class="formLabel js-formLabel formTop">ID</p>
                 <input type="text" name="id" placeholder="<?php echo $_SESSION['user_id']; ?>" value="<?php if (!empty($_POST['user_id'])) { echo $_POST['user_id']; } ?>">
-            </label><br>
-            <label>
-                <span>現在のパスワード</span><br>
-                <input type="password" name="old_pass">
-            </label><br>
-            <label>
-                <span>新しいパスワード</span><br>
-                <input type="password" name="new_pass" placeholder="4文字以上">
-            </label>
-            <br>
-            <label>
-                <span>新しいパスワードの確認</span><br>
-                <input type="password" name="new_pass_check" placeholder="4文字以上">
-            </label>
-            <button>送信</button>
+            </div>
+
+            <div class="form-item">
+                <p class="formLabel js-formLabel">現在のパスワード</p>
+                <input type="password" name="old_pass" class="form-style">
+            </div>
+
+            <div class="form-item">
+                <p class="formLabel js-formLabel">新しいパスワード</span><br>
+                <input type="password" name="new_pass" placeholder="4文字以上" class="form-style">
+            </div>
+
+            <div class="form-item">
+                <p class="formLabel js-formLabel">新しいパスワードの確認</p>
+                <input type="password" name="new_pass_check" placeholder="4文字以上" class="form-style">
+            </div>
+
+            <input class="pull-right" type="submit" value="check">
         </form>
 
         <a href="./quit.php">退会</a>
 
-
+</div>
     </main>
 
     <footer>
