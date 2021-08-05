@@ -7,7 +7,7 @@
 
     session_start();
 
-    if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
+    if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
         $_SESSION['time'] = time();
     } else {
@@ -47,18 +47,18 @@
         }
 
         // メールアドレス
-        if ($_POST['email'] != '') {
-            $email_check = $db -> prepare('SELECT count(*) AS email_cnt FROM users WHERE email = ?');
-            $email_check -> execute(array(
-                escape($_POST['email']),
-            ));
-            $email = $email_check -> fetch(PDO::FETCH_ASSOC);
-            if ($email['email_cnt'] == 0) {
-                $update['email'] = escape($_POST['email']);
-            } else {
-                $error['email'] = 'duplicate';
-            }
-        }
+        // if ($_POST['email'] != '') {
+        //     $email_check = $db -> prepare('SELECT count(*) AS email_cnt FROM users WHERE email = ?');
+        //     $email_check -> execute(array(
+        //         escape($_POST['email']),
+        //     ));
+        //     $email = $email_check -> fetch(PDO::FETCH_ASSOC);
+        //     if ($email['email_cnt'] == 0) {
+        //         $update['email'] = escape($_POST['email']);
+        //     } else {
+        //         $error['email'] = 'duplicate';
+        //     }
+        // }
 
         // ID
         if ($_POST['id'] != '') {
@@ -80,7 +80,7 @@
                 // 一致確認
                 if ($_POST['new_pass'] == $_POST['new_pass_check']) {
                     // 文字数確認
-                    if (strlen($_POST['new_pass']) > 4 && strlen($_POST['new_pass_check']) > 4) {
+                    if (strlen($_POST['new_pass']) >= 4 && strlen($_POST['new_pass_check']) >= 4) {
                         $update['password'] = sha1(escape($_POST['new_pass']));
                     } else {
                         $error['pass'] = 'short';
@@ -95,10 +95,9 @@
         }
 
         if (empty($error)) {
-            $new_data_state = $db -> prepare('UPDATE users SET name = ?, email = ?, user_id = ?, password = ? WHERE user_index = ?');
+            $new_data_state = $db -> prepare('UPDATE users SET name = ?, user_id = ?, password = ? WHERE user_index = ?');
             $new_data_state -> execute(array(
                 $update['name'],
-                $update['email'],
                 $update['user_id'],
                 $update['password'],
                 $_SESSION['user_index'],
@@ -106,7 +105,6 @@
 
             $_SESSION['user_id'] = $update['user_id'];
             $_SESSION['user_name'] = $update['name'];
-            $_SESSION['email'] = $update['email'];
 
             header('Location: ./setting.php');
             exit();
@@ -139,7 +137,6 @@
             <?php
                 echo "user_name : " . $_SESSION['user_name'] . "<br>";
                 echo "user_id : " . $_SESSION['user_id'] . "<br>";
-                echo "email : " . $_SESSION['email'] . "<br>";
             ?>
         </div>
 
@@ -155,10 +152,6 @@
                 <input type="text" name="name" placeholder="<?php echo $_SESSION['user_name']; ?>" value="<?php if (!empty($_POST['name'])) { echo $_POST['name']; } ?>">
             </label><br>
             <label>
-                <span>Email</span><br>
-                <input type="email" name="email" placeholder="<?php echo $_SESSION['email']; ?>" value="<?php if (!empty($_POST['email'])) { echo $_POST['email']; } ?>">
-            </label><br>
-            <label>
                 <span>ID</span><br>
                 <input type="text" name="id" placeholder="<?php echo $_SESSION['user_id']; ?>" value="<?php if (!empty($_POST['user_id'])) { echo $_POST['user_id']; } ?>">
             </label><br>
@@ -168,12 +161,12 @@
             </label><br>
             <label>
                 <span>新しいパスワード</span><br>
-                <input type="password" name="new_pass" placeholder="5文字以上">
+                <input type="password" name="new_pass" placeholder="4文字以上">
             </label>
             <br>
             <label>
                 <span>新しいパスワードの確認</span><br>
-                <input type="password" name="new_pass_check" placeholder="5文字以上">
+                <input type="password" name="new_pass_check" placeholder="4文字以上">
             </label>
             <button>送信</button>
         </form>

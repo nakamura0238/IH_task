@@ -7,7 +7,7 @@
 
     session_start();
 
-    if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
+    if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
         $_SESSION['time'] = time();
     } else {
@@ -40,7 +40,6 @@
             <?php
                 echo "user_name : " . $_SESSION['user_name'] . "<br>";
                 echo "user_id : " . $_SESSION['user_id'] . "<br>";
-                echo "email : " . $_SESSION['email'] . "<br>";
             ?>
         </div>
         <p>退会</p>

@@ -22,7 +22,7 @@
             $delete_g = $db -> prepare('DELETE FROM group_user WHERE user_index = ?;');
             $delete_g -> execute(array($_SESSION['user_index']));
         // グループ招待削除
-            $delete_g_i = $db -> prepare('DELETE FROM group_invitation WHERE inv_user_index = ?;');
+            $delete_g_i = $db -> prepare('DELETE FROM groups_invitation WHERE inv_user_index = ?;');
             $delete_g_i -> execute(array($_SESSION['user_index']));
 
 

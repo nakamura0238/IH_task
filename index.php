@@ -7,7 +7,7 @@
 
     session_start();
 
-    if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
+    if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
         $_SESSION['time'] = time();
     } else {
@@ -39,17 +39,17 @@
 
 
     // フォローリクエスト抽出 フォロー側
-    $follow_request_list_state = $db -> prepare(
-        'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
-        FROM follows_request AS f_r
-        JOIN users AS u ON f_r.follower_index = u.user_index
-        WHERE f_r.follow_index = ?
-        ORDER BY f_r.request_at DESC'
-    );
-    $follow_request_list_state -> execute(array(
-        $_SESSION['user_index']
-    ));
-    $follow_request_list = $follow_request_list_state -> fetchall(PDO::FETCH_ASSOC);
+    // $follow_request_list_state = $db -> prepare(
+    //     'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
+    //     FROM follows_request AS f_r
+    //     JOIN users AS u ON f_r.follower_index = u.user_index
+    //     WHERE f_r.follow_index = ?
+    //     ORDER BY f_r.request_at DESC'
+    // );
+    // $follow_request_list_state -> execute(array(
+    //     $_SESSION['user_index']
+    // ));
+    // $follow_request_list = $follow_request_list_state -> fetchall(PDO::FETCH_ASSOC);
 
 
     // フォロー抽出
@@ -67,29 +67,33 @@
 
 
     // フォローリクエスト抽出 フォロワー側
-    $follower_request_list_state = $db -> prepare(
-        'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
-        FROM follows_request AS f_r
-        JOIN users AS u ON f_r.follow_index = u.user_index
-        WHERE f_r.follower_index = ?
-        ORDER BY f_r.request_at DESC'
-    );
-    $follower_request_list_state -> execute(array(
-        $_SESSION['user_index']
-    ));
-    $follower_request_list = $follower_request_list_state -> fetchall(PDO::FETCH_ASSOC);
+    // $follower_request_list_state = $db -> prepare(
+    //     'SELECT f_r.request_index, f_r.follower_index, u.user_id, u.name, u.picture
+    //     FROM follows_request AS f_r
+    //     JOIN users AS u ON f_r.follow_index = u.user_index
+    //     WHERE f_r.follower_index = ?
+    //     ORDER BY f_r.request_at DESC'
+    // );
+    // $follower_request_list_state -> execute(array(
+    //     $_SESSION['user_index']
+    // ));
+    // $follower_request_list = $follower_request_list_state -> fetchall(PDO::FETCH_ASSOC);
 
 
     // フォロワー抽出
     $follower_list_state = $db -> prepare(
-        'SELECT f.ff_index, f.follow_index, u.user_id, u.name, u.picture
+        'SELECT f.ff_index, f.follow_index, u.user_id, u.name, u.picture, f_i.ff_index
         FROM follows AS f
-        JOIN users AS u ON f.follow_index = u.user_index
+        JOIN users AS u 
+			ON f.follow_index = u.user_index
+		LEFT OUTER JOIN (SELECT * FROM follows WHERE follow_index = ?) AS f_i
+			ON f.follow_index = f_i.follower_index
         WHERE f.follower_index = ?
         ORDER BY f.follow_at DESC'
     );
     $follower_list_state -> execute(array(
-        $_SESSION['user_index']
+        $_SESSION['user_index'],
+        $_SESSION['user_index'],
     ));
     $follower_list = $follower_list_state -> fetchall(PDO::FETCH_ASSOC);
 
@@ -142,16 +146,17 @@
     <header>
         <a href="./index.php">トップページ</a>
         <div class="nav">
-            <a href="./genre/register_A.php">分類登録</a><br>
+            <a href="./genre/register_A.php">分類登録(完成後削除)</a><br>
             <a href="./like/register_like.php">好み登録</a><br>
             <a href="./user/search_user.php">ユーザー検索</a>
-            <a href="./group/group_top.php">グループ</a>
+            <a href="./group/group_create.php">グループ作成</a>
             <a href="./setting/setting.php">設定</a>
+            <a href="./login/logout.php">ログアウト</a>
         </div>
     </header>
 
     <main>
-        <a href="./login/logout.php">ログアウト</a>
+        
         <div>
             <img src="./images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
             <br>
@@ -159,7 +164,6 @@
                 echo $_SESSION['user_index'] . "<br>";
                 echo "user_name : " . $_SESSION['user_name'] . "<br>";
                 echo "user_id : " . $_SESSION['user_id'] . "<br>";
-                echo "email : " . $_SESSION['email'] . "<br>";
             ?>
         </div>
 
@@ -180,13 +184,18 @@
             <!-- フォロー-->
             <p>--follow--</p>
             <?php foreach ($follow_list as $record) { ?>
-                <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
-                    <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                    <div class="flex">
-                        <p class="item-name"><?php echo $record['name']; ?></p>
-                        <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
-                    </div>
-                </a>
+                <div>
+                    <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
+                        <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                        <div class="flex">
+                            <p class="item-name"><?php echo $record['name']; ?></p>
+                            <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
+                        </div>
+                    </a>
+                    <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follower_index'];?>">
+                        unfollow
+                    </button>
+                </div>
             <?php } ?>
         </div>
 
@@ -201,6 +210,15 @@
                         <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
                     </div>
                 </a>
+                    <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follow_index'];?>">
+                        <?php
+                            if ($record['ff_index'] != NULL) {
+                                echo 'unfollow';
+                            } else {
+                                echo 'follow';
+                            }
+                        ?>
+                    </button>
             <?php } ?>
         </div>
 

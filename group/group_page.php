@@ -7,7 +7,7 @@
 
     session_start();
 
-    if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
+    if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
         $_SESSION['time'] = time();
     } else {
@@ -24,7 +24,7 @@
     $check_group = $check_group_state -> fetch(PDO::FETCH_ASSOC);
 
     if ($check_group['check_num'] < 1) {
-        header('Location: ./group_top.php');
+        header('Location: ../index.php');
         exit();
     }
 
