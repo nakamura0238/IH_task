@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <title>グループ設定</title>
+        <title>退会</title>
 
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/parts.css">
@@ -19,7 +19,7 @@
 
     </head>
 
-    <body id="makeGroup">
+    <body id="leave">
 
         <!-- ヘッダー -->
         <header>
@@ -69,68 +69,45 @@
             </div>
         </header>
 
-        
+        <div id="wrapper">
+            <form action="index.html">
+                <main>
 
-        <form action="group.html" enctype="multipart/form-data">
-        <div id="responsiveWrapper">
-            <main class="clearfix">
-
-                <div class="profileSetting">
-                    <!-- image -->
-                    <div class="imgUpLoad">
-                        <img class="js-setting" src="images/no_img.png" alt="profileImg">
-                        <input type="file" accept=".jpg, .jpeg, .png, .gif">
+                    <div id="guide">
+                        <p>パスワードを入力してください</p>
                     </div>
-                    <!-- name -->
+
+                    <!-- password -->
                     <div class="form-item">
-                        <p class="formLabel js-formLabel">Name</p>
-                        <input type="text" name="name" class="form-style" autocomplete="off"/>
-                    </div>
-                </div>
-
-
-                <div class="buttonArea">
-                    <input type="submit" value="make">
-                </div>
-
-
-                <!-- member -->
-                <div class="memberListHeader">
-                    <h2>inviters</h2>
-                </div>
-
-
-                <div id="memberList" class="oneColumn tabOpen">
-                    
-                    <div class="item">
-                        <div class="info">
-                            <img src="images/no_img.png" alt="アイコン">
-                            <h2>Name</h2>
-                        </div>
-                        <div class="checkbox">
-                            <input type="checkbox" name="save" id="checkbox">
-                            <label for="checkbox"></label>
-                        </div>
+                        <p class="formLabel js-formLabel">Password</p>
+                        <input type="password" name="password" class="form-style" />
                     </div>
 
-                    <div class="item">
-                        <div class="info">
-                            <img src="images/no_img.png" alt="アイコン">
-                            <h2>Name</h2>
-                        </div>
-                        <div class="checkbox">
-                            <input type="checkbox" name="save" id="checkbox">
-                            <label for="checkbox"></label>
-                        </div>
+                    <div class="link">
+                        <button class="form-style js-quiteButton" type="button">send</button>
                     </div>
-                
-                </div>
 
-            </main>
+                </form>
+            </div>
         </div>
-        </form>
 
-
+        <div class="quit-modal js-quit-modal">
+                <div class="modal-window">
+                    <div class="box-modal-item">
+                        <p class="modal-message">
+                            退会処理を行います<br>アカウントは即時削除されます
+                        </p>
+                        <div class="box-modal-btn">
+                            <a class="quit-submit js-quit-submit js-close-modal" href="thanks.html">
+                                Quit
+                            </a>
+                            <button class="close-modal js-close-modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <footer>
             2021 &copy; GroupM.
         </footer>
