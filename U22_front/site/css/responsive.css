@@ -26,6 +26,9 @@
   div.followerModal div.modalContents {
     width: 90%;
   }
+  div.followerModal div.inviteBtn {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 1001px) {

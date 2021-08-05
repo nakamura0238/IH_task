@@ -16,6 +16,15 @@ $(document).ready(function(){
     $(this).parent().children('.form-style').focus();
   });
 
+  // チェックボックス
+  $('label[for=checkbox]').click(function(){
+    if($(this).prev().hasClass('checked')){
+      $(this).prev().removeClass('checked');
+    } else {
+      $(this).prev().addClass('checked');
+    }
+  });
+
   // ログインボタン リンク
   var link_h = $('div.link').height();
   var button_h = $('div.button').height();
@@ -25,14 +34,6 @@ $(document).ready(function(){
   } else {
     $('div.link').height(button_h + 'px');
   }
-
-  // カテゴリー
-//   $('div.js-categoryL').change(function(){
-//     $(this).parent().children('div.js-categoryM').removeClass('js-displayHidden');
-//   });
-//   $('div.js-categoryM').change(function(){
-//     $(this).parent().children('div.js-categoryS').removeClass('js-displayHidden');
-//   });
 
   // ハンバーガー
   $('.js-navBtn').click(function(){
@@ -63,45 +64,8 @@ $(document).ready(function(){
     }
   }
 
-  window.onload = switchByWidth;
+  // window.onload = switchByWidth;
   window.onresize = switchByWidth;
-
-  // フォーム追加
-  $('.js-addForm').click(function(){
-    $('main').append(
-      "<div class='category'>"+
-      // categoryL
-        "<div class='form-item categoryL js-categoryL'>"+
-          "<p class='formLabel js-formLabel'>CategoryL</p>"+
-          "<select name='category'>"+
-            "<option selected disabled hidden style='display: none' value=''></option>"+
-            "<option value='1'>1</option>"+
-            "<option value='1'>2</option>"+
-            "<option value='1'>3</option>"+
-          "</select>"+
-        "</div>"+
-        
-        // categoryM
-        "<div class='form-item categoryM js-categoryM'>"+
-          "<p class='formLabel js-formLabel'>CategoryM</p>"+
-          "<select name='category'>"+
-            "<option selected disabled hidden style='display: none' value=''></option>"+
-            "<option value='1'>1</option>"+
-            "<option value='1'>2</option>"+
-            "<option value='1'>3</option>"+
-          "</select>"+
-        "</div>"+
-        
-        "<div class='clear-fix'></div>"+
-        
-        // categoryS
-        "<div class='form-item categoryS js-category'>"+
-          "<p class='formLabel js-formLabel'>CategoryS</p>"+
-          "<input type='text' name='name' id='name' class='form-style' autocomplete='off'/>"+
-        "</div>"+
-      "</div>"
-    );
-  });
 
   // 画像反映
     var nowImg = $('img.js-setting').attr('src');
@@ -122,12 +86,19 @@ $(document).ready(function(){
   });
 
 
-  // モーダル
-  $('.inviteButton').click(function(){
+  // 招待モーダル
+  $('.inviteModalBtn').click(function(){
     $('.followerModal').fadeIn();
   });
   $('.modalClose').click(function(){
     $('.followerModal').fadeOut();
   });
 
+  // 退会モーダル
+  $('button.js-quiteButton').click(function(){
+    $('.quit-modal').fadeIn();
+  });
+  $('button.js-close-modal').click(function(){
+    $('.quit-modal').fadeOut();
+  });
 });
