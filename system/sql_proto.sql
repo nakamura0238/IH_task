@@ -67,3 +67,53 @@ FROM (
 
 
 -- 詳しく --
+
+
+
+(SELECT user_index, user_id, name, picture, follow_at
+FROM (SELECT follow_index, follower_index, follow_at FROM follows WHERE follow_index = 4) AS f1 
+LEFT OUTER JOIN (SELECT follow_index FROM follows WHERE follower_index = 4) AS f2 
+	ON f1.follower_index = f2.follow_index
+JOIN users AS u
+	ON f2.follow_index = u.user_index
+WHERE f2.follow_index IS NOT NULL
+ORDER BY follow_at DESC)
+
+SELECT * 
+FROM `group_user` AS g_u
+LEFT OUTER JOIN (SELECT user_index, user_id, name, picture, follow_at
+	FROM (SELECT follow_index, follower_index, follow_at FROM follows WHERE follow_index = 4) AS f1 
+	LEFT OUTER JOIN (SELECT follow_index FROM follows WHERE follower_index = 4) AS f2 
+		ON f1.follower_index = f2.follow_index
+	JOIN users AS u
+		ON f2.follow_index = u.user_index
+	WHERE f2.follow_index IS NOT NULL
+	ORDER BY follow_at DESC) AS ff
+	ON g_u.user_index = ff.user_index
+WHERE `group_index` = 16
+
+SELECT ff.user_index, ff.user_id, ff.name, ff.picture, ff.follow_at, g_u.gu_index, g_i.invitation_index
+FROM (SELECT user_index, user_id, name, picture, follow_at
+	FROM (SELECT follow_index, follower_index, follow_at FROM follows WHERE follow_index = 4) AS f1 
+	LEFT OUTER JOIN (SELECT follow_index FROM follows WHERE follower_index = 4) AS f2 
+		ON f1.follower_index = f2.follow_index
+	JOIN users AS u
+		ON f2.follow_index = u.user_index
+	WHERE f2.follow_index IS NOT NULL
+	ORDER BY follow_at DESC) AS ff
+LEFT OUTER JOIN (SELECT * FROM group_user WHERE group_index = 16) AS g_u
+	ON ff.user_index = g_u.user_index
+LEFT OUTER JOIN (SELECT * FROM groups_invitation WHERE group_index = 16) AS g_i
+	ON ff.user_index = g_i.inv_user_index
+
+
+
+
+SELECT f.ff_index, f.follow_index, u.user_id, u.name, u.picture, f_i.ff_index
+        FROM follows AS f
+        JOIN users AS u 
+			ON f.follow_index = u.user_index
+		LEFT OUTER JOIN (SELECT * FROM follows WHERE follow_index = 4) AS f_i
+			ON f.follow_index = f_i.follower_index
+        WHERE f.follower_index = ?
+        ORDER BY f.follow_at DESC

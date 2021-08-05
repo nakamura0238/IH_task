@@ -7,7 +7,7 @@
 
     session_start();
 
-    if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
+    if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
         $_SESSION['time'] = time();
     } else {
@@ -168,18 +168,21 @@
         </div>
 
         <div class="follow-area">
-            <button class="btn-follow js-btn-follow">
+            <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $_REQUEST['index'];?>">
                 <?php
                     if ($follow_flg) {
-                        echo 'following';
+                        echo 'unfollow';
                     } else {
                         echo 'follow';
                     }
                 ?>
             </button>
 
+
+
+
             <!-- フォローモーダル -->
-            <div class="follow-modal js-follow-modal">
+            <!-- <div class="follow-modal js-follow-modal">
                 <div class="modal-window">
                     <div class="box-modal-item">
                         <p class="modal-message">
@@ -205,8 +208,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
+
+
+
 
         <div class="like-area">
             <?php foreach ($like_list as $like) { ?>

@@ -13,13 +13,11 @@
             'SELECT user_index
             FROM users
             WHERE user_index = ?
-                AND email = ?
                 AND user_id = ?
                 AND password = ?'
         );
         $user_auth_state -> execute(array(
             $_SESSION['user_index'],
-            $_SESSION['email'],
             $_SESSION['user_id'],
             sha1(escape($_POST['user_password']))
         ));

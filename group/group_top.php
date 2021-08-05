@@ -1,5 +1,7 @@
 <?php
 
+    // 使用しない！！！！！
+
     ini_set('display_errors', "On");
 
     require('../functions/dbconnect.php');
@@ -7,7 +9,7 @@
 
     session_start();
 
-    if (isset($_SESSION['email']) && $_SESSION['time'] + 3600 > time()) {
+    if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 接続時間更新
         $_SESSION['time'] = time();
     } else {
