@@ -1,0 +1,402 @@
+#index nav#tab li {
+  width: 25%;
+}
+
+#user div.right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 40px;
+}
+
+#user div.right h2 {
+  display: block;
+  width: 100%;
+  font-size: 26px;
+  line-height: 0;
+  padding: 20px 0;
+  background-color: #fdf698;
+  border-bottom: 2px solid #ccc;
+}
+
+#user div#favorites {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#group nav#tab li {
+  width: 50%;
+}
+
+#group div#favorites div.catalog div.analytics {
+  width: 100%;
+}
+
+#group div#favorites div.catalog div.analytics div.favorite {
+  width: 100%;
+  position: relative;
+}
+
+#group div#favorites div.catalog div.analytics div.favorite .rank {
+  font-size: 24px;
+}
+
+#group div#favorites div.catalog div.analytics div.favorite .genreM {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#group div#favorites div.catalog div.analytics div.favorite .genreL {
+  font-size: 16px;
+}
+
+#group div#favorites div.catalog div.analytics div.favorite .vote {
+  font-size: 20px;
+}
+
+#group div#favorites div.catalog div.analytics div.favorite .slideBtn {
+  position: absolute;
+  top: 6px;
+  font-size: 20px;
+  right: 3px;
+  color: #ccc;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+#group div#favorites div.catalog div.analytics .contents {
+  display: none;
+  width: 100%;
+}
+
+#group div#favorites div.catalog div.analytics .contents div.genreS {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 5px;
+}
+
+#group div#favorites div.catalog div.analytics .contents div.genreS p {
+  display: block;
+  width: 33%;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+#setting div#wrapper {
+  margin-top: 110px;
+}
+
+#leave div#wrapper {
+  margin-top: 110px;
+}
+
+#leave div.link {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#groupSetting div.buttonArea {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#makeGroup div.buttonArea {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#groupSetting div#responsiveWrapper main,
+#makeGroup div#responsiveWrapper main {
+  width: 100%;
+  padding: 0;
+  pointer-events: auto;
+}
+
+#groupSetting div#responsiveWrapper main div.profileSetting,
+#makeGroup div#responsiveWrapper main div.profileSetting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#groupSetting div#responsiveWrapper main div.profileSetting div.imgUpLoad,
+#makeGroup div#responsiveWrapper main div.profileSetting div.imgUpLoad {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#groupSetting div#responsiveWrapper main div.profileSetting div.form-item,
+#makeGroup div#responsiveWrapper main div.profileSetting div.form-item {
+  width: 400px;
+  max-width: 100%;
+}
+
+#groupSetting div#responsiveWrapper main div.buttonArea,
+#makeGroup div#responsiveWrapper main div.buttonArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 700px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+#groupSetting div#responsiveWrapper main div.memberListHeader,
+#makeGroup div#responsiveWrapper main div.memberListHeader {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 59px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 40px;
+  margin-bottom: 1px;
+  padding-top: 10px;
+  text-align: center;
+  background-color: #fdf698;
+  z-index: 2;
+}
+
+#groupSetting div#responsiveWrapper main div.memberListHeader h2,
+#makeGroup div#responsiveWrapper main div.memberListHeader h2 {
+  display: block;
+  width: 100%;
+  font-size: 26px;
+  line-height: 0;
+  padding: 20px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+#groupSetting div#responsiveWrapper main div#memberList,
+#makeGroup div#responsiveWrapper main div#memberList {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#favoriteRegister div#wrapper {
+  margin-top: 110px;
+}
+
+#favoriteRegister div.category {
+  margin-bottom: 0;
+}
+
+#favoriteRegister div.link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+#favoriteRegister div#responsiveWrapper {
+  margin-top: 0;
+}
+
+#favoriteRegister div#responsiveWrapper div#favorites {
+  display: block;
+}
+
+#search div#wrapper main {
+  width: 600px;
+  margin-top: 110px;
+}
+
+#search div#wrapper main div.search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#search div#wrapper main div.search img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+#search div#wrapper main div.search div.form-item {
+  width: 100%;
+}
+
+div#favorites,
+div#follows,
+div#followers,
+div#groups,
+div#members,
+div#invitations {
+  display: none;
+}
+
+div#auto_login {
+  margin-bottom: 20px;
+  margin-left: 10px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+div.addFavorite {
+  margin-top: 15px;
+  text-align: center;
+}
+
+div.addFavorite a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #3bc479;
+  border-radius: 15px;
+}
+
+div.addFavorite a:hover {
+  opacity: 0.5;
+}
+
+div.addFavorite a span {
+  font-size: 30px;
+  color: #3bc479;
+}
+
+div.followerModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.followerModal div.modalHeading {
+  position: relative;
+  width: 1080px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+div.followerModal div.modalHeading h2 {
+  line-height: 0;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+div.followerModal div.modalHeading span {
+  position: absolute;
+  right: 5px;
+  top: -5px;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+div.followerModal div.modalContents {
+  overflow: auto;
+  width: 1080px;
+  margin: 0 auto;
+  height: 70vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20px;
+  background-color: #fff;
+}
+
+div.followerModal div.modalContents div.item:first-child {
+  border: none;
+}
+
+div.followerModal div.inviteBtn {
+  width: 1080px;
+  margin: 0 auto;
+  background-color: #fff;
+  text-align: center;
+}
+
+div.quit-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+div.quit-modal div.modal-window {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 350px;
+  height: 150px;
+  border: 2px solid #333333;
+  border-radius: 10px;
+  background-color: #ffffff;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+div.quit-modal div.modal-window div.box-modal-item p.modal-message {
+  text-align: center;
+}
+
+div.quit-modal div.modal-window div.box-modal-item div.box-modal-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+/*# sourceMappingURL=style.css.map */

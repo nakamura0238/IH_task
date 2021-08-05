@@ -1,0 +1,137 @@
+@media screen and (max-width: 1200px) {
+  div#responsiveWrapper {
+    width: 90%;
+  }
+  div#responsiveWrapper main {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  div#profile div.center {
+    width: 90%;
+  }
+  nav#tab div.center,
+  div.favoriteHeader div.center {
+    width: 90%;
+  }
+  nav#tab div.center div.right,
+  div.favoriteHeader div.center div.right {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  div.followerModal div.modalHeading {
+    width: 90%;
+  }
+  div.followerModal div.modalContents {
+    width: 90%;
+  }
+  div.followerModal div.inviteBtn {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1001px) {
+  div#responsiveWrapper main div.tabOpen {
+    display: block;
+  }
+  div#favorites div.catalog div.favorite {
+    width: 100%;
+  }
+  div.twoColumn div.column {
+    width: 100%;
+  }
+  div.heading span.slideBtn {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  div.left {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+    padding: 0;
+  }
+  div.right {
+    width: 100%;
+    padding: 0;
+  }
+  #index div.center div.left {
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
+  }
+  diV#profile {
+    position: static;
+    padding-top: 70px;
+  }
+  diV#profile div.profile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 80%;
+  }
+  diV#profile div.profile h2, diV#profile div.profile p {
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
+  }
+  diV#profile img {
+    max-width: 100px;
+    width: 25%;
+    max-height: 100px;
+    height: 25%;
+    margin: 0;
+    padding: 0;
+  }
+  diV#profile a {
+    margin-left: 10px;
+  }
+  diV#profile a img {
+    margin: 0;
+  }
+  nav#tab,
+  div.favoriteHeader {
+    position: sticky;
+    position: -webkit-sticky;
+  }
+  div#responsiveWrapper {
+    margin-top: 0;
+  }
+  div#responsiveWrapper main {
+    width: 100%;
+    padding: 0;
+  }
+  #groupSetting div#responsiveWrapper,
+  #makeGroup div#responsiveWrapper {
+    margin-top: 110px;
+  }
+  #groupSetting div#responsiveWrapper main div.profileSetting,
+  #makeGroup div#responsiveWrapper main div.profileSetting {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  nav#tab ul li span {
+    display: none;
+  }
+  nav#tab ul li img {
+    display: block;
+  }
+}
+/*# sourceMappingURL=responsive.css.map */

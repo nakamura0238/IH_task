@@ -135,13 +135,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/destyle.css">
+    <!-- <link rel="stylesheet" href="./css/destyle.css">
     <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/index.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/parts.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
 
+    <script src="js/script.js" defer></script>
     <script src="./follow/follow_index.js" defer></script>
     <script src="./group/group_function_index.js" defer></script>
-    <title>Document</title>
+    <title>トップページ</title>
 </head>
 <body>
     <header>
@@ -217,7 +223,6 @@
 
             <!-- 好み表示 -->
             <div  id="favorites" class="mouseArea tabOpen">
-                <p>--likes--</p>
                 <div class="catalog">
                     <?php foreach ($genre_list as $record) { ?>
                         <div class="favorite">
@@ -232,14 +237,12 @@
             <!-- フォロー表示 -->
             <div id="follows" class="mouseArea oneColumn">
                 <!-- フォロー-->
-                <p>--follow--</p>
                 <?php foreach ($follow_list as $record) { ?>
-                    <div>
+                    <div class="item follow">
                         <a class="follow-user box-user" href="./user/user_page.php?index=<?php echo $record['follower_index']; ?>">
-                            <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                            <div class="flex">
-                                <p class="item-name"><?php echo $record['name']; ?></p>
-                                <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
+                            <div class="info">
+                                <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                                <h2 class="item-name"><?php echo $record['name']; ?></h2>
                             </div>
                         </a>
                         <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follower_index'];?>">
@@ -250,16 +253,15 @@
             </div>
 
             <!-- フォロワー表示 -->
-            <div class="follower-area">
-                <p>--follower--</p>
+            <div id="followers" class="mouseArea oneColumn">
                 <?php foreach ($follower_list as $record) { ?>
-                    <a class="follower-user box-user" href="./user/user_page.php?index=<?php echo $record['follow_index']; ?>">
-                        <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                        <div class="flex">
-                            <p class="item-name"><?php echo $record['name']; ?></p>
-                            <!-- <p class="item-id">ID:<?php echo $record['user_id']; ?></p> -->
-                        </div>
-                    </a>
+                    <div class="item follower">
+                        <a class="follower-user box-user" href="./user/user_page.php?index=<?php echo $record['follow_index']; ?>">
+                            <div class="info">
+                                <img class="item-picture" src="./images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                                <h2 class="item-name"><?php echo $record['name']; ?></h2>
+                            </div>
+                        </a>
                         <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follow_index'];?>">
                             <?php
                                 if ($record['ff_index'] != NULL) {
@@ -269,11 +271,12 @@
                                 }
                             ?>
                         </button>
+                    </div>
                 <?php } ?>
             </div>
 
                 <!-- フォローモーダル -->
-                <div class="follow-modal js-follow-modal">
+                <!-- <div class="follow-modal js-follow-modal">
                     <div class="modal-window">
                         <div class="box-modal-item">
                             <p class="modal-message">
@@ -285,31 +288,58 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
             <!-- グループ表示 -->
-            <div class="group-area">
-                <div class="inv-group-area">
-                    <p>--invitation--</p>
+            <div id="groups" class="mouseArea twoColumn">
+                <!-- 招待 -->
+                <!-- invitation内が空の場合は非表示にする -->
+                <?php if (!empty($group_inv_list)) { ?>
+                <div class="invitations column">
+
+                    <div class="heading">
+                        <p>invitation</p>
+                        <span class="js-slideBtn slideBtn">▲</span>
+                    </div>
+
+                    <div class="js-slideContent">
                     <?php foreach ($group_inv_list as $record) { ?>
-                        <div class="inv_group js-inv-group">
-                            <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
-                            <div class="item-group">name:<?php echo $record['group_name']; ?></div>
-                            <button class="enter-group-index js-enter-group-index" value="<?php echo $record['group_index']; ?>">参加する</button>
+                        <div class="item invitation">
+                            <div class="inv_group js-inv-group">
+                                <div class="info">
+                                    <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ">
+                                    <h2><?php echo $record['group_name']; ?></h2>
+                                </div>
+                                <button class="enter-group-index js-enter-group-index" value="<?php echo $record['group_index']; ?>">参加する</button>
+                            </div>
                         </div>
                     <?php } ?>
+                    <div>
                 </div>
+                <?php } ?>
 
+                <!-- グループ -->
                 <div class="join-group-area">
-                    <p>--group--</p>
+
+                    <div class="heading">
+                        <p>groups</p>
+                        <span class="js-slideBtn slideBtn">▲</span>
+                    </div>
+
+                    <div class="js-slideContent">
                     <?php foreach ($group_list as $record) { ?>
-                        <a class="join-group" href="./group/group_page.php?group_index=<?php echo $record['group_index']; ?>">
-                            <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ" height="100">
-                            <div class="item-group">name:<?php echo $record['group_name']; ?></div>
-                        </a>
+                        <div class="item group">
+                            <a class="join-group" href="./group/group_page.php?group_index=<?php echo $record['group_index']; ?>">
+                                <div class="info">
+                                    <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ">
+                                    <h2><?php echo $record['group_name']; ?></h2>
+                                </div>
+                            </a>
+                        </div>
                     <?php } ?>
+                    </div>
                 </div>
             </div>
 
