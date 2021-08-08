@@ -13,11 +13,20 @@ $('button.js-btn-search').on('click', () => {
             $('div.result').empty()
             if (data) {
                 if (data.user_id != data.my_id) {
+                    if (data.picture) {
+                        picture = "../images/user/" + data.picture
+                    } else {
+                        picture = "../images/user/default.png"
+                    }
                     let innerHTML = `
+                    <div class="item">
                         <a href="./user_page.php?index=${data.user_index}">
-                            <p>name : ${data.name}</p>
-                            <p>id : ${data.user_id}</p>
+                            <div class="info">
+                                <img src="${picture}" alt="iconImage">
+                                <h2>${data.name}</h2>
+                            </div>
                         </a>
+                    </div>
                     `
                     $('div.result').html(innerHTML)
                 } else {

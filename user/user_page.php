@@ -156,85 +156,74 @@
     <script src="../follow/follow.js" defer></script>
     <title>Document</title>
 </head>
-<body>
+<body id="user">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
-        <div>
-            <img src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-            <p><?php echo $user['name'] ?></p>
-            <p><?php echo $user['user_id'] ?></p>
+    <!-- プロフィール -->
+    <div id="profile">
+        <div class="center">
+            <div class="left">
+                <div class="profile">
+                    <img src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ">
+                    <div>
+                        <h2><?php echo $user['name'] ?></h2><br>
+                        <p><?php echo $user['user_id'] ?></p>
+                    </div>
+                </div>
+                <!-- フォローボタン -->
+                <button class="btn-follow js-btn-follow js-follow-submit form-style" value="<?php echo $_REQUEST['index'];?>">
+                    <?php
+                        if ($follow_flg) {
+                            echo 'unfollow';
+                        } else {
+                            echo 'follow';
+                        }
+                    ?>
+                </button>
+            </div>
         </div>
+    </div>
 
-        <div class="follow-area">
-            <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $_REQUEST['index'];?>">
-                <?php
-                    if ($follow_flg) {
-                        echo 'unfollow';
-                    } else {
-                        echo 'follow';
-                    }
-                ?>
-            </button>
+    <!-- 見出し -->
+    <div class="favoriteHeader">
+        <div class="center">
+            <div class="right">
+                <h2>
+                    My Favorites
+                </h2>
+            </div>
+        </div>
+    </div>
 
+    <div id="responsiveWrapper">
+        <main>
 
-
-
-            <!-- フォローモーダル -->
-            <!-- <div class="follow-modal js-follow-modal">
-                <div class="modal-window">
-                    <div class="box-modal-item">
-                        <p class="modal-message">
-                            <?php
-                                if ($follow_flg) {
-                                    echo 'フォロー解除します';
-                                } else {
-                                    echo 'フォローします';
-                                }
-                            ?>
-                        </p>
-                        <div class="box-modal-btn">
-                            <button class="follow-submit js-follow-submit js-close-modal" value="<?php echo $_REQUEST['index'];?>">
-                                <?php
-                                    if ($follow_flg) {
-                                        echo 'unfollow';
-                                    } else {
-                                        echo 'follow';
+            <!-- 好み一覧 -->
+            <div id="favorites">
+                <div class="catalog">
+                    
+                    <?php foreach ($like_list as $like) { ?>
+                        <div class="favorite">
+                            <p>
+                                <div class="item-like item-like-c"><?php echo $like['genre_c']; ?></div>
+                                <div class="item-like item-like-b"><?php echo $like['genre_b_name']; ?></div>
+                                <div class="item-like item-like-a"><?php echo $like['genre_a_name']; ?></div>
+                            </p>
+                                <?php 
+                                    if ($like['ABC_cf'] > 1) { 
+                                        echo '☆';
+                                    } elseif ($like['AB_cf'] > 1) {
+                                        echo '○';
                                     }
                                 ?>
-                            </button>
-                            <button class="close-modal js-close-modal">close</button>
                         </div>
-                    </div>
+                    <?php } ?>
+                    
                 </div>
-            </div> -->
-        </div>
-
-
-
-
-        <div class="like-area">
-            <?php foreach ($like_list as $like) { ?>
-                <div class="like-tag">
-                    <div class="item-like item-like-a"><?php echo $like['genre_a_name']; ?></div>
-                    <div class="item-like item-like-b"><?php echo $like['genre_b_name']; ?></div>
-                    <div class="item-like item-like-c"><?php echo $like['genre_c']; ?></div>
-                    <div class="item-like imte-like-mark">
-                        <?php 
-                            if ($like['ABC_cf'] > 1) { 
-                                echo '☆';
-                            } elseif ($like['AB_cf'] > 1) {
-                                echo '○';
-                            }
-                        ?>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-
-        <div class="result"></div>
-    </main>
+            </div>
+        </main>
+    </div>
 
     <footer>
     </footer>

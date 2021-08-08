@@ -19,27 +19,31 @@
 ?>
 
     <script src="./search_user.js" defer></script>
-    <title>Document</title>
+    <title>検索</title>
 </head>
-<body>
+<body id="search">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
-        <div>
-            <label>
-                <span>ユーザー検索</span><br>
-                <input class="js-search input-search" type="text" placeholder="ユーザーID">
-            </label>
-            <button class="js-btn-search">検索</button>
-        </div>
+    <div id="wrapper">
+        
+            <main>
+                <div class="search">
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Search</p>
+                        <input class="js-search input-search form-style" type="text">
+                    </div>
+                    <button class="js-btn-search">検索</button>
+                </div>
 
-        <div>
-            <a href="./genre/register_A.php">ジャンル登録</a>
-        </div>
+                <div>
+                    <a href="./genre/register_A.php">ジャンル登録</a>
+                </div>
 
-        <div class="result"></div>
-    </main>
+                <div class="result"></div>
+            </main>
+        
+    </div>
 
     <footer>
     </footer>
