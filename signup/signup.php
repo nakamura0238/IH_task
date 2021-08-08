@@ -78,39 +78,44 @@
 
 </head>
 <body>
-    <header>
+    
+    <div id="logo">
+        <img src="images/Logo.png">
+    </div>
 
-    </header>
-
-    <main>
-        <div>
+    
+        <div id="wrapper">
             <p><?php if ($error['id'] == 'duplicate') { echo '登録済みです'; } ?></p>
             <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-                <label>
-                    <span>ニックネーム</span><br>
-                    <input type="text" name="name">
-                </label>
-                <br>
-                <label>
-                    <span>ユーザーID</span><br>
-                    <input type="text" name="id">
-                </label>
-                <br>
-                <label>
-                    <span>パスワード</span><br>
-                    <input type="password" name="password">
-                </label>
-                <br>
-                <label>
-                    <span>パスワード確認</span><br>
-                    <input type="password" name="password_re">
-                </label>
-                <br>
-                <button>確認</button>
+                <main>
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Name</p>
+                        <input type="text" name="name" class="form-style">
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">id</p>
+                        <input type="text" name="id" class="form-style">
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Password</p>
+                        <input type="password" name="password" class="form-style">
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Password Check</p>
+                        <input type="password" name="password_re" class="form-style">
+                    </div>
+
+                    <div class="link">
+                        <a href="../login/login.php">ログイン</a>
+                        <input type="submit" value="check">
+                    </div>
+                </main>
             </form>
-            <a href="../login/login.php">ログイン</a>
         </div>
-    </main>
+
 
     <footer>
         

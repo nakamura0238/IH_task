@@ -1,0 +1,31 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+input {
+    width: 20rem;
+    border: 1px solid #333333;
+}
+
+select {
+    width: 10rem;
+    border: 1px solid #333333;
+}
+button {
+    display: inline-block;
+    border: 1px solid #333333;
+}
+
+
+
+
+// デバッグ用
+* {
+    
+    outline: 1px solid red;
+}

@@ -36,36 +36,42 @@
     require('../functions/component.php');
 ?>
 
-    <title>Document</title>
+    <title>登録確認</title>
 </head>
 <body>
-    <header>
 
-    </header>
+    <div id="logo">
+        <img src="images/Logo.png">
+    </div>
 
-    <main>
-        <div>
+    
+        <div id="wrapper">
             <form action="" method="post">
-                <input type="hidden" name="action" value="submit">
-                <div class="box-param">
-                    <span>ニックネーム</span><br>
-                    <p><?php echo $_SESSION['join']['name'] ?></p>
-                </div>
-                <div class="box-param">
-                    <span>ユーザーID</span><br>
-                    <p><?php echo $_SESSION['join']['id'] ?></p>
-                </div>
-                <div class="box-param">
-                    <span>パスワード</span><br>
-                    <p>【表示されません】</p>
-                </div>
-                <div class="box-btn">
-                    <a href="./signup.php">戻る</a>
-                    <button>登録</button>
-                </div>
+                <main>
+                    <input type="hidden" name="action" value="submit">
+
+                    <div class="form-item">
+                        <p class="formTop">Name</p><br>
+                        <p class="form-style"><?php echo $_SESSION['join']['name'] ?></p>
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formTop">id</p><br>
+                        <p class="form-style"><?php echo $_SESSION['join']['id'] ?></p>
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formTop">Password</p><br>
+                        <p class="form-style">【表示されません】</p>
+                    </div>
+
+                    <div class="link">
+                        <a href="./signup.php">登録しなおす</a>
+                        <input type="submit" value="register">
+                    </div>
+                </main>
             </form>
         </div>
-    </main>
 
     <footer>
         

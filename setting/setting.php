@@ -125,56 +125,68 @@
     <script src="./setting_function.js" defer></script>
     <title>Document</title>
 </head>
-<body>
+<body id="setting">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
-        <a href="../login/logout.php">ログアウト</a>
-        <div>
-            <img src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+    
+        <!-- <div>
+            <img src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ"> 
             <br>
             <?php
                 echo "user_name : " . $_SESSION['user_name'] . "<br>";
                 echo "user_id : " . $_SESSION['user_id'] . "<br>";
             ?>
-        </div>
+        </div> -->
 
         <p>設定ページ</p>
 
-        <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
-            <label>
-                <span>Picture</span><br>
-                <input type="file" name="picture">
-            </label><br>
-            <label>
-                <span>Name</span><br>
-                <input type="text" name="name" placeholder="<?php echo $_SESSION['user_name']; ?>" value="<?php if (!empty($_POST['name'])) { echo $_POST['name']; } ?>">
-            </label><br>
-            <label>
-                <span>ID</span><br>
-                <input type="text" name="id" placeholder="<?php echo $_SESSION['user_id']; ?>" value="<?php if (!empty($_POST['user_id'])) { echo $_POST['user_id']; } ?>">
-            </label><br>
-            <label>
-                <span>現在のパスワード</span><br>
-                <input type="password" name="old_pass">
-            </label><br>
-            <label>
-                <span>新しいパスワード</span><br>
-                <input type="password" name="new_pass" placeholder="4文字以上">
-            </label>
-            <br>
-            <label>
-                <span>新しいパスワードの確認</span><br>
-                <input type="password" name="new_pass_check" placeholder="4文字以上">
-            </label>
-            <button>送信</button>
-        </form>
+        <div id="wrapper">
+            <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <main class="clearfix">
+                    <div class="imgUpLoad">
+                        <img class="js-setting" src="images/no_img.png" alt="profileImg">
+                        <input type="file" name="picture" accept=".jpg, .jpeg, .png, .gif">
+                    </div>
 
-        <a href="./quit.php">退会</a>
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel formTop">Name</p>
+                        <input type="text" name="name" class="form-style" placeholder="<?php echo $_SESSION['user_name']; ?>" value="<?php if (!empty($_POST['name'])) { echo $_POST['name']; } ?>">
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel formTop">id</p>
+                        <input type="text" name="id" class="form-style" placeholder="<?php echo $_SESSION['user_id']; ?>" value="<?php if (!empty($_POST['user_id'])) { echo $_POST['user_id']; } ?>">
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Password Now</p>
+                        <input type="password" name="old_pass" class="form-style" />
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">New Password Check</p>
+                        <input type="password" name="new_pass" class="form-style" />
+                    </div>
+
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">New Password Check</p>
+                        <input type="password" name="new_pass_check" class="form-style" />
+                    </div>
+
+                    <div class="link">
+                        <a href="./quit.php">
+                            <button class="form-style leaveBtn" type="button">quit</button>
+                        </a>
+                        <input type="submit" value="check">
+                    </div>
+
+                </main>
+            </form>
+        </div>
 
 
-    </main>
+
 
     <footer>
 

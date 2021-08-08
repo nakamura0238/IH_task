@@ -65,26 +65,40 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
 
-    </header>
+    <div id="logo">
+        <img src="images/Logo.png">
+    </div>
 
-    <main>
+    <div id="wrapper">
         <form action="" method="POST">
-            <label>
-                <span>ID</span><br>
-                <input type="text" name="id">
-            </label>
-            <br>
-            <label>
-                <div>パスワード</div>
-                <input type="password" name="password">
-            </label>
-            <br>
-            <button>ログイン</button>
+            <main>
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">ID</p>
+                    <input type="text" name="id" class="form-style">
+                </div>
+
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">Password</p>
+                    <input type="password" name="password" class="form-style">
+                </div>
+
+                <div id="auto_login">
+                        <input type="checkbox" name="save" id="checkbox">
+                        <label for="checkbox"></label>
+                        <span class="tag">次回以降自動でログインする</span>
+                </div>
+
+                <div class="link">
+                    <div>
+                        <a href="../signup/signup.php">新規登録</a>
+                    </div>
+                    <input type="submit" value="Log In">
+                </div>
+
+            </main>
         </form>
-        <a href="../signup/signup.php">新規登録</a>
-    </main>
+    </div>
 
     <footer>
 

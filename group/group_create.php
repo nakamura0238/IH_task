@@ -88,8 +88,8 @@
     // 相互フォロー
     $follow_list_state = $db -> prepare(
         'SELECT user_index, user_id, name, picture, follow_at
-        FROM (SELECT follow_index, follower_index, follow_at FROM follows WHERE follow_index = 4) AS f1 
-        LEFT OUTER JOIN (SELECT follow_index FROM follows WHERE follower_index = 4) AS f2 
+        FROM (SELECT follow_index, follower_index, follow_at FROM follows WHERE follow_index = ?) AS f1 
+        LEFT OUTER JOIN (SELECT follow_index FROM follows WHERE follower_index = ?) AS f2 
             ON f1.follower_index = f2.follow_index
         JOIN users AS u
             ON f2.follow_index = u.user_index
@@ -132,7 +132,7 @@
             <div class="js-follow-user follow-user">
                 <?php foreach ($follow_list as $record) { ?>
                     <div>
-                        <input type="checkbox" name="user[]" value="<?php echo $record['follower_index'] ?>">
+                        <input type="checkbox" name="user[]" value="<?php echo $record['user_index'] ?>">
                         <img src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
                         <p class="item-follow">name:<?php echo $record['name']; ?></p>
                     </div>
