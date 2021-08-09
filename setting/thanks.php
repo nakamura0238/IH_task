@@ -45,10 +45,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>退会完了</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/parts.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css">
+
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+    <script src="js/script.js"></script>
+
 </head>
+
 <body>
-    <p>Thank you for using.</p>
-    <a href="../signup/signup.php">return</a>
+
+    <div id="logo">
+        <img src="images/Logo.png">
+    </div>
+
+    <div id="wrapper">
+        <main>
+
+            <div id="guide">
+                <p>
+                    退会が完了しました。<br>
+                    ご利用ありがとうございました。
+                </p>
+
+                <a href="../signup/signup.php">戻る</a>
+            </div>
+
+        </main>
+
+    </div>
 </body>
 </html>

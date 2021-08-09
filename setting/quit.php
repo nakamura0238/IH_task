@@ -29,43 +29,46 @@
     <script src="./setting_function.js" defer></script>
     <title>Document</title>
 </head>
-<body>
+<body id="leave">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
-        <div>
-            <img src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-            <br>
-            <?php
-                echo "user_name : " . $_SESSION['user_name'] . "<br>";
-                echo "user_id : " . $_SESSION['user_id'] . "<br>";
-            ?>
-        </div>
-        <p>退会</p>
+    <div id="wrapper">
+        <main>
 
-        <label>
-            <span>確認のためパスワードを入力してください</span><br>
-            <p class="js-password-alert"></p>
-            <input class="password js-password" type="password" name="password">
-        </label>
-        <button class="btn-quit js-btn-quit">確認</button>
+            <div id="guide">
+                <p>確認のためパスワードを入力してください</p>
+            </div>
+
+            <div class="form-item">
+                
+                <p class="formLabel js-formLabel">Password</p>
+                <input class="password js-password form-style" type="password" name="password">
+            </div>
+
+            <div class="link">
+                <button class="form-style btn-quit js-btn-quit">check</button>
+            </div>
+
+
+        </main>
+    </div>
 
         <div class="quit-modal js-quit-modal">
-                <div class="modal-window">
-                    <div class="box-modal-item">
-                        <p class="modal-message">
-                            退会処理を行います<br>アカウントは即時削除されます
-                        </p>
-                        <div class="box-modal-btn">
-                            <a class="quit-submit js-quit-submit js-close-modal" href="./thanks.php">
-                                Quit
-                            </a>
-                            <button class="close-modal js-close-modal">Close</button>
-                        </div>
+            <div class="modal-window">
+                <div class="box-modal-item">
+                    <p class="modal-message">
+                        退会処理を行います<br>アカウントは即時削除されます
+                    </p>
+                    <div class="box-modal-btn">
+                        <a class="quit-submit js-quit-submit js-close-modal" href="./thanks.php">
+                            Quit
+                        </a>
+                        <button class="close-modal js-close-modal">Close</button>
                     </div>
                 </div>
             </div>
+        </div>
 
 
     </main>

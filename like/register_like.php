@@ -56,44 +56,65 @@
     <link rel="stylesheet" href="../css/register_like.css">
     <title>Document</title>
 </head>
-<body>
+<body id="favoriteRegister">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
-        <div class="box-select">
-            <form action="" method="POST" class="area-select" autocomplete="off">
-                <div class="box-genre-all">
-                    <div class="box-genre-ab">
+    <div id="wrapper">
+        <form action="" method="POST" class="area-select" autocomplete="off">
+            <main>
+                <div class="category">
+                    <div class="form-item categoryL js-categoryL">
+                        <p class="formLabel js-formLabel">CategoryL</p>
                         <select name="genre-a" class="genre-a js-genre-a">
                             <option value="" disabled selected>大分類</option>
                             <?php foreach ($genres as $genre) { ?>
                                 <option value="<?php echo $genre['genre_a_index']; ?>"><?php echo $genre['genre_a_name']; ?></option>
                             <?php } ?>
-                        </select><!--
-                        --><select name="genre-b" class="genre-b js-genre-b">
+                        </select>
+                    </div>
+
+                    <div class="form-item categoryM js-categoryM">
+                        <p class="formLabel js-formLabel">CategoryM</p>
+                        <select name="genre-b" class="genre-b js-genre-b">
                             <option value="" disabled selected>中分類</option>
                         </select>
                     </div>
-                    <input type="text" name="genre-c" class="genre-c js-genre-b">
-                </div>
-                <button type="submit" class="js-register">登録</button>
-            </form>
-            <!-- <button class="js-add-form">ADD Form</button> -->
-        </div>
 
-        <div class="genre-area">
-            <?php foreach ($genre_list as $record) { ?>
-                <div class="like-tag">
-                    <div class="item-genre item-genre-a"><?php echo $record['genre_a_name']; ?></div>
-                    <div class="item-genre item-genre-b"><?php echo $record['genre_b_name']; ?></div>
-                    <div class="item-genre item-genre-c"><?php echo $record['genre_c']; ?></div>
-                    <div></div>
+                    <div class="clear-fix"></div>
+                    <!-- 小分類 -->
+                    <div class="form-item categoryS js-categoryS">
+                        <p class="formLabel js-formLabel">CategoryS</p>
+                        <input type="text" name="genre-c" id="name" class="form-style genre-c js-genre-b" autocomplete="off"/>
+                    </div>
+                    
                 </div>
-            <?php } ?>
-        </div>
 
-    </main>
+
+            </main>
+
+            <div class="link">
+                <button class="form-style js-register">submit</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <div id="responsiveWrapper">
+        <div class="favorites">
+            <div class="catalog">
+                <?php foreach ($genre_list as $record) { ?>
+                    <div class="favorite">
+                        <p>
+                            <span class="item-genre item-genre-c genreS"><?php echo $record['genre_c']; ?></span>
+                            <span class="item-genre item-genre-b genreM"><?php echo $record['genre_b_name']; ?></span>
+                            <span class="item-genre item-genre-a genreL"><?php echo $record['genre_a_name']; ?></span>
+                        </p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
 
     <footer>
     </footer>

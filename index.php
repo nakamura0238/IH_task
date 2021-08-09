@@ -278,6 +278,10 @@
                         </div>
                     <?php } ?>
                 </div>
+                
+                <div class="addFavorite">
+                    <a href="./like/register_like.php"><span>+</span></a>
+                </div>
             </div>
 
             <!-- フォロー表示 -->
