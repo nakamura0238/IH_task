@@ -92,8 +92,7 @@
                     <div id="results" class="mouseArea oneColumn">
 
                         <div class="item">
-                                    <div class="result"></div>
-                                </div>
+                            <div class="result"></div>
                         </div>
 
                     </div>
