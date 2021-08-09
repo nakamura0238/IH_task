@@ -369,6 +369,10 @@ div#wrapper main {
   margin: 0 auto;
 }
 
+div#wrapper input {
+  margin-bottom: 20px;
+}
+
 div#responsiveWrapper {
   position: relative;
   width: 1080px;

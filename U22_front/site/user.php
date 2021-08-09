@@ -244,19 +244,19 @@
                 <!-- 好み一覧 -->
                 <div id="favorites">
                     <div class="catalog">
-                        
-                        <div class="favorite like-area">
+
                             <?php foreach ($like_list as $like) { ?>
-                                <div class="like-tag">
-                                    <p>
-                                        <span class="item-like item-like-a genreS"><?php echo $like['genre_a_name']; ?></span>
-                                        <span class="item-like item-like-b genreM"><?php echo $like['genre_b_name']; ?>:</span>
-                                        <span class="item-like item-like-c genreL"><?php echo $like['genre_c']; ?></span>
-                                    </p>
+                                <div class="favorite">
+                                    <div class="like-tag">
+                                        <p>
+                                            <span class="item-like item-like-a genreS"><?php echo $like['genre_a_name']; ?></span>
+                                            <span class="item-like item-like-b genreM"><?php echo $like['genre_b_name']; ?>:</span>
+                                            <span class="item-like item-like-c genreL"><?php echo $like['genre_c']; ?></span>
+                                        </p>
+                                    </div>
                                 </div>
                             <?php } ?>
                             <div class="result"></div>
-                        </div>
                         
                     </div>
                 </div>
