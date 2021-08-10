@@ -43,20 +43,13 @@
         // 画像更新
         $filename = $_FILES['picture']['name'];
         if (!empty($filename)) {
-            echo $filename;
-            $ext = substr($filename, -3);
-            if ($ext != 'jpg' && $ext != 'png' && $ext != 'gif') {
-                $error['picture'] = 'type';
-            } else {
-                echo $filename;
-                $picture = date('YmdHis') . $_FILES['picture']['name'];
-                move_uploaded_file($_FILES['picture']['tmp_name'], '../images/group/' . $picture);
-                $update_image_state = $db -> prepare('UPDATE groups SET group_picture = ? WHERE group_index = ?;');
-                $update_image_state -> execute(array(
-                    $picture,
-                    escape($_REQUEST['group_index'])
-                ));
-            }
+            $picture = date('YmdHis') . $_FILES['picture']['name'];
+            move_uploaded_file($_FILES['picture']['tmp_name'], '../images/group/' . $picture);
+            $update_image_state = $db -> prepare('UPDATE groups SET group_picture = ? WHERE group_index = ?;');
+            $update_image_state -> execute(array(
+                $picture,
+                escape($_REQUEST['group_index'])
+            ));
         }
 
         // グループページへ
@@ -129,91 +122,114 @@
 ?>
 
     <script src="./group_function.js" defer></script>
-    <title>Document</title>
+    <title>グループ設定</title>
 </head>
-<body>
+<body id="groupSetting">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
+    <div id="responsiveWrapper">
+        <main>
 
-        <p>グループ情報更新</p>
-
-        <form action="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
-            <!-- 画像を登録 -->
-            <input type="file" name="picture">
-
-            <!-- グループ名変更 -->
-            <input type="text" name="group_name" placeholder="<?php echo $group['group_name'] ?>">
-            <button>変更</button>
-
-        </form>
-
-        <div>
-            <!-- 招待モーダル -->
-            <div>
-                <?php foreach ($invited as $record) { ?>
-                    <div>
-                        <div class="follower-user box-user">
-                            <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                            <div class="flex">
-                                <p class="item-name"><?php echo $record['name']; ?></p>
-                            </div>
-                        </div>
-                        <?php
-                            if ($record['gu_index'] == NULL && $record['invitation_index'] == NULL) {?>
-                                <button class="btn-invitation js-btn-invitation" value="<?php echo  $record['user_index']?>">招待</button>
-                        <?php
-                            } elseif ($record['gu_index'] != NULL && $record['invitation_index'] == NULL) {
-                                echo "<span>参加済</span>";
-                            } elseif ($record['gu_index'] == NULL && $record['invitation_index'] != NULL) {
-                                echo "<span>招待中</span>";
-                            }
-                        ?>
+            <form action="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <div class="profileSetting">
+                    <!-- image -->
+                    <div class="imgUpLoad">
+                        <img class="js-setting" src="../images/group/<?php echo $group['group_picture'] != NULL ? $group['group_picture'] : 'default.png';?>" alt="profileImg">
+                        <input type="file" name="picture" accept=".jpg, .jpeg, .png, .gif">
                     </div>
-                <?php } ?>
-            </div>
-        </div>
+    
+                    <!-- name -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel formTop"><?php echo $group['group_name'] ?></p>
+                        <input type="text" name="group_name" class="form-style" value="Name" >
+                    </div>
 
+                    <button>変更</button>
 
-        <div>
-            <!-- メンバーリスト -->
-            <p>member------------</p>
+                </div>
+            </form>
+
             <div>
-                <?php foreach ($group_user as $record) { ?>
-                    <div>
-                        <div class="follower-user box-user">
-                            <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                            <div class="flex">
-                                <p class="item-name"><?php echo $record['name']; ?></p>
+                <!-- 招待モーダル -->
+                <div>
+                    <?php foreach ($invited as $record) { ?>
+                        <div>
+                            <div class="follower-user box-user">
+                                <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                                <div class="flex">
+                                    <p class="item-name"><?php echo $record['name']; ?></p>
+                                </div>
                             </div>
+                            <?php
+                                if ($record['gu_index'] == NULL && $record['invitation_index'] == NULL) {?>
+                                    <button class="btn-invitation js-btn-invitation" value="<?php echo  $record['user_index']?>">招待</button>
+                            <?php
+                                } elseif ($record['gu_index'] != NULL && $record['invitation_index'] == NULL) {
+                                    echo "<span>参加済</span>";
+                                } elseif ($record['gu_index'] == NULL && $record['invitation_index'] != NULL) {
+                                    echo "<span>招待中</span>";
+                                }
+                            ?>
                         </div>
-                        <?php if ($record['user_index'] != $_SESSION['user_index']) { ?>
-                            <button class="btn-delete member-delete js-member-delete" value="<?php echo $record['user_index'] ?>">delete</button>
+                    <?php } ?>
+                </div>
+            </div>
+
+
+
+            <!-- member -->
+            <div class="memberListHeader">
+                <h2>members</h2>
+            </div>
+
+            <div id="memberList" class="twoColumn tabOpen">
+                <!-- member -->
+                <div class="members column">
+                    <div class="heading">
+                        <p>members</p>
+                        <span class="js-slideBtn slideBtn">▲</span>
+                    </div>
+
+                    <div class="js-slideContent">
+                    <?php foreach ($group_user as $record) { ?>
+                        <div class="item">
+                            <div class="follower-user box-user info">
+                                <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ">
+                                <h2 class="item-name"><?php echo $record['name']; ?></h2>
+                            </div>
+                            <?php if ($record['user_index'] != $_SESSION['user_index']) { ?>
+                                <button class="btn-delete member-delete js-member-delete form-style" value="<?php echo $record['user_index'] ?>">delete</button>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                    </div>
+                </div>
+
+                <!-- invitations -->
+                <div class="invitations column">
+                    <div class="heading">
+                        <p>invitations</p>
+                        <span class="js-slideBtn slideBtn">▲</span>
+                    </div>
+
+                    <div class="js-slideContent">
+                        <?php foreach ($group_inv as $record) { ?>
+                            <div class="item">
+                                <div class="inv-user box-user info" >
+                                    <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ">
+                                    <h2 class="item-name"><?php echo $record['name']; ?></h2>
+                                </div>
+                                <button class="btn-delete inv-delete js-inv-delete form-style" value="<?php echo $record['user_index'] ?>">delete</button>
+                            </div>
                         <?php } ?>
                     </div>
-                <?php } ?>
+                </div>
             </div>
 
-            <!-- 招待メンバーリスト -->
-            <p>invitation----------</p>
-            <div>
-                <?php foreach ($group_inv as $record) { ?>
-                    <div>
-                        <div class="inv-user box-user" >
-                            <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                            <div class="flex">
-                                <p class="item-name"><?php echo $record['name']; ?></p>
-                            </div>
-                        </div>
-                        <button class="btn-delete inv-delete js-inv-delete" value="<?php echo $record['user_index'] ?>">delete</button>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
 
-
-    </main>
+        </main>
+    </div>
 
     <footer>
     </footer>

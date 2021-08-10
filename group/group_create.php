@@ -67,6 +67,7 @@
             ));
         }
 
+        
         header('Location: ../index.php');
         exit();
     }
@@ -109,37 +110,55 @@
     <!-- <script src="./group_function.js" defer></script> -->
     <title>Document</title>
 </head>
-<body>
+<body id="makeGroup">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
-        <a href="../index.php">戻る</a>
-        <br>
-        <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
-            <label>
-                <span>グループ作成</span><br>
-                <input class="js-group-name input-group-name" type="text" name="group_name" placeholder="グループ名">
-            </label><br>
-            <label>
-                <span>Picture</span><br>
-                <input type="file" name="picture">
-            </label>
-            <button class="js-btn-group">作成</button>
+    <div id="responsiveWrapper">
+        <main class="clearfix">
+            <a href="../index.php">戻る</a>
+            <br>
+            <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
 
-            <p>招待可能</p>
-            
-            <div class="js-follow-user follow-user">
-                <?php foreach ($follow_list as $record) { ?>
-                    <div>
-                        <input type="checkbox" name="user[]" value="<?php echo $record['user_index'] ?>">
-                        <img src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                        <p class="item-follow">name:<?php echo $record['name']; ?></p>
+            <div class="profileSetting">
+                    <!-- image -->
+                    <div class="imgUpLoad">
+                        <img class="js-setting" src="../images/group/default.png" alt="profileImg">
+                        <input type="file" name="picture" accept=".jpg, .jpeg, .png, .gif">
                     </div>
-                <?php } ?>
-            </div>
-        </form>
-    </main>
+                    <!-- name -->
+                    <div class="form-item">
+                        <p class="formLabel js-formLabel">Group Name</p>
+                        <input type="text" name="group_name" class="form-style js-group-name" >
+                    </div>
+                </div>
+
+                <div class="buttonArea">
+                    <input type="submit" value="make">
+                </div>
+
+                
+                <div class="js-follow-user follow-user">
+                    <?php $i = 1; foreach ($follow_list as $record) {?>
+                        <div class ="item">
+                            <div class="info">
+                                <img src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                                <h2 class="item-follow"><?php echo $record['name']; ?></h2>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="user[]" value="<?php echo $record['user_index'] ?>" id="checkbox">
+                                    <label for="checkbox"></label>
+                                </div>
+                            </div>
+                        </div>
+                    <?php $i++;} ?>
+                </div>
+            </form>
+        </main>
+        <pre>
+            <?php var_dump($_POST); ?>
+        
+        </pre>
+    </div>
 
     <footer>
     </footer>

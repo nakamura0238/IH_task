@@ -29,8 +29,19 @@
     }
 
 
-    // ユーザー抽出
+    // グループ情報抽出
     if (isset($_REQUEST['group_index'])) {
+        // グループ情報取得
+        $group_state = $db -> prepare(
+            'SELECT *
+            FROM groups
+            WHERE group_index = ?'
+        );
+        $group_state -> execute(array(
+            $_REQUEST['group_index']
+        ));
+        $group = $group_state -> fetch(PDO::FETCH_ASSOC);
+
         // ユーザー数取得
         $users_num_state = $db -> prepare(
             'SELECT count(*) AS u_num
@@ -97,74 +108,136 @@
 
     <link rel="stylesheet" href="../css/group_page.css">
     <script src="./group_function.js" defer></script>
-    <title>Document</title>
+    <title>グループページ</title>
 </head>
-<body>
+<body id="group">
 
     <?php require('../functions/header.php'); ?>
 
-    <main>
+    <!-- プロフィール -->
+    <div id="profile">
+        <div class="center">
+            <div class="left">
+                <div class="profile">
+                    <img src="../images/group/<?php echo $group['group_picture'] != NULL ? $group['group_picture'] : 'default.png';?>" alt="profileImage">
+                    <h2><?php echo $group['group_name']; ?></h2>
+                </div>
+                <a href="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>">
+                    <img src="images/profileSetting.png" alt="設定">
+                </a>
+            </div>
+        </div>
+    </div>
 
-    <a href="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>">グループ設定</a>
 
-        <div class="group-area">
-            <?php 
-                $sql_3 = 'SELECT g_c_agg.genre_a_name, g_c_agg.genre_b_name, g_c_agg.genre_c, count(*) AS num
-                        FROM (' . $sql_1 . ') AS g_c_agg
-                        GROUP BY genre_a, genre_b, genre_c
-                        HAVING g_c_agg.genre_a = ? AND g_c_agg.genre_b = ?
-                        ORDER BY g_c_agg.num DESC, genre_c';
+    <!-- メニュー -->
+    <nav id="tab">
+        <div class="center">
+            <div class="right">
+                <ul>
+                    <li class="favorites tabMenuOpen">
+                        <span>favorite</span>
+                        <img src="images/favorite.png" alt="favorites">
+                    </li>
+                    <li class="members">
+                        <span>members</span>
+                        <img src="images/follow.png" alt="follow">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-                foreach ($like_list as $record) { 
-            ?>
-                <div class="box-genre-all">
-                    <div class="block-genre-ab">
-                        <p class="item-genre-b-name"><?php echo $record['genre_b_name']; ?></p>
-                        <p class="item-genre-a-name"><?php echo $record['genre_a_name']; ?></p>
-                        <p class="item-genre-num"><?php echo $record['num']; ?>人</p>
-                    </div>
-                    <div class="box-genre-c">
-            <?php
-                $genre_c_list_state = $db -> prepare($sql_3);
-                $genre_c_list_state -> execute(array(
-                    $record['genre_a'],
-                    $record['genre_b']
-                ));
-                $genre_c_list = $genre_c_list_state -> fetchall(PDO::FETCH_ASSOC);
+    <div id="responsiveWrapper">
+        <main>
+            <!-- 好み一覧 -->
+            <div id="favorites" class="mouseArea tabOpen">
+                <div class="catalog">
+                    <?php 
+                        $sql_3 = 'SELECT g_c_agg.genre_a_name, g_c_agg.genre_b_name, g_c_agg.genre_c, count(*) AS num
+                                FROM (' . $sql_1 . ') AS g_c_agg
+                                GROUP BY genre_a, genre_b, genre_c
+                                HAVING g_c_agg.genre_a = ? AND g_c_agg.genre_b = ?
+                                ORDER BY g_c_agg.num DESC, genre_c';
 
-                foreach ($genre_c_list as $genre_c) {
-            ?>
-                        <div class="block-genre-c">
-                            <p class="item-genre-c-name"><?php echo $genre_c['genre_c'] ?></p>
-                            <p class="item-genre-c-num"><?php echo $genre_c['num'] ?>人</p>
+                        foreach ($like_list as $record) { 
+                    ?>
+                        <div class="analytics">
+                            <div class="favorite">
+                                <p>
+                                    <span><?php echo $record['genre_b_name']; ?></span>
+                                    <span><?php echo $record['genre_a_name']; ?></span>
+                                    <span><?php echo $record['num']; ?>人</span>
+                                </p>
+                                <span class="js-slideBtn slideBtn js-btnRotate">▲</span>
+                            </div>
+                            <div class="js-slideContent contents">
+                                <div class="genreS">
+                    <?php
+                        $genre_c_list_state = $db -> prepare($sql_3);
+                        $genre_c_list_state -> execute(array(
+                            $record['genre_a'],
+                            $record['genre_b']
+                        ));
+                        $genre_c_list = $genre_c_list_state -> fetchall(PDO::FETCH_ASSOC);
+
+                        foreach ($genre_c_list as $genre_c) {
+                    ?>
+                                    <p><?php echo $genre_c['genre_c'] ?> <?php echo $genre_c['num'] ?>人</p>
+                        <?php } ?>
+                                </div>
+                            </div>
                         </div>
-                <?php } ?>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <!-- メンバー -->
+            <div id="members" class="mouseArea twoColumn">
+
+                <div class="members column">
+                    <div class="heading">
+                        <p>members</p>
+                        <span class="js-slideBtn slideBtn">▲</span>
+                    </div>
+
+                    <div class="js-slideContent">
+                    <?php foreach ($users as $user) { ?>
+                        <div class="item member">
+                            <a class="member-user box-user" href="../user/user_page.php?index=<?php echo $user['user_index']; ?>">
+                                <div class="info">
+                                    <img class="item-picture" src="../images/user/<?php echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ">
+                                    <h2><?php echo $user['name']; ?></h2>
+                                </div>
+                            </a>
+                        </div>
+                    <?php } ?>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
 
-        <div class="user-area">
-            <div class="menber-area">
-                <p>member</p>
-                <?php foreach ($users as $user) { ?>
-                    <a class="member-user box-user" href="../user/user_page.php?index=<?php echo $user['user_index']; ?>">
-                        <img class="item-picture" src="../images/user/<?php echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                        <p class="item-name"><?php echo $user['name']; ?></p>
-                    </a>
+                <?php if (!empty($inv_users)) { ?>
+                    <div class="invitations column">
+                        <div class="heading">
+                            <p>invitations</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
+                        <div class="js-slideContent">
+                        <?php foreach ($inv_users as $inv_user) { ?>
+                            <div class="invitaion item">
+                                <div class="info">
+                                    <a class="member-user box-user" href="../user/user_page.php?index=<?php echo $inv_user['user_index']; ?>">
+                                        <img class="item-picture" src="../images/user/<?php echo $inv_user['picture'] != NULL ? $inv_user['picture'] : 'default.png';?>" alt="ユーザーイメージ">
+                                        <h2><?php echo $inv_user['name']; ?></h2>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        </div>
+                    </div>
                 <?php } ?>
             </div>
-            <div class="inv-area">
-                <p>invitation</p>
-                <?php foreach ($inv_users as $inv_user) { ?>
-                    <a class="member-user box-user" href="../user/user_page.php?index=<?php echo $inv_user['user_index']; ?>">
-                        <img class="item-picture" src="../images/user/<?php echo $inv_user['picture'] != NULL ? $inv_user['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                        <p class="item-name"><?php echo $inv_user['name']; ?></p>
-                    </a>
-                <?php } ?>
-            </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
     <footer>
     </footer>
