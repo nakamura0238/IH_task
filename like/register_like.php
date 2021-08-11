@@ -15,10 +15,6 @@
         exit();
     }
 
-    // echo $_POST['genre-a'];
-    // echo $_POST['genre-b'];
-    print_r($_SESSION);
-
     // 大分類取得
     $genre_state = $db -> query('SELECT * FROM genre_a');
     $genres = $genre_state -> fetchall(PDO::FETCH_ASSOC);
@@ -67,7 +63,7 @@
                     <div class="form-item categoryL js-categoryL">
                         <p class="formLabel js-formLabel">CategoryL</p>
                         <select name="genre-a" class="genre-a js-genre-a">
-                            <option value="" disabled selected>大分類</option>
+                            <option value="" disabled selected></option>
                             <?php foreach ($genres as $genre) { ?>
                                 <option value="<?php echo $genre['genre_a_index']; ?>"><?php echo $genre['genre_a_name']; ?></option>
                             <?php } ?>
@@ -77,7 +73,7 @@
                     <div class="form-item categoryM js-categoryM">
                         <p class="formLabel js-formLabel">CategoryM</p>
                         <select name="genre-b" class="genre-b js-genre-b">
-                            <option value="" disabled selected>中分類</option>
+                            <option value="" disabled selected></option>
                         </select>
                     </div>
 
@@ -101,15 +97,13 @@
     </div>
 
     <div id="responsiveWrapper">
-        <div class="favorites">
+        <div id="favorites">
             <div class="catalog">
                 <?php foreach ($genre_list as $record) { ?>
                     <div class="favorite">
-                        <p>
-                            <span class="item-genre item-genre-c genreS"><?php echo $record['genre_c']; ?></span>
-                            <span class="item-genre item-genre-b genreM"><?php echo $record['genre_b_name']; ?></span>
-                            <span class="item-genre item-genre-a genreL"><?php echo $record['genre_a_name']; ?></span>
-                        </p>
+                        <div class="genre-item item-genre-c genreS"><?php echo $record['genre_c']; ?></div>
+                        <div class="genre-item item-genre-b genreM"><?php echo $record['genre_b_name']; ?></div>
+                        <div class="genre-item item-genre-a genreL"><?php echo $record['genre_a_name']; ?></div>
                     </div>
                 <?php } ?>
             </div>

@@ -144,10 +144,13 @@
                         <p class="formLabel js-formLabel formTop">Group Name</p>
                         <input type="text" name="group_name" class="form-style" value="<?php echo $group['group_name'] ?>" >
                     </div>
-
-                    <button>変更</button>
-
                 </div>
+
+                <div class="buttonArea">
+                    <button type="button" class="form-style ">invitation</button>
+                    <input type="submit" value="change">
+                </div>
+
             </form>
 
             <div>
@@ -207,24 +210,26 @@
                 </div>
 
                 <!-- invitations -->
-                <div class="invitations column">
-                    <div class="heading">
-                        <p>invitations</p>
-                        <span class="js-slideBtn slideBtn">▲</span>
-                    </div>
+                <?php if (!empty($group_inv)) { ?>
+                    <div class="invitations column">
+                        <div class="heading">
+                            <p>invitations</p>
+                            <span class="js-slideBtn slideBtn">▲</span>
+                        </div>
 
-                    <div class="js-slideContent">
-                        <?php foreach ($group_inv as $record) { ?>
-                            <div class="item">
-                                <div class="inv-user box-user info" >
-                                    <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ">
-                                    <h2 class="item-name"><?php echo $record['name']; ?></h2>
+                        <div class="js-slideContent">
+                            <?php foreach ($group_inv as $record) { ?>
+                                <div class="item">
+                                    <div class="inv-user box-user info" >
+                                        <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ">
+                                        <h2 class="item-name"><?php echo $record['name']; ?></h2>
+                                    </div>
+                                    <button class="btn-delete inv-delete js-inv-delete form-style" value="<?php echo $record['user_index'] ?>">delete</button>
                                 </div>
-                                <button class="btn-delete inv-delete js-inv-delete form-style" value="<?php echo $record['user_index'] ?>">delete</button>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
 
 

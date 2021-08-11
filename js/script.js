@@ -54,6 +54,9 @@ $(document).ready(function(){
       $(this).parent().parent().find('.js-slideContent').slideToggle();
       $(this).toggleClass('js-btnRotate');
   });
+
+
+
   // レスポンシブ用 
   function switchByWidth(){
     if(window.matchMedia('(min-width: 1000px)').matches) {

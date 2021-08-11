@@ -157,8 +157,7 @@
             <!-- ロゴ -->
             <h1>
                 <a href="./index.php">
-                    <img src="" alt="ロゴ">
-                    トップページ
+                    <img src="./images/Logo.png" alt="ロゴ">
                 </a>
             </h1>
             <!-- ナビゲーション -->
@@ -295,7 +294,7 @@
                                 <h2 class="item-name"><?php echo $record['name']; ?></h2>
                             </div>
                         </a>
-                        <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follower_index'];?>">
+                        <button type="button" class="btn-follow js-btn-follow js-follow-submit form-style" value="<?php echo $record['follower_index'];?>">
                             unfollow
                         </button>
                     </div>
@@ -312,7 +311,7 @@
                                 <h2 class="item-name"><?php echo $record['name']; ?></h2>
                             </div>
                         </a>
-                        <button class="btn-follow js-btn-follow js-follow-submit" value="<?php echo $record['follow_index'];?>">
+                        <button type="button" class="btn-follow js-btn-follow js-follow-submit form-style" value="<?php echo $record['follow_index'];?>">
                             <?php
                                 if ($record['ff_index'] != NULL) {
                                     echo 'unfollow';
@@ -355,18 +354,19 @@
                     </div>
 
                     <div class="js-slideContent">
-                    <?php foreach ($group_inv_list as $record) { ?>
-                        <div class="item invitation">
-                            <div class="inv_group js-inv-group">
-                                <div class="info">
-                                    <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ">
-                                    <h2><?php echo $record['group_name']; ?></h2>
+                        <?php foreach ($group_inv_list as $record) { ?>
+                            <div class="item invitation">
+                                <div class="inv_group js-inv-group">
+                                    <div class="info">
+                                        <img src="./images/group/<?php  echo $record['group_picture'] != NULL ? $record['group_picture'] : 'default.png';?>" alt="グループイメージ">
+                                        <h2><?php echo $record['group_name']; ?></h2>
+                                    </div>
+                                    
                                 </div>
-                                <button class="enter-group-index js-enter-group-index" value="<?php echo $record['group_index']; ?>">参加する</button>
+                                <button type="button" class="enter-group-index js-enter-group-index form-style" value="<?php echo $record['group_index']; ?>">参加する</button>
                             </div>
-                        </div>
-                    <?php } ?>
-                    <div>
+                        <?php } ?>
+                    </div>
                 </div>
                 <?php } ?>
 

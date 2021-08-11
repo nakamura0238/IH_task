@@ -33,11 +33,7 @@
                         <p class="formLabel js-formLabel">Search</p>
                         <input class="js-search input-search form-style" type="text">
                     </div>
-                    <button class="js-btn-search">検索</button>
-                </div>
-
-                <div>
-                    <a href="./genre/register_A.php">ジャンル登録</a>
+                    <button class="btn-search js-btn-search form-style">search</button>
                 </div>
 
                 <div class="result"></div>

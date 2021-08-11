@@ -1,3 +1,4 @@
-images/
+images/user/
+images/group
 !/images/user/default.png
-!/images/user/default.png
+!/images/group/default.png

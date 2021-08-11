@@ -116,8 +116,6 @@
 
     <div id="responsiveWrapper">
         <main class="clearfix">
-            <a href="../index.php">戻る</a>
-            <br>
             <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
 
             <div class="profileSetting">
@@ -144,19 +142,13 @@
                             <div class="info">
                                 <img src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
                                 <h2 class="item-follow"><?php echo $record['name']; ?></h2>
-                                <div class="checkbox">
-                                    <input type="checkbox" name="user[]" value="<?php echo $record['user_index'] ?>">
-                                </div>
                             </div>
+                            <input type="checkbox" name="user[]" value="<?php echo $record['user_index'] ?>">
                         </div>
                     <?php $i++;} ?>
                 </div>
             </form>
         </main>
-        <pre>
-            <?php var_dump($_POST); ?>
-        
-        </pre>
     </div>
 
     <footer>

@@ -103,6 +103,17 @@
   margin-top: 110px;
 }
 
+#setting .alert-color {
+  background-color: #f65858;
+}
+
+#setting .alert-color:hover {
+  background-color: #fff;
+  border: 1px solid #f65858;
+  color: #f65858;
+  cursor: pointer;
+}
+
 #leave div#wrapper {
   margin-top: 110px;
 }
@@ -143,6 +154,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 30px;
 }
 
 #groupSetting div#responsiveWrapper main div.profileSetting div.imgUpLoad,
@@ -160,6 +172,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 0;
 }
 
 #groupSetting div#responsiveWrapper main div.profileSetting div.form-item,
@@ -173,9 +186,23 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   width: 700px;
   max-width: 100%;
   margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+#groupSetting div#responsiveWrapper main div.form-item,
+#makeGroup div#responsiveWrapper main div.form-item {
+  margin-bottom: 0;
+}
+
+#groupSetting div#responsiveWrapper main input[type="checkbox"],
+#makeGroup div#responsiveWrapper main input[type="checkbox"] {
+  margin-right: 20px;
 }
 
 #groupSetting div#responsiveWrapper main div.memberListHeader,
@@ -253,6 +280,20 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 30px;
+}
+
+#search div#wrapper main div.search .form-item {
+  margin-bottom: 0;
+}
+
+#search div#wrapper main div.search .btn-search {
+  margin-left: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #search div#wrapper main div.search img {

@@ -15,6 +15,13 @@
         exit();
     }
 
+    // ユーザー情報抽出
+    $user_state = $db -> prepare('SELECT * FROM users WHERE user_index = ?;');
+    $user_state -> execute(array(
+        $_SESSION['user_index']
+    ));
+    $user = $user_state -> fetch(PDO::FETCH_ASSOC);
+
     $error = array();
     // ユーザー情報更新
     if (!empty($_POST)) {
@@ -45,20 +52,6 @@
         if ($_POST['name'] != '') {
             $update['name'] = escape($_POST['name']);
         }
-
-        // メールアドレス
-        // if ($_POST['email'] != '') {
-        //     $email_check = $db -> prepare('SELECT count(*) AS email_cnt FROM users WHERE email = ?');
-        //     $email_check -> execute(array(
-        //         escape($_POST['email']),
-        //     ));
-        //     $email = $email_check -> fetch(PDO::FETCH_ASSOC);
-        //     if ($email['email_cnt'] == 0) {
-        //         $update['email'] = escape($_POST['email']);
-        //     } else {
-        //         $error['email'] = 'duplicate';
-        //     }
-        // }
 
         // ID
         if ($_POST['id'] != '') {
@@ -129,23 +122,12 @@
 
     <?php require('../functions/header.php'); ?>
 
-    
-        <!-- <div>
-            <img src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="ユーザーイメージ"> 
-            <br>
-            <?php
-                echo "user_name : " . $_SESSION['user_name'] . "<br>";
-                echo "user_id : " . $_SESSION['user_id'] . "<br>";
-            ?>
-        </div> -->
-
-        <p>設定ページ</p>
-
         <div id="wrapper">
             <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <main class="clearfix">
+                    <p>設定ページ</p>
                     <div class="imgUpLoad">
-                        <img class="js-setting" src="images/no_img.png" alt="profileImg">
+                        <img class="js-setting" src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="profileImg">
                         <input type="file" name="picture" accept=".jpg, .jpeg, .png, .gif">
                     </div>
 
@@ -176,7 +158,7 @@
 
                     <div class="link">
                         <a href="./quit.php">
-                            <button class="form-style leaveBtn" type="button">quit</button>
+                            <button class="form-style leaveBtn alert-color" type="button">quit</button>
                         </a>
                         <input type="submit" value="check">
                     </div>
