@@ -249,11 +249,17 @@ div#profile{
     h2{
         margin-top: 5px;
         font-size: 24px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     // ID
     p{
         font-size: 16px;
         padding-bottom: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     // 設定
     a{
@@ -367,7 +373,12 @@ div#favorites{
             margin: 5px 0;
             border-bottom: 1px solid $mainColor2;
 
-            p{
+            .genre-item {
+                width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
                 .genreS{
                     font-size: 22px;
                     margin-left: 5px;
@@ -375,7 +386,7 @@ div#favorites{
                 }
                 .genreM{font-size: 16px;}
                 .genreL{font-size: 16px;}
-            }
+            
             
             img{
                 width: 25px;
@@ -469,9 +480,17 @@ div.item{
         h2{
             font-size: 22px;
             margin-left: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     
-        p{margin-left: 10px;}
+        p{
+            margin-left: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
     }
 
     button{

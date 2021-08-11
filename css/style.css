@@ -293,6 +293,7 @@ div.addFavorite {
 }
 
 div.addFavorite a {
+  position: relative;
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -305,7 +306,12 @@ div.addFavorite a:hover {
 }
 
 div.addFavorite a span {
-  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 24px;
   color: #3bc479;
 }
 

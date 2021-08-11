@@ -100,10 +100,6 @@ button.form-style:focus {
   outline: none;
 }
 
-input[type='checkbox'] {
-  display: none;
-}
-
 input[type='checkbox'] + label {
   z-index: 15;
   position: absolute;
@@ -147,4 +143,3 @@ input[type='checkbox'].checked + label:before {
   width: 100%;
   border-left: 2px solid #3bc479;
 }
-/*# sourceMappingURL=parts.css.map */

@@ -149,7 +149,7 @@
     <script src="./group/group_function_index.js" defer></script>
     <title>トップページ</title>
 </head>
-<body>
+<body id="index">
 
     <!-- ヘッダー -->
     <header>
@@ -272,15 +272,15 @@
                 <div class="catalog">
                     <?php foreach ($genre_list as $record) { ?>
                         <div class="favorite">
-                            <div class="genreS"><?php echo $record['genre_c']; ?></div>
-                            <div class="genreM"><?php echo $record['genre_b_name']; ?></div>
-                            <div class="genreL"><?php echo $record['genre_a_name']; ?></div>
+                            <div class="genre-item genreS"><?php echo $record['genre_c']; ?></div>
+                            <div class="genre-item genreM"><?php echo $record['genre_b_name']; ?></div>
+                            <div class="genre-item genreL"><?php echo $record['genre_a_name']; ?></div>
                         </div>
                     <?php } ?>
                 </div>
                 
                 <div class="addFavorite">
-                    <a href="./like/register_like.php"><span>+</span></a>
+                    <a href="./like/register_like.php"><span>＋</span></a>
                 </div>
             </div>
 

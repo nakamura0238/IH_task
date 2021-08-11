@@ -285,11 +285,17 @@ div#profile img {
 div#profile h2 {
   margin-top: 5px;
   font-size: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 div#profile p {
   font-size: 16px;
   padding-bottom: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 div#profile a img {
@@ -433,17 +439,24 @@ div#favorites div.catalog div.favorite {
   border-bottom: 1px solid #3bc479;
 }
 
-div#favorites div.catalog div.favorite p .genreS {
+div#favorites div.catalog div.favorite .genre-item {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+div#favorites div.catalog div.favorite .genreS {
   font-size: 22px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-div#favorites div.catalog div.favorite p .genreM {
+div#favorites div.catalog div.favorite .genreM {
   font-size: 16px;
 }
 
-div#favorites div.catalog div.favorite p .genreL {
+div#favorites div.catalog div.favorite .genreL {
   font-size: 16px;
 }
 
@@ -554,10 +567,16 @@ div.item div.info img {
 div.item div.info h2 {
   font-size: 22px;
   margin-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 div.item div.info p {
   margin-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 div.item button {
@@ -648,4 +667,3 @@ footer {
     display: block;
   }
 }
-/*# sourceMappingURL=common.css.map */

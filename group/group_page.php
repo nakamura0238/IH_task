@@ -224,12 +224,12 @@
                         <div class="js-slideContent">
                         <?php foreach ($inv_users as $inv_user) { ?>
                             <div class="invitaion item">
-                                <div class="info">
-                                    <a class="member-user box-user" href="../user/user_page.php?index=<?php echo $inv_user['user_index']; ?>">
+                                <a class="member-user box-user" href="../user/user_page.php?index=<?php echo $inv_user['user_index']; ?>">
+                                    <div class="info">
                                         <img class="item-picture" src="../images/user/<?php echo $inv_user['picture'] != NULL ? $inv_user['picture'] : 'default.png';?>" alt="ユーザーイメージ">
                                         <h2><?php echo $inv_user['name']; ?></h2>
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                         <?php } ?>
                         </div>

@@ -10,7 +10,6 @@
             <h1>
                 <a href="../index.php">
                     <img src="" alt="ロゴ">
-                    トップページ
                 </a>
             </h1>
             <!-- ナビゲーション -->
@@ -47,25 +46,5 @@
                     <span class="btn-line"></span>
                 </button>
         </div>
-
-        <div class="nav">
-            <a href="../genre/register_A.php">分類登録(完成後削除)</a><br>
-            <!-- <a href="./like/register_like.php">好み登録</a><br>
-            <a href="./user/search_user.php">ユーザー検索</a>
-            <a href="./group/group_create.php">グループ作成</a>
-            <a href="./setting/setting.php">設定</a>
-            <a href="./login/logout.php">ログアウト</a> -->
-        </div>
         
     </header>
-<!--     
-<header class="header-area">
-    <nav class="header-nav">
-        <a href="../index.php">トップページ</a>
-        <a href="../like/register_like.php">好み登録</a>
-        <a href="../user/search_user.php">ユーザー検索</a>
-        <a href="../group/group_create.php">グループ作成</a>
-        <a href="../setting/setting.php">設定</a>
-        <a href="../login/logout.php">ログアウト</a>
-    </nav>
-</header> -->

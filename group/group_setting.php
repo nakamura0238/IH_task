@@ -141,8 +141,8 @@
     
                     <!-- name -->
                     <div class="form-item">
-                        <p class="formLabel js-formLabel formTop"><?php echo $group['group_name'] ?></p>
-                        <input type="text" name="group_name" class="form-style" value="Name" >
+                        <p class="formLabel js-formLabel formTop">Group Name</p>
+                        <input type="text" name="group_name" class="form-style" value="<?php echo $group['group_name'] ?>" >
                     </div>
 
                     <button>変更</button>

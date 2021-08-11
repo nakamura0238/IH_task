@@ -145,8 +145,7 @@
                                 <img src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
                                 <h2 class="item-follow"><?php echo $record['name']; ?></h2>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="user[]" value="<?php echo $record['user_index'] ?>" id="checkbox">
-                                    <label for="checkbox"></label>
+                                    <input type="checkbox" name="user[]" value="<?php echo $record['user_index'] ?>">
                                 </div>
                             </div>
                         </div>

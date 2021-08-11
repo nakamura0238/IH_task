@@ -84,9 +84,8 @@
                 </div>
 
                 <div id="auto_login">
-                        <input type="checkbox" name="save" id="checkbox">
-                        <label for="checkbox"></label>
-                        <span class="tag">次回以降自動でログインする</span>
+                        <label><input type="checkbox" name="save" id="checkbox">
+                        <span class="tag">次回以降自動でログインする</span></label>
                 </div>
 
                 <div class="link">

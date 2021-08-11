@@ -205,11 +205,9 @@
                     
                     <?php foreach ($like_list as $like) { ?>
                         <div class="favorite">
-                            <p>
-                                <div class="item-like item-like-c"><?php echo $like['genre_c']; ?></div>
-                                <div class="item-like item-like-b"><?php echo $like['genre_b_name']; ?></div>
-                                <div class="item-like item-like-a"><?php echo $like['genre_a_name']; ?></div>
-                            </p>
+                                <div class="genre-item genreS"><?php echo $like['genre_c']; ?></div>
+                                <div class="genre-item genreM"><?php echo $like['genre_b_name']; ?></div>
+                                <div class="genre-item genreL"><?php echo $like['genre_a_name']; ?></div>
                                 <?php 
                                     if ($like['ABC_cf'] > 1) { 
                                         echo '☆';
