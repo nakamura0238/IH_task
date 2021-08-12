@@ -37,6 +37,12 @@ div#logo{
     img{height: 40px;}
 }
 
+h1.page-title {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: normal;
+}
 
 // ログイン後ヘッダー
 header{
@@ -327,7 +333,7 @@ div#wrapper{
 
     main{
         max-width: 80%;
-        width: 300px;
+        width: 400px;
         margin: 0 auto;
     }
 }
@@ -389,6 +395,13 @@ div#favorites{
             
             
             img{
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+            }
+            
+            div.not-match{
+                flex-shrink: 0;
                 width: 25px;
                 height: 25px;
                 margin-right: 10px;

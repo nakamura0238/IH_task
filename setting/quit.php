@@ -36,8 +36,10 @@
     <div id="wrapper">
         <main>
 
+        <h1 class="page-title">Quit</h1>
+
             <div id="guide">
-                <p>確認のためパスワードを入力してください</p>
+                <p>退会処理を行います<br>確認のためパスワードを入力してください</p>
             </div>
 
             <div class="form-item">

@@ -51,23 +51,21 @@
                 exit();
             } else {
                 $error['login'] = 'failed';
-                echo 'ログインに失敗しました';
             }
         } else {
             $error['login'] = 'blank';
-            echo '入力されていません';
         }
     }
 
     require('../functions/component.php');
 ?>
 
-    <title>Document</title>
+    <title>新規登録</title>
 </head>
 <body>
 
     <div id="logo">
-        <img src="images/Logo.png">
+        <img src="../images/Logo.png">
     </div>
 
     <div id="wrapper">

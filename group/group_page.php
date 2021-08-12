@@ -123,7 +123,7 @@
                     <h2><?php echo $group['group_name']; ?></h2>
                 </div>
                 <a href="./group_setting.php?group_index=<?php echo $_REQUEST['group_index']; ?>">
-                    <img src="images/profileSetting.png" alt="設定">
+                    <img src="../images/profileSetting.png" alt="設定">
                 </a>
             </div>
         </div>

@@ -41,6 +41,13 @@ div#logo img {
   height: 40px;
 }
 
+h1.page-title {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: normal;
+}
+
 header {
   width: 100%;
   position: fixed;
@@ -371,7 +378,7 @@ div#wrapper {
 
 div#wrapper main {
   max-width: 80%;
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -461,6 +468,14 @@ div#favorites div.catalog div.favorite .genreL {
 }
 
 div#favorites div.catalog div.favorite img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+div#favorites div.catalog div.favorite div.not-match {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   width: 25px;
   height: 25px;
   margin-right: 10px;

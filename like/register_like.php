@@ -50,7 +50,7 @@
 
     <script src="./register_like.js" defer></script>
     <link rel="stylesheet" href="../css/register_like.css">
-    <title>Document</title>
+    <title>好み登録</title>
 </head>
 <body id="favoriteRegister">
 
@@ -59,6 +59,7 @@
     <div id="wrapper">
         <form action="" method="POST" class="area-select" autocomplete="off">
             <main>
+                <h1 class="page-title">Register Like</h1>
                 <div class="category">
                     <div class="form-item categoryL js-categoryL">
                         <p class="formLabel js-formLabel">CategoryL</p>

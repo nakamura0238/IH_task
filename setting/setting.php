@@ -116,7 +116,7 @@
 ?>
 
     <script src="./setting_function.js" defer></script>
-    <title>Document</title>
+    <title>設定</title>
 </head>
 <body id="setting">
 
@@ -125,7 +125,7 @@
         <div id="wrapper">
             <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <main class="clearfix">
-                    <p>設定ページ</p>
+                    <h1 class="page-title">Setting</h1>
                     <div class="imgUpLoad">
                         <img class="js-setting" src="../images/user/<?php  echo $user['picture'] != NULL ? $user['picture'] : 'default.png';?>" alt="profileImg">
                         <input type="file" name="picture" accept=".jpg, .jpeg, .png, .gif">

@@ -88,20 +88,36 @@ $(document).ready(function(){
     reader.readAsDataURL(file);
   });
 
-
-  // 招待モーダル
-  $('.inviteModalBtn').click(function(){
-    $('.followerModal').fadeIn();
-  });
-  $('.modalClose').click(function(){
-    $('.followerModal').fadeOut();
+  // モーダル展開
+  $('button.js-btn-inv').on('click', () => {
+    $('div.js-inv-modal').fadeIn(0);
   });
 
-  // 退会モーダル
-  $('button.js-quiteButton').click(function(){
-    $('.quit-modal').fadeIn();
+  // モーダル閉じる
+  // $('button.js-close-modal').on('click', () => {
+  //   $('div.js-quit-modal').fadeOut(0)
+  // })
+  $(document).click(function(event){
+    let target = $(event.target);
+    if(target.hasClass('js-inv-modal')) {
+        target.fadeOut(100);
+    }
   });
-  $('button.js-close-modal').click(function(){
-    $('.quit-modal').fadeOut();
-  });
+
+
+//   // 招待モーダル
+//   $('.inviteModalBtn').click(function(){
+//     $('.followerModal').fadeIn();
+//   });
+//   $('.modalClose').click(function(){
+//     $('.followerModal').fadeOut();
+//   });
+
+//   // 退会モーダル
+//   $('button.js-quiteButton').click(function(){
+//     $('.quit-modal').fadeIn();
+//   });
+//   $('button.js-close-modal').click(function(){
+//     $('.quit-modal').fadeOut();
+//   });
 });

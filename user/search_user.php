@@ -27,17 +27,18 @@
 
     <div id="wrapper">
         
-            <main>
-                <div class="search">
-                    <div class="form-item">
-                        <p class="formLabel js-formLabel">Search</p>
-                        <input class="js-search input-search form-style" type="text">
-                    </div>
-                    <button class="btn-search js-btn-search form-style">search</button>
+        <main>
+            <h1 class="page-title">Search User</h1>
+            <div class="search">
+                <div class="form-item">
+                    <p class="formLabel js-formLabel">Search</p>
+                    <input class="js-search input-search form-style" type="text">
                 </div>
+                <button class="btn-search js-btn-search form-style">search</button>
+            </div>
 
-                <div class="result"></div>
-            </main>
+            <div class="result"></div>
+        </main>
         
     </div>
 

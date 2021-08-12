@@ -116,6 +116,7 @@
 
     <div id="responsiveWrapper">
         <main class="clearfix">
+            <h1 class="page-title">Create Group</h1>
             <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
 
             <div class="profileSetting">

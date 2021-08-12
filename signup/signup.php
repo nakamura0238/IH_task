@@ -80,7 +80,7 @@
 <body>
     
     <div id="logo">
-        <img src="images/Logo.png">
+        <img src="../images/Logo.png">
     </div>
 
     

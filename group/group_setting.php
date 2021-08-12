@@ -147,39 +147,11 @@
                 </div>
 
                 <div class="buttonArea">
-                    <button type="button" class="form-style ">invitation</button>
+                    <button type="button" class="form-style js-btn-inv">invitation</button>
                     <input type="submit" value="change">
                 </div>
 
             </form>
-
-            <div>
-                <!-- 招待モーダル -->
-                <div>
-                    <?php foreach ($invited as $record) { ?>
-                        <div>
-                            <div class="follower-user box-user">
-                                <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
-                                <div class="flex">
-                                    <p class="item-name"><?php echo $record['name']; ?></p>
-                                </div>
-                            </div>
-                            <?php
-                                if ($record['gu_index'] == NULL && $record['invitation_index'] == NULL) {?>
-                                    <button class="btn-invitation js-btn-invitation" value="<?php echo  $record['user_index']?>">招待</button>
-                            <?php
-                                } elseif ($record['gu_index'] != NULL && $record['invitation_index'] == NULL) {
-                                    echo "<span>参加済</span>";
-                                } elseif ($record['gu_index'] == NULL && $record['invitation_index'] != NULL) {
-                                    echo "<span>招待中</span>";
-                                }
-                            ?>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-
-
 
             <!-- member -->
             <div class="memberListHeader">
@@ -235,6 +207,32 @@
 
         </main>
     </div>
+
+    <div class="inv-modal js-inv-modal">
+        <!-- 招待モーダル -->
+        <div class="inv-modal-window">
+            <?php foreach ($invited as $record) { ?>
+                <div class="item">
+                    <div class="info">
+                        <img class="item-picture" src="../images/user/<?php  echo $record['picture'] != NULL ? $record['picture'] : 'default.png';?>" alt="ユーザーイメージ" height="100">
+                        <p class="item-name"><?php echo $record['name']; ?></p>
+                    </div>
+                    <?php
+                        if ($record['gu_index'] == NULL && $record['invitation_index'] == NULL) {
+                    ?>
+                            <button type="button" class="btn-invitation js-btn-invitation form-style" value="<?php echo  $record['user_index']?>">招待</button>
+                    <?php
+                        } elseif ($record['gu_index'] != NULL && $record['invitation_index'] == NULL) {
+                            echo "<span>参加済</span>";
+                        } elseif ($record['gu_index'] == NULL && $record['invitation_index'] != NULL) {
+                            echo "<span>招待中</span>";
+                        }
+                    ?>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+
 
     <footer>
     </footer>

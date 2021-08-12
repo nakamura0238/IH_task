@@ -208,13 +208,13 @@
                                 <div class="genre-item genreS"><?php echo $like['genre_c']; ?></div>
                                 <div class="genre-item genreM"><?php echo $like['genre_b_name']; ?></div>
                                 <div class="genre-item genreL"><?php echo $like['genre_a_name']; ?></div>
-                                <?php 
-                                    if ($like['ABC_cf'] > 1) { 
-                                        echo '☆';
-                                    } elseif ($like['AB_cf'] > 1) {
-                                        echo '○';
-                                    }
-                                ?>
+                                <?php if ($like['ABC_cf'] > 1) { ?>
+                                    <img src="../images/match1.png">
+                                <?php } elseif ($like['AB_cf'] > 1) { ?>
+                                    <img src="../images/match2.png">
+                                <?php } else { ?>
+                                    <div class="not-match"></div>
+                                <?php } ?>
                         </div>
                     <?php } ?>
                     
